@@ -243,6 +243,9 @@ module Socket = {
     ) => 'tcpSocket = "connect"
   }
   include Impl
+  include EventEmitter.Impl({
+      type t = t
+  })
 
   type makeOptions
 
