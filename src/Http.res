@@ -708,6 +708,7 @@ external requestOptions: (
   ~setHost: bool=?,
   ~socketPath: string=?,
   ~timeout: int=?,
+  unit,
 ) => requestOptions = ""
 
 @module("http") external request: string => ClientRequest.t = "request"
