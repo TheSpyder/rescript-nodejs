@@ -30,3 +30,15 @@ module Agent = {
   }
   include Events
 }
+
+@module("https") external get: string => Http.ClientRequest.t = "get"
+@module("https")
+external getWithCallback: (string, Http.IncomingMessage.t => unit) => Http.ClientRequest.t = "get"
+@module("https")
+external getWithOptions: (string, Http.requestOptions) => Http.ClientRequest.t = "get"
+@module("https")
+external getWithOptionsCallback: (
+  string,
+  Http.requestOptions,
+  Http.IncomingMessage.t => unit,
+) => Http.ClientRequest.t = "get"
