@@ -6,9 +6,9 @@
     "clean": "rescript clean",
     "start": "rescript build -w",
     "test": "pta 'lib/js/test/atomic/*.test.bs.js'",
-    "clean-build": "run-s clean build",
-    "clean-start": "run-s clean start",
-    "clean-test": "run-s clean build test",
+    "clean-build": "yarn clean && yarn build",
+    "clean-start": "yarn clean && yarn start",
+    "clean-test": "yarn clean && yarn build test",
     "test-start": "onchange --await-write-finish 1000 --initial 'lib/js/{test,src}/**/*.bs.js' -- yarn test",
     "test-watchexec": "watchexec -r -d 0 -w lib/bs -e log -- yarn test"
   },
@@ -22,9 +22,9 @@
   "dependencies": {},
   "devDependencies": {
     "@dusty-phillips/rescript-zora": "^2.0.0",
-    "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
     "pta": "^1.0.0",
-    "rescript": "^9.1.4"
+    "rescript": "^9.1.4",
+    "zora": "^5.0.0"
   }
 }
