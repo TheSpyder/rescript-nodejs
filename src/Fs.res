@@ -373,6 +373,12 @@ external mkdir: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
 @module("fs") @scope("promises")
 external mkdirWith: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
 
+@module("fs")
+external mkdirSync: string => unit = "mkdirSync"
+
+@module("fs")
+external mkdirSyncWith: (string, mkdirOptions) => unit = "mkdirSync"
+
 type mkdtempOptions
 @obj external mdktempOptions: unit => mkdtempOptions = ""
 
