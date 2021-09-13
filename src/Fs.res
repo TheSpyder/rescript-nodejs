@@ -196,14 +196,14 @@ type fd = private int
 
 type writeFileOptions
 @obj
-external writeFileOptions: (~mode: int=?, ~flag: string=?, unit) => writeFileOptions = ""
+external writeFileOptions: (~mode: int=?, ~flag: string=?, ~encoding: string=?, unit) => writeFileOptions = ""
 
 type appendFileOptions
 @obj
-external appendFileOptions: (~mode: int=?, ~flag: Flag.t=?, unit) => appendFileOptions = ""
+external appendFileOptions: (~mode: int=?, ~flag: Flag.t=?, ~encoding: string=?, unit) => appendFileOptions = ""
 
 type readFileOptions
-@obj external readFileOptions: (~flag: Flag.t=?, unit) => readFileOptions = ""
+@obj external readFileOptions: (~flag: Flag.t=?, ~encoding: string=?, unit) => readFileOptions = ""
 
 @ocaml.doc("
  * `readdirSync(path)`
@@ -246,14 +246,10 @@ external openSyncWith: (string, ~flag: Flag.t=?, ~mode: int=?) => fd = "openSync
 external readFileSync: (string, ~options: readFileOptions=?, unit) => Buffer.t = "readFileSync"
 @module("fs") external existsSync: string => bool = "existsSync"
 
-type writeFileSyncOptions
-@obj
-external writeFileSyncOptions: (~mode: int=?, ~flag: Flag.t=?, unit) => writeFileSyncOptions = ""
-
 @val @module("fs")
 external writeFileSync: (string, Buffer.t) => unit = "writeFileSync"
 @val @module("fs")
-external writeFileSyncWith: (string, Buffer.t, writeFileSyncOptions) => unit = "writeFileSync"
+external writeFileSyncWith: (string, Buffer.t, writeFileOptions) => unit = "writeFileSync"
 
 module FileHandle = {
   type t
@@ -307,7 +303,7 @@ module FileHandle = {
 
   type writeFileOptions
   @obj
-  external writeFileOptions: (~mode: int=?, ~flag: Flag.t=?, unit) => writeFileOptions = ""
+  external writeFileOptions: (~mode: int=?, ~flag: Flag.t=?, ~encoding: string=?, unit) => writeFileOptions = ""
 
   @send
   external writeFile: (t, Buffer.t) => Js.Promise.t<unit> = "writeFile"
@@ -380,10 +376,10 @@ external mkdirSync: string => unit = "mkdirSync"
 external mkdirSyncWith: (string, mkdirOptions) => unit = "mkdirSync"
 
 type mkdtempOptions
-@obj external mdktempOptions: unit => mkdtempOptions = ""
+@obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
 
 @module("fs") @scope("promises")
-external mkdtemp: (string, mkdtempOptions) => Js.Promise.t<string> = "mkddtemp"
+external mkdtemp: (string) => Js.Promise.t<string> = "mkddtemp"
 
 @module("fs") @scope("promises")
 external mkdtempWith: (string, mkdtempOptions) => Js.Promise.t<string> = "mkddtemp"
@@ -454,6 +450,7 @@ type createReadStreamOptions
 @obj
 external createReadStreamOptions: (
   ~flags: string=?,
+  ~encoding: string=?,
   ~fd: fd=?,
   ~mode: int=?,
   ~autoClose: bool=?,
@@ -474,6 +471,7 @@ type createWriteStreamOptions
 @obj
 external createWriteStreamOptions: (
   ~flags: string=?,
+  ~encoding: string=?,
   ~fd: fd=?,
   ~mode: int=?,
   ~autoClose: bool=?,
