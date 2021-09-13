@@ -17,9 +17,14 @@
     "nodejs"
   ],
   "author": "Andrew Herron",
-  "homepage": "https://github.com/thespyder/rescript-nodejs",
+  "homepage": "https://github.com/TheSpyder/rescript-nodejs",
+  "bugs": "https://github.com/TheSpyder/rescript-nodejs/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TheSpyder/rescript-nodejs.git"
+  },
+  "description": "Node bindings for ReScript",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@dusty-phillips/rescript-zora": "^2.0.0",
     "onchange": "^7.1.0",
