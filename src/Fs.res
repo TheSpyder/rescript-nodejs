@@ -243,7 +243,10 @@ external rmdirSync: string => unit = "rmdirSync"
 external openSyncWith: (string, ~flag: Flag.t=?, ~mode: int=?) => fd = "openSync"
 
 @module("fs")
-external readFileSync: (string, ~options: readFileOptions=?, unit) => Buffer.t = "readFileSync"
+external readFileSync: (string) => Buffer.t = "readFileSync"
+@module("fs")
+external readFileSyncWith: (string, readFileOptions) => Buffer.t = "readFileSync"
+
 @module("fs") external existsSync: string => bool = "existsSync"
 
 @val @module("fs")
