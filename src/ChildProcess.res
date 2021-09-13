@@ -209,6 +209,7 @@ external execSyncOptions: (
   ~killSignal: string=?,
   ~uid: int=?,
   ~gid: int=?,
+  ~stdio: string=?,
   ~windowsHide: bool=?,
   unit,
 ) => execSyncOptions = ""
