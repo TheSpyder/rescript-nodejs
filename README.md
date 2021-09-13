@@ -1,6 +1,6 @@
 # rescript-nodejs
 
-----
+Node.js bindings for ReScript
 
 ## Installation
 
@@ -20,7 +20,7 @@ Then add rescript-nodejs to `bsconfig.json`:
 
 ## Goal of this library
 
-Help all Reason Node.js apps and libraries to be built faster by reducing the time spent on hand written bindings.
+Help all ReScript Node.js apps and libraries to be built faster by reducing the time spent on hand written bindings.
 
 ## Non-Goals
 
@@ -34,7 +34,7 @@ Help all Reason Node.js apps and libraries to be built faster by reducing the ti
 
 ### Stream a file into stdout:
 
-```reason
+```rescript
 Fs.createReadStream("/path")
   ->Stream.pipe(Process.(stdout(process)))
   ->Stream.onError(_ => Js.log("handleError"))
@@ -42,7 +42,7 @@ Fs.createReadStream("/path")
 
 ### Echo server:
 
-```reason
+```rescript
 Http.createServer((request, response) => {
   request->Stream.onData(data => Js.log(data))
   request->Stream.pipe(response)->ignore
