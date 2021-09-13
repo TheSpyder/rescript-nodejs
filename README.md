@@ -1,40 +1,21 @@
 # rescript-nodejs
 
-## Project Status
-
-The [original project](https://github.com/sikanhe/reason-nodejs) appears to be abandoned, I am in the process of forking it to focus on ReScript and 
-
-**Update (5/5/2020):**
-Announcing the beta release of `reason-node`! You can find it on NPM [here](https://www.npmjs.com/package/reason-nodejs), and install it from your terminal using the installation instructions below.
-
-We invite everyone to try it out in your own projects, and to provide any feedback you want. GitHub issues are a great way to provide such feedback, since those are easy for us to track and manage. However, if you need any help or have specific questions, don't hesitate to contact us on [Discord](https://discord.gg/7MgaPKW)!
-
-Happy hacking!
-
-----
-
-**Update (3/19/2020):**
-`reason-node` is nearly ready for its first public release. Most of the important design decisions have been made & implemented, and most of the API surface is becoming relatively stable. There are still a few gaps here and there, and we intend to refine the API over time as new ideas emerge. Therefore, we will likely push an alpha release first, to give us some space to make breaking changes if needed, based on community feedback. We will post updates here and in the ReasonML Discord server.
-
-----
-
-**Update (2/13/2020):**
-This library is still under construction. Some of the core design details are still being ironed out. Therefore we cannot guarantee API stability at this time. We intend to achieve API stability very soon. We will make an announcement on the ReasonML [Discord server](https://discord.gg/7MgaPKW) when we reach that goal.
-
 ----
 
 ## Installation
 
-Using the [yarn](https://yarnpkg.com/) package manager:
-
 ```shell
-yarn add reason-nodejs
+npm i add rescript-nodejs
 ```
-
-Using the [npm](https://www.npmjs.com/) package manager:
-
+or
 ```shell
-npm i reason-nodejs
+yarn add rescript-nodejs
+```
+Then add rescript-nodejs to `bsconfig.json`:
+```
+  "bs-dependencies": [
+    "rescript-nodejs"
+  ],
 ```
 
 ## Goal of this library
@@ -43,13 +24,13 @@ Help all Reason Node.js apps and libraries to be built faster by reducing the ti
 
 ## Non-Goals
 
-- Have 100% coverage of Node.js api surface - Due to lack of man power for testing and maintaining, we should only have enough surface to cover all common use cases. But we should have enough coverage that developers only rarely have to write a custom binding.
-- Ensure all APIs are idiomatic Reason and 100% typesafe - This library should be as low-level as possible to allow for minimal context switching between offical Node.js documentation and the Reason equilvalent. And due to the dynamic nature of the JS API, bending it to be idiomatic Reason will lead to a ton of bikeshedding in design as well as sacrificing maintainability.
+- Have 100% coverage of Node.js api surface - Due to lack of testing and time for maintenance, it should only have enough surface to cover all common use cases. But it should have enough coverage that developers only rarely have to write a custom binding.
+- This library should be as low-level as possible (i.e. zero-cost) to allow for minimal context switching between offical Node.js documentation and the ReScript equilvalent. Due to the dynamic nature of the JS API, bending it to be idiomatic ReScript will lead to a ton of bikeshedding in design as well as sacrificing maintainability.
 
 ## Principles
 
-- When available, we prefer to bind to the promise version of the library instead of the callback version to reduce binding surface.
-- Use subtyping only where the benefit is huge. We use subtyping for various APIs that implement Node Streams, such as HTTP Request and Response, FileSystem streams, Crypto streams, and etc. This allows us to use a single set of functions to manipulate and combine streams across different modules. For example:
+- When available, prefer binding to the promise version of the library instead of the callback version to reduce binding surface. `Js.Promise` can be a bit of a pain, try [the new Promise API](https://github.com/ryyppy/rescript-promise).
+- Use subtyping only where the benefit is substantial. Subtyping is used for various APIs that implement Node Streams, such as HTTP Request and Response, FileSystem streams, Crypto streams, and etc. This provides a single set of functions to manipulate and combine streams across different modules. For example:
 
 ### Stream a file into stdout:
 
@@ -72,13 +53,13 @@ Http.createServer((request, response) => {
 
 We welcome and encourage anyone to contribute! In order to minimize confusion and avoid any wasted effort, here are some recommendations:
 
-- If you notice a bug or a typo, feel free to create an issue or submit a PR to fix it.
-- If you want to request a feature/improvement, it's best to create an issue first, so we can discuss the details. The last thing we want is for you to spend a lot of valuable time and energy creating a pull request when it doesn't fit in with the project goals. That doesn't mean we won't merge your PR, but we cannot guarantee it. We prioritize code review and open discussion.
-- If you notice gaps in the documentation and want to help us fill in those gaps, you can help us out by submitting a PR, or by creating an issue and providing a draft of the docs you want to add.
-- If you have concerns about our implementations or design decisions (e.g. type soundness, complexity, ergonomics, edge cases, etc.), you should submit an issue voicing your concerns. We gladly welcome critique from the community. We want this library to be as useful as possible, so we want to hear from you!
+- If you notice a bug or a typo feel free to create an issue or submit a PR to fix it.
+- If you want to request a feature/improvement, it's best to create an issue first and start a discussion. Don't spend a lot of valuable time and energy creating a pull request when it might not fit in with the project goals. Your PR may still be merged if it isn't based on an issue but expect to have a discussion first.
+- If you notice gaps in the documentation and want to help fill them in, feel free to go straight to PR. Or create an issue and provide a draft of the docs you want to add.
+- If you have concerns about implementation style or design decisions (e.g. type soundness, complexity, ergonomics, edge cases, etc.), please submit an issue voicing your concerns. Critique from the community is welcome. This library is only useful so long as it works for everyone!
 
 ## License and Credits
 
 All code is licensed as MIT. See [LICENSE](LICENSE).
 
-This project has been forked from [reason-nodejs](https://github.com/sikanhe/reason-nodejs) after it appeared to be abandoned. The project needed renaming anyway, this seemed like a good time to do it.
+This project was forked from [reason-nodejs](https://github.com/sikanhe/reason-nodejs) after it was (or appeared to be) abandoned. If the original authors would like to re-engage please email me.
