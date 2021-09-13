@@ -1,5 +1,5 @@
 {
-  "name": "reason-nodejs",
+  "name": "rescript-nodejs",
   "version": "14.0.0",
   "scripts": {
     "build": "rescript",
