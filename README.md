@@ -2,6 +2,8 @@
 
 Node.js bindings for ReScript
 
+[![npm](https://img.shields.io/npm/v/rescript-nodejs.svg)](https://npmjs.org/rescript-nodejs)
+
 ## Installation
 
 ```shell
