@@ -1,6 +1,8 @@
-# reason-nodejs
+# rescript-nodejs
 
 ## Project Status
+
+The [original project](https://github.com/sikanhe/reason-nodejs) appears to be abandoned, I am in the process of forking it to focus on ReScript and 
 
 **Update (5/5/2020):**
 Announcing the beta release of `reason-node`! You can find it on NPM [here](https://www.npmjs.com/package/reason-nodejs), and install it from your terminal using the installation instructions below.
@@ -74,3 +76,9 @@ We welcome and encourage anyone to contribute! In order to minimize confusion an
 - If you want to request a feature/improvement, it's best to create an issue first, so we can discuss the details. The last thing we want is for you to spend a lot of valuable time and energy creating a pull request when it doesn't fit in with the project goals. That doesn't mean we won't merge your PR, but we cannot guarantee it. We prioritize code review and open discussion.
 - If you notice gaps in the documentation and want to help us fill in those gaps, you can help us out by submitting a PR, or by creating an issue and providing a draft of the docs you want to add.
 - If you have concerns about our implementations or design decisions (e.g. type soundness, complexity, ergonomics, edge cases, etc.), you should submit an issue voicing your concerns. We gladly welcome critique from the community. We want this library to be as useful as possible, so we want to hear from you!
+
+## License and Credits
+
+All code is licensed as MIT. See [LICENSE](LICENSE).
+
+This project has been forked from [reason-nodejs](https://github.com/sikanhe/reason-nodejs) after it appeared to be abandoned. The project needed renaming anyway, this seemed like a good time to do it.

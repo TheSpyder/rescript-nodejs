@@ -1,6 +1,7 @@
 type t;
 
 [@bs.val] external fromInt: int => t = "BigInt";
+[@bs.val] external fromFloat: float => t = "BigInt";
 [@bs.val] external toInt: t => int = "Number";
 
 let%private _NEGATIVE_ONE = fromInt(-1);

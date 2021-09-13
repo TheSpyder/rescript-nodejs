@@ -2,23 +2,29 @@
   "name": "reason-nodejs",
   "version": "13.0.0-beta.2",
   "scripts": {
-    "build": "bsb -make-world",
-    "clean-build": "bsb -clean-world && bsb -make-world",
-    "start": "bsb -make-world -w",
-    "clean-start": "bsb -clean-world && bsb -make-world -w",
-    "test": "jest",
-    "clean-test": "bsb -clean-world && bsb -make-world && jest",
-    "clean": "bsb -clean-world"
+    "build": "rescript",
+    "clean": "rescript clean",
+    "start": "rescript build -w",
+    "test": "pta 'lib/js/test/atomic/*.test.bs.js'",
+    "clean-build": "run-s clean build",
+    "clean-start": "run-s clean start",
+    "clean-test": "run-s clean build test",
+    "test-start": "onchange --await-write-finish 1000 --initial 'lib/js/{test,src}/**/*.bs.js' -- yarn test",
+    "test-watchexec": "watchexec -r -d 0 -w lib/bs -e log -- yarn test"
   },
   "keywords": [
-    "BuckleScript"
+    "rescript",
+    "nodejs"
   ],
-  "author": "Sikan He & Austin Davis",
-  "homepage": "https://github.com/sikanhe/reason-node",
+  "author": "Andrew Herron",
+  "homepage": "https://github.com/thespyder/reason-node",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.10",
-    "bs-platform": "^8.3.0"
+    "@dusty-phillips/rescript-zora": "^2.0.0",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "pta": "^1.0.0",
+    "rescript": "^9.1.4"
   }
 }
