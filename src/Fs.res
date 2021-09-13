@@ -475,7 +475,7 @@ external createWriteStreamOptions: (
   ~start: int=?,
   ~fs: {..}=?,
   unit,
-) => createReadStreamOptions = ""
+) => createWriteStreamOptions = ""
 @module("fs")
 external createWriteStream: string => WriteStream.t = "createWriteStream"
 
