@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@blakeembrey/template/-/template-1.0.0.tgz#bf8828bc3ae8004d97904d78f64e3cc2cd216438"
   integrity sha512-J6WGZqCLdRMHUkyRG6fBSIFJ0rL60/nsQNh5rQvsYZ5u0PsKw6XQcJcA3DWvd9cN3j/IQx5yB1fexhCafwwUUw==
 
-"@dusty-phillips/rescript-zora@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@dusty-phillips/rescript-zora/-/rescript-zora-2.0.0.tgz#fbc60eb897f580c5d52a6457f4fe026001127bb7"
-  integrity sha512-MJKjYRqg+8U+ESvdZ9niZeWfEmpBz3eGCHtWuxROWKH0NQKyc4Ok2EbMbs3Bb/p/F9FFdY3Cv/KNVix25KC8sA==
+"@dusty-phillips/rescript-zora@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@dusty-phillips/rescript-zora/-/rescript-zora-3.0.0.tgz#f5f2d626c7f4d6d4eb65a4c3c47e4702e7a8657a"
+  integrity sha512-I3KQwmPB5Ezw9nVn0QxIyoOUY95/0SHfKmBA4OlzKwmTjRE1sNiziUeEuwuldULJo6/qX5xcDkTRYb2AtcM2RQ==
   dependencies:
     "@ryyppy/rescript-promise" "^2.1.0"
     pta "^1.0.0"
