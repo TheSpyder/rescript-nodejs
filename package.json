@@ -2,7 +2,7 @@
   "name": "rescript-nodejs",
   "version": "14.0.4",
   "scripts": {
-    "build": "rescript",
+    "build": "rescript || rescript",
     "clean": "rescript clean",
     "start": "rescript build -w",
     "test": "rescript && pta 'lib/js/test/atomic/*.test.bs.js'",

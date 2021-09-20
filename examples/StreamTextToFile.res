@@ -1,5 +1,10 @@
-// Normally `open NodeJs` would be used to shorten the module accessors
-// this is not done in the example to make it clear where things come from
+/*
+ Normally `open NodeJs` would be used to shorten the module accessors
+ this is not done in the example to make it clear where things come from.
+
+ Note this means compiling the codebase from clean will trigger an error
+ just rebuild and it'll be fine.
+*/
 
 let data = "Sample text to write to a file!"->NodeJs.Buffer.fromString
 let process = NodeJs.Process.process
