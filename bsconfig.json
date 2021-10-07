@@ -1,5 +1,5 @@
 {
-  "name": "reason-nodejs",
+  "name": "rescript-nodejs",
   "sources": [
     {
       "dir": "src",
