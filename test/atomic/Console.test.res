@@ -24,9 +24,21 @@ zoraBlock("Console", t => {
     "stdout": Process.stdout(process),
   })
 
+  Js.log("=== Testing console output styles ===")
   c1->Console.logMany(["a", "b"])
   c2->Console.table(["hi", "bye"])
-  c2->Console.table([Js.Dict.fromArray([("a", 1), ("b", 2)])])
+  c2->Console.table([
+    {
+      "a": 1,
+      "b": 2,
+    },
+  ])
+  Console.console->Console.dir({
+    "hello": "world",
+    "this": "is",
+    "an": "object",
+  })
+  Js.log("=== END testing console output styles ===")
 
   t->block("New console instance should be defined", t =>
     t->notEqual(Js.Undefined.return(c1), Js.Undefined.empty, "")

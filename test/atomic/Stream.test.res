@@ -1,7 +1,6 @@
 open Zora
 open StreamTestLib
 
-// avoid using rescript-zora `then` or `done`, to retain commonjs compatibility
 let {then, resolve: done} = module(Promise)
 
 zoraBlock("Stream.Readable", t => {
@@ -23,24 +22,18 @@ zoraBlock("Stream.Readable", t => {
 
   t->test("'Stream.Readable.destroyWithError' should emit 'error' event", t => {
     open! Errors
-    let dummyError = Error.make("Destroyed")->Error.toJsExn
-    Promise.make((resolve, _reject) =>
-      StreamTestLib.makeReadableEmpty()
-      ->Stream.onError(err => {
-        {
-          open Console
-          console->dir(err)
-        }
-
+    let dummyError = Error.make("Expected error: Stream destroyed")->Error.toJsExn
+    Promise.make((resolve, _reject) => {
+      let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(err => {
         t->equal(err, dummyError, "")
 
         // oh these bindings are wonderful aren't they
         let a = ()
         resolve(. a)
       })
-      ->Stream.destroyWithError(dummyError)
-      ->ignore
-    )
+
+      Js.Global.setTimeout(() => stream->Stream.destroyWithError(dummyError)->ignore, 10)->ignore
+    })
   })
 
   t->block("'Stream.Readable.destroy' should return the exact same instance of 'Readable'", t => {
