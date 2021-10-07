@@ -1,5 +1,6 @@
 {
   "name": "rescript-nodejs",
+  "namespace": "NodeJs",
   "sources": [
     {
       "dir": "src",
@@ -23,7 +24,6 @@
     }
   ],
   "suffix": ".bs.js",
-  "namespace": "NodeJs",
   "bs-dependencies": [],
   "bs-dev-dependencies": [
     "@dusty-phillips/rescript-zora",

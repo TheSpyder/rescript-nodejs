@@ -1,6 +1,6 @@
 {
   "name": "rescript-nodejs",
-  "version": "14.0.4",
+  "version": "14.0.5",
   "scripts": {
     "build": "rescript || rescript",
     "clean": "rescript clean",
