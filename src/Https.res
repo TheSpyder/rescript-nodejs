@@ -33,7 +33,8 @@ module Agent = {
 
 @module("https") external request: string => Http.ClientRequest.t = "request"
 @module("https")
-external requestWithCallback: (string, Http.IncomingMessage.t => unit) => Http.ClientRequest.t = "request"
+external requestWithCallback: (string, Http.IncomingMessage.t => unit) => Http.ClientRequest.t =
+  "request"
 @module("https")
 external requestWithOptions: (string, Http.requestOptions) => Http.ClientRequest.t = "request"
 @module("https")
@@ -44,7 +45,8 @@ external requestWithOptionsCallback: (
 ) => Http.ClientRequest.t = "request"
 @module("https") external requestUrl: Url.t => Http.ClientRequest.t = "request"
 @module("https")
-external requestUrlWithCallback: (Url.t, Http.IncomingMessage.t => unit) => Http.ClientRequest.t = "request"
+external requestUrlWithCallback: (Url.t, Http.IncomingMessage.t => unit) => Http.ClientRequest.t =
+  "request"
 @module("https")
 external requestUrlWithOptions: (Url.t, Http.requestOptions) => Http.ClientRequest.t = "request"
 @module("https")

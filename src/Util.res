@@ -28,7 +28,7 @@ type defaultInspectOptions = {
   mutable compact: bool,
   mutable sorted: bool,
   mutable getters: bool,
-};
+}
 @val @module("util") @scope("inspect")
 external defaultOptions: defaultInspectOptions = "defaultOptions"
 

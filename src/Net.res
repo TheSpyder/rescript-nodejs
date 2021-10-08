@@ -219,7 +219,8 @@ module Socket = {
       ~delay: int,
     ) => subtype<'w, 'r, 'ty> = "setKeepAlive"
     @send
-    external setNoDelay: (subtype<'w, 'r, 'ty>, ~noDelay: bool) => subtype<'w, 'r, 'ty> = "setNoDelay"
+    external setNoDelay: (subtype<'w, 'r, 'ty>, ~noDelay: bool) => subtype<'w, 'r, 'ty> =
+      "setNoDelay"
     @send
     external setTimeout: (
       subtype<'w, 'r, 'ty>,
@@ -244,7 +245,7 @@ module Socket = {
   }
   include Impl
   include EventEmitter.Impl({
-      type t = t
+    type t = t
   })
 
   type makeOptions

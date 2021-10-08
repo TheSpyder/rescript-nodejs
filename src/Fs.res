@@ -196,11 +196,21 @@ type fd = private int
 
 type writeFileOptions
 @obj
-external writeFileOptions: (~mode: int=?, ~flag: string=?, ~encoding: string=?, unit) => writeFileOptions = ""
+external writeFileOptions: (
+  ~mode: int=?,
+  ~flag: string=?,
+  ~encoding: string=?,
+  unit,
+) => writeFileOptions = ""
 
 type appendFileOptions
 @obj
-external appendFileOptions: (~mode: int=?, ~flag: Flag.t=?, ~encoding: string=?, unit) => appendFileOptions = ""
+external appendFileOptions: (
+  ~mode: int=?,
+  ~flag: Flag.t=?,
+  ~encoding: string=?,
+  unit,
+) => appendFileOptions = ""
 
 type readFileOptions
 @obj external readFileOptions: (~flag: Flag.t=?, ~encoding: string=?, unit) => readFileOptions = ""
@@ -243,7 +253,7 @@ external rmdirSync: string => unit = "rmdirSync"
 external openSyncWith: (string, ~flag: Flag.t=?, ~mode: int=?) => fd = "openSync"
 
 @module("fs")
-external readFileSync: (string) => Buffer.t = "readFileSync"
+external readFileSync: string => Buffer.t = "readFileSync"
 @module("fs")
 external readFileSyncWith: (string, readFileOptions) => Buffer.t = "readFileSync"
 
@@ -306,7 +316,12 @@ module FileHandle = {
 
   type writeFileOptions
   @obj
-  external writeFileOptions: (~mode: int=?, ~flag: Flag.t=?, ~encoding: string=?, unit) => writeFileOptions = ""
+  external writeFileOptions: (
+    ~mode: int=?,
+    ~flag: Flag.t=?,
+    ~encoding: string=?,
+    unit,
+  ) => writeFileOptions = ""
 
   @send
   external writeFile: (t, Buffer.t) => Js.Promise.t<unit> = "writeFile"
@@ -382,7 +397,7 @@ type mkdtempOptions
 @obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
 
 @module("fs") @scope("promises")
-external mkdtemp: (string) => Js.Promise.t<string> = "mkddtemp"
+external mkdtemp: string => Js.Promise.t<string> = "mkddtemp"
 
 @module("fs") @scope("promises")
 external mkdtempWith: (string, mkdtempOptions) => Js.Promise.t<string> = "mkddtemp"
