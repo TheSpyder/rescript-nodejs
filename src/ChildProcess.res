@@ -54,11 +54,11 @@ include Events
 @get external pid: t => int = "pid"
 @get external ref: t => unit = "ref"
 @get @return(nullable)
-external stderr: t => option<Stream.Writable.t<Buffer.t>> = "stderr"
+external stderr: t => option<Stream.Readable.t<Buffer.t>> = "stderr"
 @get @return(nullable)
-external stdin: t => option<Stream.Readable.t<Buffer.t>> = "stdin"
+external stdin: t => option<Stream.Writable.t<Buffer.t>> = "stdin"
 @get @return(nullable)
-external stdout: t => option<Stream.Writable.t<Buffer.t>> = "stdout"
+external stdout: t => option<Stream.Readable.t<Buffer.t>> = "stdout"
 @get external unref: t => unit = "unref"
 
 type execOptions
