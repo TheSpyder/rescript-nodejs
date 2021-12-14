@@ -1,20 +1,5 @@
 module Interface = {
   type t
-  type interfaceOptions
-  @obj
-  external interfaceOptions: (
-    ~input: Stream.Readable.subtype<Buffer.t, 'rtype>,
-    ~output: Stream.Writable.subtype<Buffer.t, 'wtype>=?,
-    ~completer: (string, (string, (array<string>, string)) => unit) => unit=?,
-    ~terminal: bool=?,
-    ~historySize: int=?,
-    ~prompt: string=?,
-    ~crlfDelay: int=?,
-    ~removeHistoryDuplicates: bool=?,
-    ~escapeCodeTimeout: int=?,
-    unit,
-  ) => interfaceOptions = ""
-  @send external make: (t, interfaceOptions) => t = "createInterface"
   @send external close: t => unit = "close"
   @send external pause: t => unit = "pause"
   @send external prompt: (t, Js.nullable<bool>) => unit = "prompt"
@@ -42,25 +27,59 @@ module Interface = {
   @get @return(nullable) external line: t => option<string> = "line"
   @get @return(nullable)
   external cursor: t => option<int> = "cursor"
-  @send
-  external clearLine: (t, Stream.Writable.subtype<Buffer.t, 'ty>, int) => bool = "clearLine"
-  @send
-  external clearScreenDown: (t, Stream.Writable.subtype<Buffer.t, 'ty>, unit => unit) => bool =
-    "clearScreenDown"
-  @send
-  external cursorTo: (
-    t,
-    Stream.Writable.subtype<Buffer.t, 'ty>,
-    int,
-    Js.Undefined.t<int>,
-    Js.Undefined.t<unit => unit>,
-  ) => bool = "cursorTo"
-  @send
-  external moveCursor: (
-    t,
-    Stream.Writable.subtype<Buffer.t, 'ty>,
-    int,
-    int,
-    Js.Undefined.t<unit => unit>,
-  ) => bool = "moveCursor"
+
+  include EventEmitter.Impl({
+    type t = t
+  })
 }
+
+module Events = {
+  open Interface
+  let close: (t, unit => unit) => t = (rl, f) => rl->on(Event.fromString("close"), f)
+  let line: (t, string => unit) => t = (rl, f) => rl->on(Event.fromString("line"), f)
+  let history: (t, array<string> => unit) => t = (rl, f) => rl->on(Event.fromString("history"), f)
+}
+
+type interfaceOptions
+@obj
+external interfaceOptions: (
+  ~input: Stream.Readable.subtype<Buffer.t, 'rtype>,
+  ~output: Stream.Writable.subtype<Buffer.t, 'wtype>=?,
+  ~completer: (string, (string, (array<string>, string)) => unit) => unit=?,
+  ~terminal: bool=?,
+  ~historySize: int=?,
+  ~prompt: string=?,
+  ~crlfDelay: float=?,
+  ~removeHistoryDuplicates: bool=?,
+  ~escapeCodeTimeout: int=?,
+  unit,
+) => interfaceOptions = ""
+@module("readline") external make: interfaceOptions => Interface.t = "createInterface"
+
+@module("readline")
+external clearLine: (Stream.Writable.subtype<Buffer.t, 'ty>, int, ~callback: unit => unit) => bool =
+  "clearLine"
+
+@module("readline")
+external clearScreenDown: (
+  Stream.Writable.subtype<Buffer.t, 'ty>,
+  ~callback: unit => unit,
+) => bool = "clearScreenDown"
+
+@module("readline")
+external cursorTo: (
+  Stream.Writable.subtype<Buffer.t, 'ty>,
+  ~x: int,
+  ~y: int=?,
+  ~callback: unit => unit=?,
+  @ignore unit,
+) => bool = "cursorTo"
+
+@module("readline")
+external moveCursor: (
+  Stream.Writable.subtype<Buffer.t, 'ty>,
+  ~dx: int,
+  ~dy: int,
+  ~callback: unit => unit=?,
+  @ignore unit,
+) => bool = "moveCursor"
