@@ -29,6 +29,8 @@
     "@dusty-phillips/rescript-zora",
     "@ryyppy/rescript-promise"
   ],
-  "ppx-flags": [],
-  "bsc-flags": []
+  "warnings": {
+    "number": "A-4-40-41-42-43-44+101-102-103",
+    "error": "false"
+  }
 }

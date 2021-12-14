@@ -1,17 +1,10 @@
-/*
- Normally `open NodeJs` would be used to shorten the module accessors
- this is not done in the example to make it clear where things come from.
+open NodeJs
+let data = "Sample text to write to a file!"->Buffer.fromString
+let process = Process.process
 
- Note this means compiling the codebase from clean will trigger an error
- just rebuild and it'll be fine.
-*/
+let outputPath = Path.relative(~from=Process.cwd(process), ~to_="example__output.txt")
 
-let data = "Sample text to write to a file!"->NodeJs.Buffer.fromString
-let process = NodeJs.Process.process
-
-let outputPath = NodeJs.Path.relative(~from=NodeJs.Process.cwd(process), ~to_="example__output.txt")
-
-let writeStream = NodeJs.Fs.createWriteStream(outputPath)
+let writeStream = Fs.createWriteStream(outputPath)
 
 let logErrorIfExists = maybeError =>
   switch Js.Nullable.toOption(maybeError) {
@@ -21,7 +14,7 @@ let logErrorIfExists = maybeError =>
 
 let () =
   writeStream
-  ->NodeJs.Stream.writeWith(
+  ->Stream.writeWith(
     data,
     ~callback=maybeError => {
       logErrorIfExists(maybeError)
