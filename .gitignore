@@ -2,11 +2,10 @@
 .merlin
 .bsb.lock
 npm-debug.log
-/lib/
+/lib/bs
+/lib/js/src
 /node_modules/
 bsb
-*.bs.js
 package-lock.json
-
 src/ScratchRe.re
 src/ScratchMl.ml
