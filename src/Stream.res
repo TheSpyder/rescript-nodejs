@@ -360,7 +360,7 @@ module Readable = {
     @send
     external pipe: (subtype<[> readable<'r>]>, subtype<[> writable<'r>]> as 'ws) => 'ws = "pipe"
     @send
-    external push: (subtype<[> readable<'r>]>, 'r) => unit = "push"
+    external push: (subtype<[> readable<'r>]>, 'r) => bool = "push"
     @send external read: subtype<[> readable<'r>]> => unit = "read"
     @send
     external readSize: (subtype<[> readable<'r>]>, int) => unit = "read"
