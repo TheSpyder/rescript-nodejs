@@ -7,7 +7,7 @@ Node.js bindings for ReScript
 ## Installation
 
 ```shell
-npm i add rescript-nodejs
+npm install rescript-nodejs
 ```
 or
 ```shell
