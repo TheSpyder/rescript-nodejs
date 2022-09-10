@@ -1,5 +1,6 @@
 type settingsObject
 
+@obj
 external settingsObject: (
   ~headerTableSize: int=?,
   ~enablePush: bool=?,
