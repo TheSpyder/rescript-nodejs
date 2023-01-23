@@ -329,6 +329,155 @@ module FileHandle = {
   external writeFileWith: (t, Buffer.t, writeFileOptions) => Js.Promise.t<unit> = "writeFile"
 }
 
+module PromiseAPI_ = {
+  @module("fs") @scope("promises")
+  external access: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
+    "access"
+  @module("fs") @scope("promises")
+  external accessWithMode: (
+    @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~mode: int,
+  ) => Js.Promise.t<unit> = "access"
+
+  type appendFileStrOptions
+  @obj
+  external appendFileStrOptions: (
+    ~encoding: string=?,
+    ~mode: int=?,
+    ~flag: Flag.t=?,
+    unit,
+  ) => appendFileStrOptions = ""
+  @module("fs") @scope("promises")
+  external appendFile: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
+    ~data: string,
+  ) => Js.Promise.t<unit> = "appendFile"
+
+  @module("fs") @scope("promises")
+  external appendFileWith: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
+    ~data: string,
+    ~options: appendFileStrOptions,
+  ) => Js.Promise.t<unit> = "appendFile"
+
+  type appendFileBufferOptions
+  @obj
+  external appendFileBufferOptions: (
+    ~mode: int=?,
+    ~flag: Flag.t=?,
+    unit,
+  ) => appendFileBufferOptions = ""
+
+  @module("fs") @scope("promises")
+  external appendFileBuffer: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
+    ~data: Buffer.t,
+  ) => Js.Promise.t<unit> = "appendFile"
+
+  @module("fs") @scope("promises")
+  external appendFileBufferWith: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
+    ~data: Buffer.t,
+    ~options: appendFileBufferOptions,
+  ) => Js.Promise.t<unit> = "appendFile"
+
+  @module("fs") @scope("promises")
+  external chmod: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~mode: int,
+  ) => Js.Promise.t<unit> = "chmod"
+
+  @module("fs") @scope("promises")
+  external chown: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~uid: int,
+    ~gid: int,
+  ) => Js.Promise.t<unit> = "chown"
+
+  @module("fs") @scope("promises")
+  external copyFile: (
+    ~src: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~dest: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+  ) => Js.Promise.t<unit> = "copyFile"
+
+  @module("fs") @scope("promises")
+  external copyFileFlag: (
+    ~src: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~dest: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~flags: Constants.t,
+  ) => Js.Promise.t<unit> = "copyFile"
+
+  @module("fs") @scope("promises")
+  external lchmod: (~path: @unwrap [#Str(string)], ~mode: int) => Js.Promise.t<unit> = "lchmod"
+
+  @module("fs") @scope("promises")
+  external link: (
+    ~existingPath: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~newPath: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+  ) => Js.Promise.t<unit> = "link"
+
+  type statOptions = {bigint: int}
+  @module("fs") @scope("promises")
+  external lstat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<
+    Stats.t,
+  > = "lstat"
+
+  @module("fs") @scope("promises")
+  external lstatBigInt: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~options: statOptions,
+  ) => Js.Promise.t<Stats.t> = "lstat"
+
+  type mkdirOptions
+  @obj
+  external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
+
+  @module("fs") @scope("promises")
+  external mkdir: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
+    "mkdir"
+
+  @module("fs") @scope("promises")
+  external mkdirWith: (
+    @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    mkdirOptions,
+  ) => Js.Promise.t<unit> = "mkdir"
+
+  type mkdtempOptions
+  @obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
+
+  @module("fs") @scope("promises")
+  external mkdtemp: string => Js.Promise.t<string> = "mkddtemp"
+
+  @module("fs") @scope("promises")
+  external mkdtempWith: (
+    ~prefix: string,
+    ~mkdtempOptions: @unwrap [#Str(string) | #Option(mkdtempOptions)],
+  ) => Js.Promise.t<string> = "mkddtemp"
+
+  @module("fs") @scope("promises")
+  external open_: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~flags: Flag.t,
+  ) => Js.Promise.t<FileHandle.t> = "open"
+
+  @module("fs") @scope("promises")
+  external openWithMode: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~flags: Flag.t,
+    ~mode: int,
+  ) => Js.Promise.t<FileHandle.t> = "open"
+
+  @module("fs") @scope("promises")
+  external stat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<Stats.t> =
+    "lstat"
+
+  @module("fs") @scope("promises")
+  external statWith: (
+    ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
+    ~options: statOptions,
+  ) => Js.Promise.t<Stats.t> = "lstat"
+}
+
 @module("fs") @scope("promises")
 external access: string => Js.Promise.t<unit> = "access"
 @module("fs") @scope("promises")

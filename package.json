@@ -5,7 +5,7 @@
     "build": "rescript || rescript",
     "clean": "rescript clean",
     "start": "rescript build -w",
-    "test": "rescript && pta 'lib/js/test/atomic/*.test.bs.js'",
+    "test": "rescript && pta lib/js/test/atomic/*.test.bs.js",
     "clean-build": "yarn clean && yarn build",
     "clean-start": "yarn clean && yarn start",
     "clean-test": "yarn clean && yarn build test",
