@@ -329,7 +329,7 @@ module FileHandle = {
   external writeFileWith: (t, Buffer.t, writeFileOptions) => Js.Promise.t<unit> = "writeFile"
 }
 
-module PromiseAPI_ = {
+module PromiseAPI = {
   @module("fs") @scope("promises")
   external access: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
     "access"
@@ -339,14 +339,11 @@ module PromiseAPI_ = {
     ~mode: int,
   ) => Js.Promise.t<unit> = "access"
 
-  type appendFileStrOptions
-  @obj
-  external appendFileStrOptions: (
-    ~encoding: string=?,
-    ~mode: int=?,
-    ~flag: Flag.t=?,
-    unit,
-  ) => appendFileStrOptions = ""
+  type appendFileStrOptions = {
+    encoding?: string,
+    mode?: int,
+    flag?: Flag.t,
+  }
   @module("fs") @scope("promises")
   external appendFile: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
@@ -360,14 +357,10 @@ module PromiseAPI_ = {
     ~options: appendFileStrOptions,
   ) => Js.Promise.t<unit> = "appendFile"
 
-  type appendFileBufferOptions
-  @obj
-  external appendFileBufferOptions: (
-    ~mode: int=?,
-    ~flag: Flag.t=?,
-    unit,
-  ) => appendFileBufferOptions = ""
-
+  type appendFileBufferOptions = {
+    mode?: int,
+    flag?: Flag.t,
+  }
   @module("fs") @scope("promises")
   external appendFileBuffer: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
@@ -428,9 +421,10 @@ module PromiseAPI_ = {
     ~options: statOptions,
   ) => Js.Promise.t<Stats.t> = "lstat"
 
-  type mkdirOptions
-  @obj
-  external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
+  type mkdirOptions = {
+    recursive?: bool,
+    mode?: int,
+  }
 
   @module("fs") @scope("promises")
   external mkdir: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
@@ -442,11 +436,10 @@ module PromiseAPI_ = {
     mkdirOptions,
   ) => Js.Promise.t<unit> = "mkdir"
 
-  type mkdtempOptions
-  @obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
+  type mkdtempOptions = {encoding?: string}
 
   @module("fs") @scope("promises")
-  external mkdtemp: string => Js.Promise.t<string> = "mkddtemp"
+  external mkdtemp: string => Js.Promise.t<string> = "mkdtemp"
 
   @module("fs") @scope("promises")
   external mkdtempWith: (
