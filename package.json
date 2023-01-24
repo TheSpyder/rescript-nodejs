@@ -29,7 +29,7 @@
     "@dusty-phillips/rescript-zora": "^3.0.0",
     "onchange": "^7.1.0",
     "pta": "^1.0.0",
-    "rescript": "^9.1.4",
+    "rescript": "^10.0.1",
     "zora": "^5.0.0"
   }
 }
