@@ -5,7 +5,7 @@
     "build": "rescript || rescript",
     "clean": "rescript clean",
     "start": "rescript build -w",
-    "test": "rescript && pta 'lib/js/test/atomic/*.test.bs.js'",
+    "test": "rescript && pta lib/js/test/atomic/*.test.bs.js",
     "clean-build": "yarn clean && yarn build",
     "clean-start": "yarn clean && yarn start",
     "clean-test": "yarn clean && yarn build test",
@@ -29,7 +29,7 @@
     "@dusty-phillips/rescript-zora": "^3.0.0",
     "onchange": "^7.1.0",
     "pta": "^1.0.0",
-    "rescript": "^9.1.4",
+    "rescript": "^10.0.1",
     "zora": "^5.0.0"
   }
 }
