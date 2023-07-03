@@ -1,6 +1,6 @@
 open Zora
 open StreamTestLib
-ti
+
 zoraBlock("Stream.Readable", t => {
   t->block("'Stream.Readable.make' should return a defined value", t => {
     let readable = makeReadableEmpty()
@@ -29,7 +29,7 @@ zoraBlock("Stream.Readable", t => {
 
             // oh these bindings are wonderful aren't they
             let a = ()
-            resolve(. a)
+            resolve(a)
           },
         )
 
@@ -93,7 +93,7 @@ zoraBlock("Stream.Writable", t => {
 
               // oh these bindings are wonderful aren't they
               let a = ()
-              resolve(. a)
+              resolve(a)
             },
             (),
           )->ignore

@@ -1,4 +1,4 @@
-type t = Node.buffer
+type t
 open Js.TypedArray2
 
 module Constants = {
