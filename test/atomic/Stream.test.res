@@ -21,8 +21,8 @@ zoraBlock("Stream.Readable", t => {
   t->test("'Stream.Readable.destroyWithError' should emit 'error' event", t => {
     open! Errors
     let dummyError = Error.make("Expected error: Stream destroyed")->Error.toJsExn
-    Promise.make(
-      (resolve, _reject) => {
+    Js.Promise2.make(
+      (~resolve, ~reject as _) => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
@@ -71,8 +71,8 @@ zoraBlock("Stream.Writable", t => {
         (),
       )
 
-      Promise.make(
-        (resolve, _reject) => {
+      Js.Promise2.make(
+        (~resolve, ~reject as _) => {
           let writeStream = Writable.makeObjMode(options)
 
           Writable.writeWith(
