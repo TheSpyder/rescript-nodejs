@@ -26,10 +26,10 @@
   "description": "Node bindings for ReScript",
   "license": "MIT",
   "devDependencies": {
-    "@dusty-phillips/rescript-zora": "^3.0.0",
+    "@dusty-phillips/rescript-zora": "^4.0.0",
     "onchange": "^7.1.0",
-    "pta": "^1.0.0",
-    "rescript": "^10.0.1",
-    "zora": "^5.0.0"
+    "pta": "^1.2.0",
+    "rescript": "^11.0.0-beta.3",
+    "zora": "^5.2.0"
   }
 }

@@ -1,6 +1,6 @@
 open Zora
 open StreamTestLib
-ti
+
 zoraBlock("Stream.Readable", t => {
   t->block("'Stream.Readable.make' should return a defined value", t => {
     let readable = makeReadableEmpty()
@@ -21,15 +21,15 @@ zoraBlock("Stream.Readable", t => {
   t->test("'Stream.Readable.destroyWithError' should emit 'error' event", t => {
     open! Errors
     let dummyError = Error.make("Expected error: Stream destroyed")->Error.toJsExn
-    Promise.make(
-      (resolve, _reject) => {
+    Js.Promise2.make(
+      (~resolve, ~reject as _) => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
 
             // oh these bindings are wonderful aren't they
             let a = ()
-            resolve(. a)
+            resolve(a)
           },
         )
 
@@ -71,8 +71,8 @@ zoraBlock("Stream.Writable", t => {
         (),
       )
 
-      Promise.make(
-        (resolve, _reject) => {
+      Js.Promise2.make(
+        (~resolve, ~reject as _) => {
           let writeStream = Writable.makeObjMode(options)
 
           Writable.writeWith(
@@ -93,7 +93,7 @@ zoraBlock("Stream.Writable", t => {
 
               // oh these bindings are wonderful aren't they
               let a = ()
-              resolve(. a)
+              resolve(a)
             },
             (),
           )->ignore
