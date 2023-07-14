@@ -2,7 +2,7 @@
   "name": "rescript-nodejs",
   "version": "15.0.0",
   "scripts": {
-    "build": "rescript || rescript",
+    "build": "rescript",
     "clean": "rescript clean",
     "start": "rescript build -w",
     "test": "rescript && pta lib/js/test/atomic/*.test.bs.js",
@@ -10,7 +10,7 @@
     "clean-start": "yarn clean && yarn start",
     "clean-test": "yarn clean && yarn build test",
     "test-start": "onchange --await-write-finish 1000 --initial 'lib/js/{test,src}/**/*.bs.js' -- yarn test",
-    "test-watchexec": "watchexec -r -d 0 -w lib/bs -e log -- yarn test"
+    "test-watchexec": "watchexec -r -d 0 -w src -w test -e res -- yarn test"
   },
   "keywords": [
     "rescript",

@@ -73,23 +73,20 @@ type workerResourceLimits = {
 module Worker = {
   type t<'a>
 
-  type makeOptions<'a>
-  @obj
-  external makeOptions: (
-    ~argv: array<string>=?,
-    ~env: {..}=?,
-    ~eval: bool=?,
-    ~execArgv: array<string>=?,
-    ~stdin: bool=?,
-    ~stdout: bool=?,
-    ~stderr: bool=?,
-    ~workerData: 'a=?,
-    ~resourceLimits: workerResourceLimits=?,
-    unit,
-  ) => makeOptions<'a> = ""
+  type options<'a, 'env> = {
+    argv: array<string>,
+    env: {..} as 'env,
+    eval: bool,
+    execArgv: array<string>,
+    stdin: bool,
+    stdout: bool,
+    stderr: bool,
+    workerData: 'a,
+    resourceLimits: workerResourceLimits,
+  }
 
   @module("node:worker_threads") @new
-  external make: (~file: string, ~options: makeOptions<'a>=?, unit) => t<'a> = "Worker"
+  external make: (~file: string, ~options: options<'a, 'env>=?, unit) => t<'a> = "Worker"
   @send
   external onError: (t<'a>, @as("error") _, @uncurry (Js.Exn.t => unit)) => t<'a> = "on"
   @send
@@ -117,23 +114,20 @@ module Worker = {
   ) => {
     type t = t<T.message>
 
-    type makeOptions = makeOptions<T.message>
-    @obj
-    external makeOptions: (
-      ~argv: array<string>=?,
-      ~env: {..}=?,
-      ~eval: bool=?,
-      ~execArgv: array<string>=?,
-      ~stdin: bool=?,
-      ~stdout: bool=?,
-      ~stderr: bool=?,
-      ~workerData: T.message=?,
-      ~resourceLimits: workerResourceLimits=?,
-      unit,
-    ) => makeOptions = ""
+    type options<'env> = {
+      argv?: array<string>,
+      env?: {..} as 'env,
+      eval?: bool,
+      execArgv?: array<string>,
+      stdin?: bool,
+      stdout?: bool,
+      stderr?: bool,
+      workerData?: T.message,
+      resourceLimits?: workerResourceLimits,
+    }
 
     @module("node:worker_threads") @new
-    external make: (~file: string, ~options: makeOptions=?, unit) => t = "Worker"
+    external make: (~file: string, ~options: options<'env>=?, unit) => t = "Worker"
     @send
     external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
     @send

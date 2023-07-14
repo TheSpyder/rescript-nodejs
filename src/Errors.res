@@ -33,19 +33,16 @@ module Error = {
 module AssertionError = {
   type t = exn
   type constructor
-  type makeOptions
-  @obj
-  external makeOptions: (
-    ~message: string=?,
-    ~actual: 'actual=?,
-    ~expected: 'expected=?,
-    ~operator: string=?,
-    ~stackStartFn: 'a => 'b=?,
-    unit,
-  ) => makeOptions = ""
+  type makeOptions<'actual, 'expected, 'a, 'b> = {
+    message?: string,
+    actual?: 'actual,
+    expected?: 'expected,
+    operator?: string,
+    stackStartFn?: 'a => 'b,
+  }
   @module("node:assert") external constructor: constructor = "AssertionError"
   @module("node:assert") @new
-  external make: makeOptions => t = "AssertionError"
+  external make: makeOptions<'actual, 'expected, 'a, 'b> => t = "AssertionError"
   @get external actual: t => 'a = "actual"
   @get external expected: t => 'a = "expected"
   @get external generatedMessage: t => bool = "generatedMessage"

@@ -255,6 +255,9 @@ module Writable = {
   external makeObjMode: makeOptionsObjMode<'w> => objStream<'w> = "Writable"
 }
 
+// TODO: use GADT to avoid the function wrapper
+// https://forum.rescript-lang.org/t/the-big-migration-thread-for-rescript-v11-and-uncurried-mode/4769/43?u=spyder
+
 module Readable = {
   type kind<'r> = [readable<'r>]
   module Events = {

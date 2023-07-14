@@ -54,9 +54,9 @@ module Worker = {
   type t
   module Events = {
     @send
-    external onDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "on"
+    external onDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "on"
     @send
-    external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
+    external onError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "on"
     @send
     external onExit: (
       t,
@@ -64,7 +64,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "on"
     @send
-    external onListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "on"
+    external onListening: (t, @as("listening") _, @uncurry Address.t => unit) => t = "on"
     @send
     external onMessage: (
       t,
@@ -72,12 +72,12 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "on"
     @send
-    external onOnline: (t, @as("online") _, @uncurry (unit => unit)) => t = "on"
+    external onOnline: (t, @as("online") _, @uncurry unit => unit) => t = "on"
 
     @send
-    external offDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "off"
+    external offDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "off"
     @send
-    external offError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "off"
+    external offError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "off"
     @send
     external offExit: (
       t,
@@ -85,7 +85,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "off"
     @send
-    external offListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "off"
+    external offListening: (t, @as("listening") _, @uncurry Address.t => unit) => t = "off"
     @send
     external offMessage: (
       t,
@@ -93,12 +93,12 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "off"
     @send
-    external offOnline: (t, @as("online") _, @uncurry (unit => unit)) => t = "off"
+    external offOnline: (t, @as("online") _, @uncurry unit => unit) => t = "off"
 
     @send
-    external onDisconnectOnce: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "once"
+    external onDisconnectOnce: (t, @as("disconnect") _, @uncurry unit => unit) => t = "once"
     @send
-    external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
+    external onErrorOnce: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "once"
     @send
     external onExitOnce: (
       t,
@@ -106,7 +106,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "once"
     @send
-    external onListeningOnce: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "once"
+    external onListeningOnce: (t, @as("listening") _, @uncurry Address.t => unit) => t = "once"
     @send
     external onMessageOnce: (
       t,
@@ -114,7 +114,7 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "once"
     @send
-    external onOnlineOnce: (t, @as("online") _, @uncurry (unit => unit)) => t = "once"
+    external onOnlineOnce: (t, @as("online") _, @uncurry unit => unit) => t = "once"
 
     @send external removeAllListeners: t => unit = "removeAllListeners"
   }
@@ -153,22 +153,6 @@ type clusterSettings = private {
   inspectPort: Js.nullable<int>,
   windowsHide: Js.nullable<bool>,
 }
-
-@obj
-external clusterSettings: (
-  ~execArgv: array<string>=?,
-  ~exec: string=?,
-  ~args: array<string>=?,
-  ~cwd: string=?,
-  ~serialization: string=?,
-  ~silent: bool=?,
-  ~stdio: array<string>=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~inspectPort: int=?,
-  ~windowsHide: bool=?,
-  unit,
-) => clusterSettings = ""
 
 @module
 external disconnect: Js.Nullable.t<unit => unit> => unit = "disconnect"

@@ -26,10 +26,7 @@ zoraBlock("Stream.Readable", t => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
-
-            // oh these bindings are wonderful aren't they
-            let a = ()
-            resolve(a)
+            resolve(. ())
           },
         )
 
@@ -83,17 +80,15 @@ zoraBlock("Stream.Writable", t => {
               | None => None
               | Some((wstream, value, encoding, cb)) =>
                 Some((
-                  Internal__JsTypeReflection.constructorName(wstream) === "Writable",
-                  Js.typeof(value) === "number",
-                  Js.typeof(encoding) === "string",
-                  Js.typeof(cb) === "function",
+                  Internal__JsTypeReflection.constructorName(wstream),
+                  Js.typeof(value),
+                  encoding,
+                  Js.typeof(cb),
                 ))
               }
-              t->equal(actual, Some((true, true, true, true)), "")
+              t->equal(actual, Some(("Writable", "number", StringEncoding.utf8, "function")), "")
 
-              // oh these bindings are wonderful aren't they
-              let a = ()
-              resolve(a)
+              resolve(. ())
             },
             (),
           )->ignore

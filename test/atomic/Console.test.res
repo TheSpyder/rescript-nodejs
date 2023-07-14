@@ -4,23 +4,19 @@ let process = Process.process
 zoraBlock("Console", t => {
   let c1 = {
     open Console
-    make(
-      consoleOptions(
-        ~stderr=Process.stderr(process),
-        ~ignoreErrors=false,
-        ~colorMode=true,
-        ~inspectOptions=Util.inspectOptions(),
-        ~stdout=Process.stdout(process),
-        (),
-      ),
-    )
+    make({
+      stderr: Process.stderr(process),
+      ignoreErrors: false,
+      colorMode: true,
+      inspectOptions: {},
+      stdout: Process.stdout(process),
+    })
   }
 
   let c2 = Console.make2({
     "stderr": Process.stderr(process),
     "ignoreErrors": false,
     "colorMode": true,
-    "inspectOptions": Util.inspectOptions(),
     "stdout": Process.stdout(process),
   })
 

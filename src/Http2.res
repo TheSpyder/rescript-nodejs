@@ -1,15 +1,12 @@
-type settingsObject
-
-@obj
-external settingsObject: (
-  ~headerTableSize: int=?,
-  ~enablePush: bool=?,
-  ~initialWindowSize: int=?,
-  ~maxFrameSize: int=?,
-  ~maxConcurrentStreams: int=?,
-  ~maxHeaderListSize: int=?,
-  ~enableConnectProtocol: bool=?,
-) => settingsObject = ""
+type settingsObject = {
+  headerTableSize?: int,
+  enablePush?: bool,
+  initialWindowSize?: int,
+  maxFrameSize?: int,
+  maxConcurrentStreams?: int,
+  maxHeaderListSize?: int,
+  enableConnectProtocol?: bool,
+}
 
 module Http2Stream = {
   type kind<'w, 'r> = [Stream.duplex<'w, 'r> | #Http2Stream]
@@ -68,11 +65,11 @@ module ServerHttp2Stream = {
 module Http2Session = {
   type t
   @send
-  external onClose: (t, @as("close") _, @uncurry (unit => unit)) => t = "on"
+  external onClose: (t, @as("close") _, @uncurry unit => unit) => t = "on"
   @send
   external onConnect: (t, @as("connect") _, @uncurry (t, Net.Socket.t) => unit) => t = "on"
   @send
-  external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
+  external onError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "on"
   @send
   external onFrameError: (
     t,
@@ -86,12 +83,11 @@ module Http2Session = {
     (@uncurry ~errorCode: int, ~lastStreamId: int, Buffer.t) => unit,
   ) => t = "on"
   @send
-  external onLocalSettings: (t, @as("localSettings") _, @uncurry (settingsObject => unit)) => t =
-    "on"
+  external onLocalSettings: (t, @as("localSettings") _, @uncurry settingsObject => unit) => t = "on"
   @send
-  external onPing: (t, @as("ping") _, @uncurry (Buffer.t => unit)) => t = "on"
+  external onPing: (t, @as("ping") _, @uncurry Buffer.t => unit) => t = "on"
   @send
-  external onRemoteSettings: (t, @as("remoteSettings") _, @uncurry (settingsObject => unit)) => t =
+  external onRemoteSettings: (t, @as("remoteSettings") _, @uncurry settingsObject => unit) => t =
     "on"
   @send
   external onStream: (
@@ -100,7 +96,7 @@ module Http2Session = {
     @uncurry (t, {.."status": string, "content-type": string}, int, array<{..}>) => unit,
   ) => t = "on"
   @send
-  external onTimeout: (t, @as("timeout") _, @uncurry (unit => unit)) => t = "on"
+  external onTimeout: (t, @as("timeout") _, @uncurry unit => unit) => t = "on"
   @get @return(nullable)
   external alpnProtocol: t => option<string> = "alpnProtocol"
   @send external close: t => unit = "close"
@@ -208,13 +204,13 @@ module Http2ServerRequest = {
     external onAborted: (
       subtype<'r, 'ty>,
       @as("aborted") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'ty> = "on"
     @send
     external onClose: (
       subtype<'r, 'ty>,
       @as("close") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'ty> = "on"
     @get external aborted: subtype<'r, 'ty> => bool = "aborted"
     @get external authority: subtype<'r, 'ty> => string = "authority"
@@ -251,10 +247,9 @@ module Http2ServerResponse = {
   module Impl = {
     include Stream.Duplex.Impl
     @send
-    external onClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onFinish: (subtype<'ty>, @as("finish") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "on"
+    external onFinish: (subtype<'ty>, @as("finish") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
     external setTrailers: (subtype<'ty>, {..}) => unit = "setTrailers"
     @send external end_: subtype<'ty> => unit = "end"

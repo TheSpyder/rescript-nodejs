@@ -1,21 +1,18 @@
 @module("node:util")
 external getSystemErrorName: int => string = "getSystemErrorName"
 
-type inspectOptions
-@obj
-external inspectOptions: (
-  ~showHidden: bool=?,
-  ~depth: int=?,
-  ~colors: bool=?,
-  ~customInspect: bool=?,
-  ~showProxy: bool=?,
-  ~maxArrayLength: int=?,
-  ~breakLength: int=?,
-  ~compact: bool=?,
-  ~sorted: bool=?,
-  ~getters: bool=?,
-  unit,
-) => inspectOptions = ""
+type inspectOptions = {
+  showHidden?: bool,
+  depth?: int,
+  colors?: bool,
+  customInspect?: bool,
+  showProxy?: bool,
+  maxArrayLength?: int,
+  breakLength?: int,
+  compact?: bool,
+  sorted?: bool,
+  getters?: bool,
+}
 
 type defaultInspectOptions = {
   mutable showHidden: bool,

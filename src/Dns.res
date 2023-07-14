@@ -6,7 +6,7 @@ external lookupOptions: (
   ~all: bool=?,
   ~verbatim: bool=?,
 ) => lookupOptions = ""
-@module("node:dns") @scope("promise")
+@module("dns") @scope("promise")
 external lookup: string => Js.Promise.t<array<{"address": string, "family": int}>> = "lookup"
 @module("node:dns") @scope("promise")
 external lookupWithOptions: (
