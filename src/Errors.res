@@ -43,8 +43,8 @@ module AssertionError = {
     ~stackStartFn: 'a => 'b=?,
     unit,
   ) => makeOptions = ""
-  @module("assert") external constructor: constructor = "AssertionError"
-  @module("assert") @new
+  @module("node:assert") external constructor: constructor = "AssertionError"
+  @module("node:assert") @new
   external make: makeOptions => t = "AssertionError"
   @get external actual: t => 'a = "actual"
   @get external expected: t => 'a = "expected"

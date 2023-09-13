@@ -84,61 +84,61 @@ module Constants = {
 
   @@text("{1 File Access Constants}")
 
-  @module("fs") @scope("constants") external f_ok: t = "F_OK"
-  @module("fs") @scope("constants") external w_ok: t = "W_OK"
-  @module("fs") @scope("constants") external r_ok: t = "R_OK"
-  @module("fs") @scope("constants") external x_ok: t = "X_OK"
+  @module("node:fs") @scope("constants") external f_ok: t = "F_OK"
+  @module("node:fs") @scope("constants") external w_ok: t = "W_OK"
+  @module("node:fs") @scope("constants") external r_ok: t = "R_OK"
+  @module("node:fs") @scope("constants") external x_ok: t = "X_OK"
 
   @@text("{1 File Copy Constants}")
 
-  @module("fs") @scope("constants") external copyfile_excl: t = "COPYFILE_EXCL"
-  @module("fs") @scope("constants") external copyfile_ficlone: t = "COPYFILE_FICLONE"
-  @module("fs") @scope("constants") external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
+  @module("node:fs") @scope("constants") external copyfile_excl: t = "COPYFILE_EXCL"
+  @module("node:fs") @scope("constants") external copyfile_ficlone: t = "COPYFILE_FICLONE"
+  @module("node:fs") @scope("constants") external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
 
   @@text("{1 File Open Constants}")
 
-  @module("fs") @scope("constants") external o_rdonly: t = "O_RDONLY"
-  @module("fs") @scope("constants") external o_wronly: t = "O_WRONLY"
-  @module("fs") @scope("constants") external o_rdwr: t = "O_RDWR"
-  @module("fs") @scope("constants") external o_creat: t = "O_CREAT"
-  @module("fs") @scope("constants") external o_excl: t = "O_EXCL"
-  @module("fs") @scope("constants") external o_noctty: t = "O_NOCTTY"
-  @module("fs") @scope("constants") external o_trunc: t = "O_TRUNC"
-  @module("fs") @scope("constants") external o_append: t = "O_APPEND"
-  @module("fs") @scope("constants") external o_directory: t = "O_DIRECTORY"
-  @module("fs") @scope("constants") external o_noatime: t = "O_NOATIME"
-  @module("fs") @scope("constants") external o_nofollow: t = "O_NOFOLLOW"
-  @module("fs") @scope("constants") external o_sync: t = "O_SYNC"
-  @module("fs") @scope("constants") external o_dsync: t = "O_DSYNC"
-  @module("fs") @scope("constants") external o_symlink: t = "O_SYMLINK"
-  @module("fs") @scope("constants") external o_direct: t = "O_DIRECT"
-  @module("fs") @scope("constants") external o_nonblock: t = "O_NONBLOCK"
+  @module("node:fs") @scope("constants") external o_rdonly: t = "O_RDONLY"
+  @module("node:fs") @scope("constants") external o_wronly: t = "O_WRONLY"
+  @module("node:fs") @scope("constants") external o_rdwr: t = "O_RDWR"
+  @module("node:fs") @scope("constants") external o_creat: t = "O_CREAT"
+  @module("node:fs") @scope("constants") external o_excl: t = "O_EXCL"
+  @module("node:fs") @scope("constants") external o_noctty: t = "O_NOCTTY"
+  @module("node:fs") @scope("constants") external o_trunc: t = "O_TRUNC"
+  @module("node:fs") @scope("constants") external o_append: t = "O_APPEND"
+  @module("node:fs") @scope("constants") external o_directory: t = "O_DIRECTORY"
+  @module("node:fs") @scope("constants") external o_noatime: t = "O_NOATIME"
+  @module("node:fs") @scope("constants") external o_nofollow: t = "O_NOFOLLOW"
+  @module("node:fs") @scope("constants") external o_sync: t = "O_SYNC"
+  @module("node:fs") @scope("constants") external o_dsync: t = "O_DSYNC"
+  @module("node:fs") @scope("constants") external o_symlink: t = "O_SYMLINK"
+  @module("node:fs") @scope("constants") external o_direct: t = "O_DIRECT"
+  @module("node:fs") @scope("constants") external o_nonblock: t = "O_NONBLOCK"
 
   @@text("{1 File Type Constants}")
 
-  @module("fs") @scope("constants") external s_ifmt: t = "S_IFMT"
-  @module("fs") @scope("constants") external s_ifreg: t = "S_IFREG"
-  @module("fs") @scope("constants") external s_ifdir: t = "S_IFDIR"
-  @module("fs") @scope("constants") external s_ifchr: t = "S_IFCHR"
-  @module("fs") @scope("constants") external s_ifblk: t = "S_IFBLK"
-  @module("fs") @scope("constants") external s_ififo: t = "S_IFIFO"
-  @module("fs") @scope("constants") external s_iflnk: t = "S_IFLNK"
-  @module("fs") @scope("constants") external s_ifsock: t = "S_IFSOCK"
+  @module("node:fs") @scope("constants") external s_ifmt: t = "S_IFMT"
+  @module("node:fs") @scope("constants") external s_ifreg: t = "S_IFREG"
+  @module("node:fs") @scope("constants") external s_ifdir: t = "S_IFDIR"
+  @module("node:fs") @scope("constants") external s_ifchr: t = "S_IFCHR"
+  @module("node:fs") @scope("constants") external s_ifblk: t = "S_IFBLK"
+  @module("node:fs") @scope("constants") external s_ififo: t = "S_IFIFO"
+  @module("node:fs") @scope("constants") external s_iflnk: t = "S_IFLNK"
+  @module("node:fs") @scope("constants") external s_ifsock: t = "S_IFSOCK"
 
   @@text("{1 File Mode Constants}")
 
-  @module("fs") @scope("constants") external s_irwxu: t = "S_IRWXU"
-  @module("fs") @scope("constants") external s_irusr: t = "S_IRUSR"
-  @module("fs") @scope("constants") external s_iwusr: t = "S_IWUSR"
-  @module("fs") @scope("constants") external s_ixusr: t = "S_IXUSR"
-  @module("fs") @scope("constants") external s_irwxg: t = "S_IRWXG"
-  @module("fs") @scope("constants") external s_irgrp: t = "S_IRGRP"
-  @module("fs") @scope("constants") external s_iwgrp: t = "S_IWGRP"
-  @module("fs") @scope("constants") external s_ixgrp: t = "S_IXGRP"
-  @module("fs") @scope("constants") external s_irwxo: t = "S_IRWXO"
-  @module("fs") @scope("constants") external s_iroth: t = "S_IROTH"
-  @module("fs") @scope("constants") external s_iwoth: t = "S_IWOTH"
-  @module("fs") @scope("constants") external s_ixoth: t = "S_IXOTH"
+  @module("node:fs") @scope("constants") external s_irwxu: t = "S_IRWXU"
+  @module("node:fs") @scope("constants") external s_irusr: t = "S_IRUSR"
+  @module("node:fs") @scope("constants") external s_iwusr: t = "S_IWUSR"
+  @module("node:fs") @scope("constants") external s_ixusr: t = "S_IXUSR"
+  @module("node:fs") @scope("constants") external s_irwxg: t = "S_IRWXG"
+  @module("node:fs") @scope("constants") external s_irgrp: t = "S_IRGRP"
+  @module("node:fs") @scope("constants") external s_iwgrp: t = "S_IWGRP"
+  @module("node:fs") @scope("constants") external s_ixgrp: t = "S_IXGRP"
+  @module("node:fs") @scope("constants") external s_irwxo: t = "S_IRWXO"
+  @module("node:fs") @scope("constants") external s_iroth: t = "S_IROTH"
+  @module("node:fs") @scope("constants") external s_iwoth: t = "S_IWOTH"
+  @module("node:fs") @scope("constants") external s_ixoth: t = "S_IXOTH"
 }
 
 module Flag: {
@@ -220,7 +220,7 @@ type readFileOptions
  * Reads the contents of a directory, returning an array of strings representing
  * the paths of files and sub-directories. **Execution is synchronous and blocking**.
  ")
-@module("fs")
+@module("node:fs")
 external readdirSync: string => array<string> = "readdirSync"
 
 @ocaml.doc("
@@ -228,40 +228,40 @@ external readdirSync: string => array<string> = "readdirSync"
  * Renames/moves the file located at `~oldPath` to `~newPath`. **Execution is
  * synchronous and blocking**.
  ")
-@module("fs")
+@module("node:fs")
 external renameSync: (~from: string, ~to_: string) => unit = "renameSync"
-@module("fs") external ftruncateSync: (fd, int) => unit = "ftruncateSync"
-@module("fs")
+@module("node:fs") external ftruncateSync: (fd, int) => unit = "ftruncateSync"
+@module("node:fs")
 external truncateSync: (string, int) => unit = "truncateSync"
-@module("fs")
+@module("node:fs")
 external chownSync: (string, ~uid: int, ~gid: int) => unit = "chownSync"
-@module("fs")
+@module("node:fs")
 external fchownSync: (fd, ~uid: int, ~gid: int) => unit = "fchownSync"
-@module("fs") external readlinkSync: string => string = "readlinkSync"
-@module("fs") external unlinkSync: string => unit = "unlinkSync"
+@module("node:fs") external readlinkSync: string => string = "readlinkSync"
+@module("node:fs") external unlinkSync: string => unit = "unlinkSync"
 
 @ocaml.doc("
  * `rmdirSync(dirPath)
  * **Note: (recursive removal is experimental).**
  * Removes the directory at `dirPath`. **Execution is synchronous and blocking**.
  ")
-@module("fs")
+@module("node:fs")
 external rmdirSync: string => unit = "rmdirSync"
 
-@module("fs") external openSync: string => fd = "openSync"
-@module("fs")
+@module("node:fs") external openSync: string => fd = "openSync"
+@module("node:fs")
 external openSyncWith: (string, ~flag: Flag.t=?, ~mode: int=?) => fd = "openSync"
 
-@module("fs")
+@module("node:fs")
 external readFileSync: string => Buffer.t = "readFileSync"
-@module("fs")
+@module("node:fs")
 external readFileSyncWith: (string, readFileOptions) => Buffer.t = "readFileSync"
 
-@module("fs") external existsSync: string => bool = "existsSync"
+@module("node:fs") external existsSync: string => bool = "existsSync"
 
-@val @module("fs")
+@val @module("node:fs")
 external writeFileSync: (string, Buffer.t) => unit = "writeFileSync"
-@val @module("fs")
+@val @module("node:fs")
 external writeFileSyncWith: (string, Buffer.t, writeFileOptions) => unit = "writeFileSync"
 
 module FileHandle = {
@@ -330,10 +330,10 @@ module FileHandle = {
 }
 
 module PromiseAPI = {
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external access: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
     "access"
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external accessWithMode: (
     @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~mode: int,
@@ -344,13 +344,13 @@ module PromiseAPI = {
     mode?: int,
     flag?: Flag.t,
   }
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external appendFile: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
     ~data: string,
   ) => Js.Promise.t<unit> = "appendFile"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external appendFileWith: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
     ~data: string,
@@ -361,61 +361,61 @@ module PromiseAPI = {
     mode?: int,
     flag?: Flag.t,
   }
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external appendFileBuffer: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
     ~data: Buffer.t,
   ) => Js.Promise.t<unit> = "appendFile"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external appendFileBufferWith: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t) | #Handle(FileHandle.t)],
     ~data: Buffer.t,
     ~options: appendFileBufferOptions,
   ) => Js.Promise.t<unit> = "appendFile"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external chmod: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~mode: int,
   ) => Js.Promise.t<unit> = "chmod"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external chown: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~uid: int,
     ~gid: int,
   ) => Js.Promise.t<unit> = "chown"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external copyFile: (
     ~src: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~dest: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
   ) => Js.Promise.t<unit> = "copyFile"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external copyFileFlag: (
     ~src: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~dest: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~flags: Constants.t,
   ) => Js.Promise.t<unit> = "copyFile"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external lchmod: (~path: @unwrap [#Str(string)], ~mode: int) => Js.Promise.t<unit> = "lchmod"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external link: (
     ~existingPath: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~newPath: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
   ) => Js.Promise.t<unit> = "link"
 
   type statOptions = {bigint: int}
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external lstat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<
     Stats.t,
   > = "lstat"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external lstatBigInt: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~options: statOptions,
@@ -426,11 +426,11 @@ module PromiseAPI = {
     mode?: int,
   }
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external mkdir: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<unit> =
     "mkdir"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external mkdirWith: (
     @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     mkdirOptions,
@@ -438,48 +438,48 @@ module PromiseAPI = {
 
   type mkdtempOptions = {encoding?: string}
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external mkdtemp: string => Js.Promise.t<string> = "mkdtemp"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external mkdtempWith: (
     ~prefix: string,
     ~mkdtempOptions: @unwrap [#Str(string) | #Option(mkdtempOptions)],
   ) => Js.Promise.t<string> = "mkddtemp"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external open_: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~flags: Flag.t,
   ) => Js.Promise.t<FileHandle.t> = "open"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external openWithMode: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~flags: Flag.t,
     ~mode: int,
   ) => Js.Promise.t<FileHandle.t> = "open"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external stat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => Js.Promise.t<Stats.t> =
     "lstat"
 
-  @module("fs") @scope("promises")
+  @module("node:fs") @scope("promises")
   external statWith: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~options: statOptions,
   ) => Js.Promise.t<Stats.t> = "lstat"
 }
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external access: string => Js.Promise.t<unit> = "access"
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external accessWithMode: (string, ~mode: int) => Js.Promise.t<unit> = "access"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external appendFile: (string, string, appendFileOptions) => Js.Promise.t<unit> = "appendFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external appendFileWith: (string, string, appendFileOptions) => Js.Promise.t<unit> = "appendFile"
 
 type appendFileBufferOptions
@@ -487,67 +487,67 @@ type appendFileBufferOptions
 external appendFileBufferOptions: (~mode: int=?, ~flag: Flag.t=?, unit) => appendFileBufferOptions =
   ""
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external appendFileBuffer: (string, Buffer.t) => Js.Promise.t<unit> = "appendFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external appendFileBufferWith: (string, Buffer.t, appendFileBufferOptions) => Js.Promise.t<unit> =
   "appendFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external chmod: (string, ~mode: int) => Js.Promise.t<unit> = "chmod"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external chown: (string, ~uid: int, ~gid: int) => Js.Promise.t<unit> = "chown"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external copyFile: (string, ~dest: string) => Js.Promise.t<unit> = "copyFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external copyFileFlag: (string, ~dest: string, ~flags: Constants.t) => Js.Promise.t<unit> =
   "copyFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external lchmod: (string, ~mode: int) => Js.Promise.t<unit> = "lchmod"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external link: (~existingPath: string, ~newPath: string) => Js.Promise.t<unit> = "link"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external lstat: string => Js.Promise.t<Stats.t> = "lstat"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external lstatBigInt: (string, bool) => Js.Promise.t<Stats.t> = "lstat"
 
 type mkdirOptions
 @obj
 external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external mkdir: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external mkdirWith: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
 
-@module("fs")
+@module("node:fs")
 external mkdirSync: string => unit = "mkdirSync"
 
-@module("fs")
+@module("node:fs")
 external mkdirSyncWith: (string, mkdirOptions) => unit = "mkdirSync"
 
 type mkdtempOptions
 @obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external mkdtemp: string => Js.Promise.t<string> = "mkddtemp"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external mkdtempWith: (string, mkdtempOptions) => Js.Promise.t<string> = "mkddtemp"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external open_: (string, Flag.t) => Js.Promise.t<FileHandle.t> = "open"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external openWithMode: (string, Flag.t, ~mode: int) => Js.Promise.t<FileHandle.t> = "open"
 
 module WriteStream = {
@@ -621,9 +621,9 @@ external createReadStreamOptions: (
   unit,
 ) => createReadStreamOptions = ""
 
-@module("fs")
+@module("node:fs")
 external createReadStream: string => ReadStream.t = "createReadStream"
-@module("fs")
+@module("node:fs")
 external createReadStreamWith: (string, createReadStreamOptions) => ReadStream.t =
   "createReadStream"
 
@@ -640,9 +640,9 @@ external createWriteStreamOptions: (
   ~fs: {..}=?,
   unit,
 ) => createWriteStreamOptions = ""
-@module("fs")
+@module("node:fs")
 external createWriteStream: string => WriteStream.t = "createWriteStream"
 
-@module("fs")
+@module("node:fs")
 external createWriteStreamWith: (string, createWriteStreamOptions) => WriteStream.t =
   "createWriteStream"

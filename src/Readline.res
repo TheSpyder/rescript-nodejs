@@ -54,19 +54,19 @@ external interfaceOptions: (
   ~escapeCodeTimeout: int=?,
   unit,
 ) => interfaceOptions = ""
-@module("readline") external make: interfaceOptions => Interface.t = "createInterface"
+@module("node:readline") external make: interfaceOptions => Interface.t = "createInterface"
 
-@module("readline")
+@module("node:readline")
 external clearLine: (Stream.Writable.subtype<Buffer.t, 'ty>, int, ~callback: unit => unit) => bool =
   "clearLine"
 
-@module("readline")
+@module("node:readline")
 external clearScreenDown: (
   Stream.Writable.subtype<Buffer.t, 'ty>,
   ~callback: unit => unit,
 ) => bool = "clearScreenDown"
 
-@module("readline")
+@module("node:readline")
 external cursorTo: (
   Stream.Writable.subtype<Buffer.t, 'ty>,
   ~x: int,
@@ -75,7 +75,7 @@ external cursorTo: (
   @ignore unit,
 ) => bool = "cursorTo"
 
-@module("readline")
+@module("node:readline")
 external moveCursor: (
   Stream.Writable.subtype<Buffer.t, 'ty>,
   ~dx: int,

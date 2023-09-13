@@ -77,10 +77,10 @@ external execOptions: (
   unit,
 ) => execOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external exec: (string, (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit) => t = "exec"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execWith: (string, execOptions, (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit) => t =
   "exec"
 
@@ -100,14 +100,14 @@ external execFileOption: (
   unit,
 ) => execFileOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFile: (
   string,
   array<string>,
   (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit,
 ) => t = "execFile"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileWith: (
   string,
   array<string>,
@@ -132,10 +132,10 @@ external forkOptions: (
   unit,
 ) => forkOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external fork: (string, array<string>) => t = "fork"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external forkWith: (string, array<string>, forkOptions) => t = "fork"
 
 type spawnOptions
@@ -155,10 +155,10 @@ external spawnOptions: (
   unit,
 ) => spawnOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawn: (string, array<string>) => t = "spawn"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnWith: (string, array<string>, spawnOptions) => t = "spawn"
 
 type spawnSyncResult<'a> = {
@@ -189,10 +189,10 @@ external spawnSyncOptions: (
   unit,
 ) => spawnSyncOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnSync: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> = "spawnSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnSyncWith: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> =
   "spawnSync"
 
@@ -214,10 +214,10 @@ external execSyncOptions: (
   unit,
 ) => execSyncOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execSync: string => Buffer.t = "execSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execSyncWith: (string, execSyncOptions) => Buffer.t = "execSync"
 
 type execFileSyncOptions
@@ -237,8 +237,8 @@ external execFileSyncOptions: (
   unit,
 ) => execFileSyncOptions = ""
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileSync: (string, array<string>) => Buffer.t = "execFileSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileSyncWith: (string, array<string>, execFileSyncOptions) => Buffer.t = "execFileSync"

@@ -221,7 +221,7 @@ module Writable = {
     ) => unit,
     unit,
   ) => makeOptions<'w> = ""
-  @module("stream") @new
+  @module("node:stream") @new
   external make: makeOptions<Buffer.t> => t<Buffer.t> = "Writable"
 
   type makeOptionsObjMode<'w>
@@ -251,7 +251,7 @@ module Writable = {
     ) => unit,
     unit,
   ) => makeOptionsObjMode<'w> = ""
-  @module("stream") @new
+  @module("node:stream") @new
   external makeObjMode: makeOptionsObjMode<'w> => objStream<'w> = "Writable"
 }
 
@@ -407,7 +407,7 @@ module Readable = {
     ~read: @this (t<'r>, ~size: Js.nullable<int>) => unit,
     unit,
   ) => makeOptions<'r> = ""
-  @module("stream") @new
+  @module("node:stream") @new
   external make: makeOptions<Buffer.t> => t<Buffer.t> = "Readable"
 
   type makeOptionsObjMode<'r>
@@ -426,7 +426,7 @@ module Readable = {
     unit,
   ) => makeOptionsObjMode<'r> = ""
 
-  @module("stream") @new
+  @module("node:stream") @new
   external makeObjMode: makeOptionsObjMode<'r> => objStream<'r> = "Readable"
 }
 
@@ -478,7 +478,7 @@ module Duplex = {
     unit,
   ) => makeOptions<'w, 'r> = ""
 
-  @module("stream") @new
+  @module("node:stream") @new
   external make: makeOptions<Buffer.t, Buffer.t> => t<Buffer.t, Buffer.t> = "Duplex"
 
   type makeOptionsObjMode<'w, 'r>
@@ -511,7 +511,7 @@ module Duplex = {
     unit,
   ) => makeOptionsObjMode<'w, 'r> = ""
 
-  @module("stream") @new
+  @module("node:stream") @new
   external makeObjMode: makeOptionsObjMode<'w, 'r> => t<'w, 'r> = "Duplex"
 }
 
@@ -551,7 +551,7 @@ module Transform = {
     unit,
   ) => makeOptions<'w, 'r> = ""
 
-  @module("stream") @new
+  @module("node:stream") @new
   external make: makeOptions<Buffer.t, Buffer.t> => t<Buffer.t, Buffer.t> = "Transform"
 
   type makeOptionsObjMode<'w, 'r>
@@ -574,7 +574,7 @@ module Transform = {
     unit,
   ) => makeOptionsObjMode<'w, 'r> = ""
 
-  @module("stream") @new
+  @module("node:stream") @new
   external makeObjMode: makeOptionsObjMode<'w, 'r> => objStream<'w, 'r> = "Transform"
 }
 
@@ -591,7 +591,7 @@ module PassThrough = {
   type t<'w, 'r> = subtype<passThrough<'w, 'r>>
   type supertype<'w, 'r, 'ty> = subtype<[< passThrough<'w, 'r>] as 'ty>
   type subtype<'w, 'r, 'ty> = subtype<[> passThrough<'w, 'r>] as 'ty>
-  @module("stream") @new
+  @module("node:stream") @new
   external make: unit => t<Buffer.t, Buffer.t> = "PassThrough"
 }
 
@@ -607,24 +607,24 @@ include Events
 
 type cleanupFn = unit => unit
 
-@module("stream")
+@module("node:stream")
 external finished: (subtype<'ty>, Js.nullable<Js.Exn.t> => unit) => cleanupFn = "finished"
 
-@module("stream")
+@module("node:stream")
 external pipeline2: (
   subtype<[> readable<'t1>] as 'src>,
   subtype<[> writable<'t1>] as 'dest>,
   Js.nullable<Js.Exn.t> => unit,
 ) => subtype<[> writable<'t1>] as 'dest> = "pipeline"
 
-@module("stream")
+@module("node:stream")
 external pipeline3: (
   subtype<[> readable<'t1>] as 'src>,
   subtype<[> writable<'t1> | readable<'t2>] as 'kindA>,
   subtype<[> writable<'t2>] as 'dest>,
   Js.nullable<Js.Exn.t> => unit,
 ) => subtype<[> writable<'t2>] as 'dest> = "pipeline"
-@module("stream")
+@module("node:stream")
 external pipeline4: (
   subtype<[> readable<'t1>] as 'src>,
   subtype<[> writable<'t1> | readable<'t2>] as 'kindA>,

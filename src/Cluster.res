@@ -173,17 +173,17 @@ external clusterSettings: (
 @module
 external disconnect: Js.Nullable.t<unit => unit> => unit = "disconnect"
 let disconnect = (~callback=?, ()) => disconnect(Js.Nullable.fromOption(callback))
-@module("cluster")
+@module("node:cluster")
 external fork: option<Js.Dict.t<string>> => Worker.t = "fork"
 let fork = (~env=?, ()) => fork(env)
-@module("cluster") external isMaster: bool = "isMaster"
-@module("cluster") external isWorker: bool = "isWorker"
-@module("cluster") external settings: clusterSettings = "settings"
-@module("cluster")
+@module("node:cluster") external isMaster: bool = "isMaster"
+@module("node:cluster") external isWorker: bool = "isWorker"
+@module("node:cluster") external settings: clusterSettings = "settings"
+@module("node:cluster")
 external setupMaster: clusterSettings => unit = "setupMaster"
-@module("cluster") external _SCHED_NONE: int = "SCHED_NONE"
-@module("cluster") external _SCHED_RR: int = "SCHED_RR"
-@module("cluster") external schedulingPolicy: int = "schedulingPolicy"
+@module("node:cluster") external _SCHED_NONE: int = "SCHED_NONE"
+@module("node:cluster") external _SCHED_RR: int = "SCHED_RR"
+@module("node:cluster") external schedulingPolicy: int = "schedulingPolicy"
 type schedulingPolicy =
   | SCHED_NONE
   | SCHED_RR
@@ -192,7 +192,7 @@ let decodeSchedulingPolicy = if schedulingPolicy === _SCHED_RR {
 } else {
   SCHED_NONE
 }
-@module("cluster") external worker: Worker.t = "worker"
-@module("cluster") external workers: Js.Dict.t<Worker.t> = "workers"
+@module("node:cluster") external worker: Worker.t = "worker"
+@module("node:cluster") external workers: Js.Dict.t<Worker.t> = "workers"
 let getWorker: (Js.Dict.t<Worker.t>, int) => option<Worker.t> = (_workers, id) =>
   Js.Dict.get(_workers, Js.Int.toString(id))

@@ -35,8 +35,8 @@ module PivateKey = {
   include KeyObject.Impl
   type kind = [KeyObject.privateKey]
   type t<'a> = KeyObject.t<'a, [kind]>
-  @module("crypto") external make: Buffer.t => t<'a> = "createPrivateKey"
-  @module("crypto")
+  @module("node:crypto") external make: Buffer.t => t<'a> = "createPrivateKey"
+  @module("node:crypto")
   external makeWithPassphrase: {.."key": Buffer.t, "passphrase": Buffer.t} => t<'a> =
     "createPrivateKey"
 }
@@ -45,8 +45,8 @@ module PublicKey = {
   include KeyObject.Impl
   type kind = [KeyObject.publicKey]
   type t<'a> = KeyObject.t<'a, [kind]>
-  @module("crypto") external make: Buffer.t => t<'a> = "createPublicKey"
-  @module("crypto")
+  @module("node:crypto") external make: Buffer.t => t<'a> = "createPublicKey"
+  @module("node:crypto")
   external fromPrivateKey: KeyObject.t<'a, [> KeyObject.privateKey]> => t<'a> = "createPublicKey"
 }
 
@@ -64,7 +64,7 @@ module Hash = {
   include Impl
 }
 
-@module("crypto") external createHash: string => Hash.t = "createHash"
+@module("node:crypto") external createHash: string => Hash.t = "createHash"
 
 module Hmac = {
   type kind<'w, 'r> = [Stream.transform<'w, 'r> | #Hmac]
@@ -79,7 +79,7 @@ module Hmac = {
   include Impl
 }
 
-@module("crypto")
+@module("node:crypto")
 external createHmac: (string, ~key: string) => Hmac.t = "createHmac"
 
 module Certificate = {
@@ -112,13 +112,13 @@ module Cipher = {
     @send external update: (t, Buffer.t) => Buffer.t = "update"
   }
   include Impl
-  @module("crypto")
+  @module("node:crypto")
   external make: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
     ~iv: Js.Null.t<Buffer.t>,
   ) => t = "createCipheriv"
-  @module("crypto")
+  @module("node:crypto")
   external makeWith: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
@@ -151,13 +151,13 @@ module Decipher = {
     external update: (subtype<'w, 'r, 'a>, Buffer.t) => Buffer.t = "update"
   }
   include Impl
-  @module("crypto")
+  @module("node:crypto")
   external make: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
     ~iv: Js.Null.t<Buffer.t>,
   ) => t = "createDecipheriv"
-  @module("crypto")
+  @module("node:crypto")
   external makeWith: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,

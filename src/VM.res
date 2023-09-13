@@ -7,9 +7,9 @@ external createContextOptions: (
   ~origin: string=?,
   ~codeGeneration: {"strings": bool, "wasm": bool}=?,
 ) => createContextOptions = ""
-@val @module("vm")
+@val @module("node:vm")
 external createContext: ({..} as 'a) => contextifiedObject<'a> = "createContext"
-@val @module("vm")
+@val @module("node:vm")
 external createContextWithOptions: ({..} as 'a, createContextOptions) => contextifiedObject<'a> =
   "createContext"
 
@@ -24,8 +24,8 @@ module Script = {
     ~cachedData: Buffer.t=?,
     ~produceCachedData: bool=?,
   ) => makeOptions = ""
-  @new @module("vm") external make: string => t = "Script"
-  @new @module("vm")
+  @new @module("node:vm") external make: string => t = "Script"
+  @new @module("node:vm")
   external makeWithOptions: (string, makeOptions) => t = "Script"
   @send external createCachedData: t => Buffer.t = "createCachedData"
   @send

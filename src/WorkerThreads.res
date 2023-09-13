@@ -40,7 +40,7 @@ module MessagePort = {
 
 module MessageChannel = {
   type t<'message1, 'message2>
-  @module("worker_threads") @new
+  @module("node:worker_threads") @new
   external make: unit => t<'message1, 'message2> = "MessageChannel"
   @get
   external port1: t<'message1, 'message2> => MessagePort.t<'message1> = "port1"
@@ -54,7 +54,7 @@ module MessageChannel = {
     },
   ) => {
     type t = t<T.message1, T.message2>
-    @module("worker_threads") @new
+    @module("node:worker_threads") @new
     external make: unit => t = "MessageChannel"
     @get external port1: t => MessagePort.t<T.message1> = "port1"
     @get external port2: t => MessagePort.t<T.message2> = "port2"
@@ -88,7 +88,7 @@ module Worker = {
     unit,
   ) => makeOptions<'a> = ""
 
-  @module("worker_threads") @new
+  @module("node:worker_threads") @new
   external make: (~file: string, ~options: makeOptions<'a>=?, unit) => t<'a> = "Worker"
   @send
   external onError: (t<'a>, @as("error") _, @uncurry (Js.Exn.t => unit)) => t<'a> = "on"
@@ -132,7 +132,7 @@ module Worker = {
       unit,
     ) => makeOptions = ""
 
-    @module("worker_threads") @new
+    @module("node:worker_threads") @new
     external make: (~file: string, ~options: makeOptions=?, unit) => t = "Worker"
     @send
     external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
@@ -156,23 +156,23 @@ module Worker = {
   }
 }
 
-@val @module("worker_threads")
+@val @module("node:worker_threads")
 external isMainThread: bool = "isMainThread"
-@val @module("worker_threads")
+@val @module("node:worker_threads")
 external moveMessagePortToContext: (
   MessagePort.t<'a>,
   VM.contextifiedObject<'b>,
 ) => MessagePort.t<'a> = "moveMessagePortToContext"
-@val @module("worker_threads") @return(nullable)
+@val @module("node:worker_threads") @return(nullable)
 external parentPort: option<MessagePort.t<'a>> = "parentPort"
-@val @module("worker_threads") @return(nullable)
+@val @module("node:worker_threads") @return(nullable)
 external receiveMessageOnPort: MessagePort.t<'a> => option<{..}> = "receiveMessageOnPort"
-@val @module("worker_threads")
+@val @module("node:worker_threads")
 external resourceLimits: workerResourceLimits = "resourceLimits"
-@val @module("worker_threads")
+@val @module("node:worker_threads")
 external _SHARE_ENV: Js.Types.symbol = "SHARE_ENV"
-@val @module("worker_threads") external threadId: int = "threadId"
-@val @module("worker_threads") external workerData: 'a = "workerData"
+@val @module("node:worker_threads") external threadId: int = "threadId"
+@val @module("node:worker_threads") external workerData: 'a = "workerData"
 
 module WithMessageType = (
   T: {
@@ -182,22 +182,22 @@ module WithMessageType = (
   module Worker = Worker.WithMessageType({
     type message = T.message
   })
-  @val @module("worker_threads")
+  @val @module("node:worker_threads")
   external isMainThread: bool = "isMainThread"
-  @val @module("worker_threads")
+  @val @module("node:worker_threads")
   external moveMessagePortToContext: (
     MessagePort.t<T.message>,
     VM.contextifiedObject<'b>,
   ) => MessagePort.t<T.message> = "moveMessagePortToContext"
-  @val @module("worker_threads") @return(nullable)
+  @val @module("node:worker_threads") @return(nullable)
   external parentPort: option<MessagePort.t<T.message>> = "parentPort"
-  @val @module("worker_threads") @return(nullable)
+  @val @module("node:worker_threads") @return(nullable)
   external receiveMessageOnPort: MessagePort.t<T.message> => option<{..}> = "receiveMessageOnPort"
-  @val @module("worker_threads")
+  @val @module("node:worker_threads")
   external resourceLimits: workerResourceLimits = "resourceLimits"
-  @val @module("worker_threads")
+  @val @module("node:worker_threads")
   external _SHARE_ENV: Js.Types.symbol = "SHARE_ENV"
-  @val @module("worker_threads") external threadId: int = "threadId"
-  @val @module("worker_threads")
+  @val @module("node:worker_threads") external threadId: int = "threadId"
+  @val @module("node:worker_threads")
   external workerData: T.message = "workerData"
 }

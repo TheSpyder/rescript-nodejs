@@ -673,18 +673,18 @@ external createServerOptions: (
   unit,
 ) => createServerOptions = ""
 
-@module("http")
+@module("node:http")
 external createServer: (@uncurry (IncomingMessage.t, ServerResponse.t) => unit) => Server.t =
   "createServer"
 
-@module("http")
+@module("node:http")
 external createServerWithOptions: (
   createServerOptions,
   (IncomingMessage.t, ServerResponse.t) => unit,
 ) => Server.t = "createServer"
 
-@module("http") external _METHODS: array<string> = "METHODS"
-@module("http")
+@module("node:http") external _METHODS: array<string> = "METHODS"
+@module("node:http")
 external _STATUS_CODES: Js.Dict.t<string> = "STATUS_CODES"
 
 type requestOptions
@@ -711,58 +711,58 @@ external requestOptions: (
   unit,
 ) => requestOptions = ""
 
-@module("http") external request: string => ClientRequest.t = "request"
-@module("http")
+@module("node:http") external request: string => ClientRequest.t = "request"
+@module("node:http")
 external requestWithCallback: (string, IncomingMessage.t => unit) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestWithOptions: (string, requestOptions) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestWithOptionsCallback: (
   string,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "request"
-@module("http") external requestUrl: Url.t => ClientRequest.t = "request"
-@module("http")
+@module("node:http") external requestUrl: Url.t => ClientRequest.t = "request"
+@module("node:http")
 external requestUrlWithCallback: (Url.t, IncomingMessage.t => unit) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestUrlWithOptions: (Url.t, requestOptions) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestUrlWithOptionsCallback: (
   Url.t,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "request"
 
-@module("http") external get: string => ClientRequest.t = "get"
-@module("http")
+@module("node:http") external get: string => ClientRequest.t = "get"
+@module("node:http")
 external getWithCallback: (string, IncomingMessage.t => unit) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getWithOptions: (string, requestOptions) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getWithOptionsCallback: (
   string,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "get"
 
-@module("http") external getUrl: Url.t => ClientRequest.t = "get"
-@module("http")
+@module("node:http") external getUrl: Url.t => ClientRequest.t = "get"
+@module("node:http")
 external getUrlWithCallback: (Url.t, IncomingMessage.t => unit) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getUrlWithOptions: (Url.t, requestOptions) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getUrlWithOptionsCallback: (
   Url.t,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "get"
 
-@module("http") external globalAgent: Agent.t = "globalAgent"
-@module("http") external maxHeaderSize: int = "maxHeaderSize"
+@module("node:http") external globalAgent: Agent.t = "globalAgent"
+@module("node:http") external maxHeaderSize: int = "maxHeaderSize"
 
 type statusCodes = Js.Dict.t<string>
-@module("http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
+@module("node:http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
 
 type methods = array<string>
-@module("http") external _METHODS: methods = "METHODS"
+@module("node:http") external _METHODS: methods = "METHODS"
