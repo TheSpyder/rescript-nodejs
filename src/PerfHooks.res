@@ -35,7 +35,7 @@ module PerformanceNodeTiming = {
 
 module Performance = {
   type t
-  @module("perf_hooks") external performance: t = "performance"
+  @module("node:perf_hooks") external performance: t = "performance"
   @send external clearMarks: (t, unit) => unit = "clearMarks"
   @send external clearMarksByName: (t, string) => unit = "clearMarks"
   @send external mark: (t, unit) => unit = "mark"
@@ -79,11 +79,11 @@ module PerformanceObserverEntryList = {
 
 module PerformanceObserver = {
   type t
-  @module("perf_hooks") @new
+  @module("node:perf_hooks") @new
   external make: ((PerformanceObserverEntryList.t, t) => unit) => t = "PerformanceObserver"
 }
 
-@module("perf_hooks")
+@module("node:perf_hooks")
 external monitorEventLoopDelay: Js.Nullable.t<{"resolution": float}> => Histogram.t =
   "eventLoopDelay"
 let monitorEventLoopDelay = (~resolution=?, ()) =>

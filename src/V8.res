@@ -1,4 +1,4 @@
-@module("v8")
+@module("node:v8")
 external cachedDataVersionTag: unit => int = "cachedDataVersion"
 
 type heapSpaceStats = {
@@ -14,10 +14,10 @@ type heapSpaceStats = {
   space_physical_size: int,
 }
 
-@module("v8")
+@module("node:v8")
 external getHeapSpaceStatistics: unit => array<heapSpaceStats> = "getHeapSpaceStatistics"
 
-@module("v8")
+@module("node:v8")
 external getHeapSnapshot: unit => Stream.Readable.t<Buffer.t> = "getHeapSnapshot"
 
 type heapStats = {
@@ -43,7 +43,7 @@ type heapStats = {
   number_of_detached_contexts: int,
 }
 
-@module("v8")
+@module("node:v8")
 external getHeapStatistics: unit => heapStats = "getHeapStatistics"
 
 type heapCodeStats = {
@@ -55,11 +55,11 @@ type heapCodeStats = {
   external_script_source_size: int,
 }
 
-@module("v8")
+@module("node:v8")
 external getHeapCodeStatistics: unit => heapStats = "getHeapCodeStatistics"
 
-@module("v8")
+@module("node:v8")
 external writeHeapSnapshot: string => Js.Json.t = "writeHeapSnapshot"
 
-@module("v8") external serialize: 'a => Buffer.t = "serialize"
-@module("v8") external deserialize: Buffer.t => 'a = "deserialize"
+@module("node:v8") external serialize: 'a => Buffer.t = "serialize"
+@module("node:v8") external deserialize: Buffer.t => 'a = "deserialize"

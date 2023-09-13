@@ -1,8 +1,8 @@
 type t = string
 
-@module("querystring")
+@module("node:querystring")
 external parse: string => Js.Dict.t<string> = "parse"
-@module("querystring")
+@module("node:querystring")
 external decode: string => Js.Dict.t<string> = "decode"
-@module("querystring")
+@module("node:querystring")
 external stringify: Js.Dict.t<string> => string = "stringify"

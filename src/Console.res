@@ -15,9 +15,9 @@ external consoleOptions: (
   unit,
 ) => consoleOptions = ""
 
-@new @module("console")
+@new @module("node:console")
 external make: consoleOptions => t = "Console"
-@new @module("console")
+@new @module("node:console")
 external make2: {.."stdout": Stream.Writable.subtype<'w, 'a>} => t = "Console"
 
 @send external assert_: (t, bool) => unit = "assert"

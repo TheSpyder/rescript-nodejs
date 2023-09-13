@@ -2,9 +2,9 @@ type t
 open Js.TypedArray2
 
 module Constants = {
-  @module("buffer") @scope("constants") @val
+  @module("node:buffer") @scope("constants") @val
   external _MAX_LENGTH: int = "MAX_LENGTH"
-  @module("buffer") @scope("constants") @val
+  @module("node:buffer") @scope("constants") @val
   external _MAX_STRING_LENGTH: int = "MAX_STRING_LENGTH"
 }
 

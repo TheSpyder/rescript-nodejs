@@ -253,7 +253,7 @@ module Socket = {
   @obj
   external makeOptions: (~fd: int=?, ~readable: bool=?, ~writable: bool=?, unit) => makeOptions = ""
 
-  @module("net") @new
+  @module("node:net") @new
   external make: (~options: makeOptions=?, unit) => t = "Socket"
 }
 
@@ -277,7 +277,7 @@ module TcpSocket = {
     ) => subtype<'w, 'r, 'ty> = "connect"
   }
   include Impl
-  @module("net") @new external make: unit => t = "Socket"
+  @module("node:net") @new external make: unit => t = "Socket"
 }
 
 module IcpSocket = {
@@ -298,7 +298,7 @@ module IcpSocket = {
     ) => subtype<'w, 'r, 'ty> = "connect"
   }
   include Impl
-  @module("net") @new external make: unit => t = "Socket"
+  @module("node:net") @new external make: unit => t = "Socket"
 }
 
 module Server = {
@@ -467,7 +467,7 @@ module TcpServer = {
     ~ipv6Only: bool=?,
     unit,
   ) => listenOptions = ""
-  @module("net") @new external make: unit => t = "Server"
+  @module("node:net") @new external make: unit => t = "Server"
   @send
   external listen: (t, ~port: int, ~host: string, ~callback: unit => unit) => t = "listen"
   @send
@@ -566,6 +566,6 @@ module IcpServer = {
   external listenWithOptions: (t, ~options: listenOptions, ~callback: unit => unit) => t = "listen"
 }
 
-@module("net") @val external isIP: string => bool = "isIP"
-@module("net") @val external isIPv4: string => bool = "isIPv4"
-@module("net") @val external isIPv6: string => bool = "isIPv6"
+@module("node:net") @val external isIP: string => bool = "isIP"
+@module("node:net") @val external isIPv4: string => bool = "isIPv4"
+@module("node:net") @val external isIPv6: string => bool = "isIPv6"

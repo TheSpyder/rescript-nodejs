@@ -46,22 +46,22 @@ type t = {
   toJson: unit => Js.Json.t,
 }
 
-@module("url") @new external make: string => t = "URL"
-@module("url") @new
+@module("node:url") @new external make: string => t = "URL"
+@module("node:url") @new
 external fromBaseString: (~input: string, ~base: string) => t = "URL"
-@module("url") @new
+@module("node:url") @new
 external fromBaseUrl: (~input: string, ~base: t) => t = "URL"
 
-@module("url") external domainToASCII: string => string = "domainToASCII"
-@module("url")
+@module("node:url") external domainToASCII: string => string = "domainToASCII"
+@module("node:url")
 external domainToUnicode: string => string = "domainToUnicode"
-@module("url") external fileURLToPath: t => string = "fileURLToPath"
-@module("url")
+@module("node:url") external fileURLToPath: t => string = "fileURLToPath"
+@module("node:url")
 external fileStringToPath: string => string = "fileURLToPath"
 
 type urlFormatOptions = {"auth": bool, "fragment": bool, "search": bool, "unicode": bool}
 
-@module("url")
+@module("node:url")
 external format: (
   t,
   {
@@ -82,4 +82,4 @@ let format = (~auth=?, ~fragment=?, ~search=?, ~unicode=?, url) =>
     },
   )
 
-@module("url") external pathToFileURL: string => t = "pathToFileURL"
+@module("node:url") external pathToFileURL: string => t = "pathToFileURL"

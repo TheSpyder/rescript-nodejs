@@ -140,5 +140,5 @@ module Make = () => {
   include Impl({
     type t = t
   })
-  @module("events") @new external make: unit => t = "EventEmitter"
+  @module("node:events") @new external make: unit => t = "EventEmitter"
 }

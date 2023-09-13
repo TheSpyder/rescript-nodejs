@@ -72,4 +72,4 @@ module WriteStream = {
   include Impl
 }
 
-@module("tty") external isatty: Fs.fd => bool = "isatty"
+@module("node:tty") external isatty: Fs.fd => bool = "isatty"
