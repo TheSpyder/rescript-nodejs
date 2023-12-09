@@ -1,4 +1,11 @@
-type t
+type t = {
+  argv: array<string>,
+  argv0: string,
+  env: Js.Dict.t<string>,
+  execArgv: array<string>,
+  execPath: string,
+  exitCode: int,
+}
 @module external process: t = "process"
 
 type warning = {

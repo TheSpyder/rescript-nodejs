@@ -1,5 +1,5 @@
 module Dirent = {
-  type t
+  type t = {name: string}
   @send external isBlockDevice: t => bool = "isBlockDevice"
   @send external isCharacterDevice: t => bool = "isCharacterDevice"
   @send external isDirectory: t => bool = "isDirectory"
@@ -7,16 +7,14 @@ module Dirent = {
   @send external isFile: t => bool = "isFile"
   @send external isSocket: t => bool = "isSocket"
   @send external isSymbolicLink: t => bool = "isSymbolicLink"
-  @get external name: t => string = "name"
 }
 
 module Dir = {
-  type t
+  type t = {path: string}
   @send external close: t => Js.Promise.t<unit> = "close"
   @send
   external closeWithCallback: (t, Js.nullable<Js.Exn.t> => unit) => unit = "close"
   @send external closeSync: t => unit = "closeSync"
-  @get external path: t => string = "path"
   @send
   external read: t => Js.Promise.t<Js.nullable<Dirent.t>> = "read"
   @send
@@ -46,32 +44,25 @@ module Stats = {
     birthtime: string,
   }
 
-  @ocaml.doc(" `isFile(stats)` Returns true if the `stats` object describes a file. ") @send
+  /** `isFile(stats)` Returns true if the `stats` object describes a file. */
+  @send
   external isFile: t => bool = "isFile"
-  @ocaml.doc(" `isDirectory(stats)` Returns true if the `stats` object describes a directory. ")
+  /** `isDirectory(stats)` Returns true if the `stats` object describes a directory. */
   @send
   external isDirectory: t => bool = "isDirectory"
-  @ocaml.doc(
-    " `isBlockDevice(stats)` Returns true if the `stats` object describes a block device. "
-  )
+  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a block device. */
   @send
   external isBlockDevice: t => bool = "isBlockDevice"
-  @ocaml.doc(
-    " `isBlockDevice(stats)` Returns true if the `stats` object describes a character device. "
-  )
+  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a character device. */
   @send
   external isCharacterDevice: t => bool = "isCharacterDevice"
-  @ocaml.doc(
-    " `isBlockDevice(stats)` Returns true if the `stats` object describes a symbolic link. "
-  )
+  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a symbolic link. */
   @send
   external isSymbolicLink: t => bool = "isSymbolicLink"
-  @ocaml.doc(
-    " `isBlockDevice(stats)` Returns true if the `stats` object describes a first-in-first-out (FIFO) pipe. "
-  )
+  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a first-in-first-out (FIFO) pipe. */
   @send
   external isFIFO: t => bool = "isFIFO"
-  @ocaml.doc(" `isBlockDevice(stats)` Returns true if the `stats` object describes a socket. ")
+  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a socket. */
   @send
   external isSocket: t => bool = "isSocket"
 }
@@ -79,7 +70,7 @@ module Stats = {
 module Constants = {
   type t = private int
 
-  @ocaml.doc(" Bitwise 'or' i.e. JavaScript [x | y] ")
+  /** Bitwise 'or' i.e. JavaScript [x | y] */
   external lor: (t, t) => t = "%orint"
 
   @@text("{1 File Access Constants}")
@@ -93,7 +84,8 @@ module Constants = {
 
   @module("node:fs") @scope("constants") external copyfile_excl: t = "COPYFILE_EXCL"
   @module("node:fs") @scope("constants") external copyfile_ficlone: t = "COPYFILE_FICLONE"
-  @module("node:fs") @scope("constants") external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
+  @module("node:fs") @scope("constants")
+  external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
 
   @@text("{1 File Open Constants}")
 
@@ -194,40 +186,41 @@ module Flag: {
 
 type fd = private int
 
-type writeFileOptions
-@obj
-external writeFileOptions: (
-  ~mode: int=?,
-  ~flag: string=?,
-  ~encoding: string=?,
-  unit,
-) => writeFileOptions = ""
+type writeFileOptions = {
+  mode?: int,
+  flag?: Flag.t,
+  encoding?: string,
+}
 
-type appendFileOptions
-@obj
-external appendFileOptions: (
-  ~mode: int=?,
-  ~flag: Flag.t=?,
-  ~encoding: string=?,
-  unit,
-) => appendFileOptions = ""
+type appendFileOptions = {
+  mode?: int,
+  flag?: Flag.t,
+  encoding?: string,
+}
 
-type readFileOptions
-@obj external readFileOptions: (~flag: Flag.t=?, ~encoding: string=?, unit) => readFileOptions = ""
+type readFileOptions = {
+  flag?: Flag.t,
+  encoding?: string,
+}
 
-@ocaml.doc("
+type openFileOptions = {
+  flag?: Flag.t,
+  mode?: int,
+}
+
+/**
  * `readdirSync(path)`
  * Reads the contents of a directory, returning an array of strings representing
  * the paths of files and sub-directories. **Execution is synchronous and blocking**.
- ")
+ */
 @module("node:fs")
 external readdirSync: string => array<string> = "readdirSync"
 
-@ocaml.doc("
+/**
  * `renameSync(~oldPath, ~newPath)
  * Renames/moves the file located at `~oldPath` to `~newPath`. **Execution is
  * synchronous and blocking**.
- ")
+ */
 @module("node:fs")
 external renameSync: (~from: string, ~to_: string) => unit = "renameSync"
 @module("node:fs") external ftruncateSync: (fd, int) => unit = "ftruncateSync"
@@ -240,11 +233,11 @@ external fchownSync: (fd, ~uid: int, ~gid: int) => unit = "fchownSync"
 @module("node:fs") external readlinkSync: string => string = "readlinkSync"
 @module("node:fs") external unlinkSync: string => unit = "unlinkSync"
 
-@ocaml.doc("
+/**
  * `rmdirSync(dirPath)
  * **Note: (recursive removal is experimental).**
  * Removes the directory at `dirPath`. **Execution is synchronous and blocking**.
- ")
+ */
 @module("node:fs")
 external rmdirSync: string => unit = "rmdirSync"
 
@@ -265,7 +258,7 @@ external writeFileSync: (string, Buffer.t) => unit = "writeFileSync"
 external writeFileSyncWith: (string, Buffer.t, writeFileOptions) => unit = "writeFileSync"
 
 module FileHandle = {
-  type t
+  type t = {fd: fd}
 
   @send
   external appendFile: (t, Buffer.t, appendFileOptions) => Js.Promise.t<unit> = "appendFile"
@@ -275,7 +268,6 @@ module FileHandle = {
   @send external chown: (t, int, int) => Js.Promise.t<unit> = "chown"
   @send external close: t => Js.Promise.t<unit> = "close"
   @send external datasync: t => Js.Promise.t<unit> = "datasync"
-  @get external fd: t => fd = "fd"
 
   type readInfo = {
     bytesRead: int,
@@ -313,15 +305,6 @@ module FileHandle = {
     ~length: int,
     ~position: int,
   ) => Js.Promise.t<writeInfo> = "write"
-
-  type writeFileOptions
-  @obj
-  external writeFileOptions: (
-    ~mode: int=?,
-    ~flag: Flag.t=?,
-    ~encoding: string=?,
-    unit,
-  ) => writeFileOptions = ""
 
   @send
   external writeFile: (t, Buffer.t) => Js.Promise.t<unit> = "writeFile"
@@ -482,10 +465,7 @@ external appendFile: (string, string, appendFileOptions) => Js.Promise.t<unit> =
 @module("node:fs") @scope("promises")
 external appendFileWith: (string, string, appendFileOptions) => Js.Promise.t<unit> = "appendFile"
 
-type appendFileBufferOptions
-@obj
-external appendFileBufferOptions: (~mode: int=?, ~flag: Flag.t=?, unit) => appendFileBufferOptions =
-  ""
+type appendFileBufferOptions = {mode?: int, flag?: Flag.t}
 
 @module("node:fs") @scope("promises")
 external appendFileBuffer: (string, Buffer.t) => Js.Promise.t<unit> = "appendFile"
@@ -519,9 +499,7 @@ external lstat: string => Js.Promise.t<Stats.t> = "lstat"
 @module("node:fs") @scope("promises")
 external lstatBigInt: (string, bool) => Js.Promise.t<Stats.t> = "lstat"
 
-type mkdirOptions
-@obj
-external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
+type mkdirOptions = {recursive?: bool, mode?: int}
 
 @module("node:fs") @scope("promises")
 external mkdir: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
@@ -535,8 +513,7 @@ external mkdirSync: string => unit = "mkdirSync"
 @module("node:fs")
 external mkdirSyncWith: (string, mkdirOptions) => unit = "mkdirSync"
 
-type mkdtempOptions
-@obj external mdktempOptions: (~encoding: string=?, unit) => mkdtempOptions = ""
+type mkdtempOptions = {encoding?: string}
 
 @module("node:fs") @scope("promises")
 external mkdtemp: string => Js.Promise.t<string> = "mkddtemp"
@@ -566,13 +543,13 @@ module WriteStream = {
     external onOpen: (
       subtype<'w, [> kind<'w>]> as 'stream',
       @as("open") _,
-      @uncurry (fd => unit),
+      @uncurry fd => unit,
     ) => 'stream = "on"
     @send
     external onReady: (
       subtype<'w, [> kind<'w>]> as 'stream,
       @as("ready") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => 'stream = "on"
   }
   include Impl
@@ -594,55 +571,48 @@ module ReadStream = {
     external onOpen: (
       subtype<'r, [> kind<'r>]> as 'stream,
       @as("open") _,
-      @uncurry (fd => unit),
+      @uncurry fd => unit,
     ) => 'stream = "on"
     @send
     external onReady: (
       subtype<'r, [> kind<'r>]> as 'stream,
       @as("ready") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => 'stream = "on"
   }
   include Impl
 }
 
-type createReadStreamOptions
-@obj
-external createReadStreamOptions: (
-  ~flags: string=?,
-  ~encoding: string=?,
-  ~fd: fd=?,
-  ~mode: int=?,
-  ~autoClose: bool=?,
-  ~emitClose: bool=?,
-  ~start: int=?,
-  ~_end: int=?,
-  ~highWaterMark: int=?,
-  unit,
-) => createReadStreamOptions = ""
-
+type createReadStreamOptions = {
+  flags?: Flag.t,
+  encoding?: string,
+  fd?: fd,
+  mode?: int,
+  autoClose?: bool,
+  emitClose?: bool,
+  start?: int,
+  _end?: int,
+  highWaterMark?: int,
+}
 @module("node:fs")
 external createReadStream: string => ReadStream.t = "createReadStream"
 @module("node:fs")
 external createReadStreamWith: (string, createReadStreamOptions) => ReadStream.t =
   "createReadStream"
 
-type createWriteStreamOptions
-@obj
-external createWriteStreamOptions: (
-  ~flags: string=?,
-  ~encoding: string=?,
-  ~fd: fd=?,
-  ~mode: int=?,
-  ~autoClose: bool=?,
-  ~emitClose: bool=?,
-  ~start: int=?,
-  ~fs: {..}=?,
-  unit,
-) => createWriteStreamOptions = ""
+type createWriteStreamOptions<'fs> = {
+  flags?: Flag.t,
+  encoding?: string,
+  fd?: fd,
+  mode?: int,
+  autoClose?: bool,
+  emitClose?: bool,
+  start?: int,
+  fs?: 'fs,
+}
 @module("node:fs")
 external createWriteStream: string => WriteStream.t = "createWriteStream"
 
-@module("node:fs")
-external createWriteStreamWith: (string, createWriteStreamOptions) => WriteStream.t =
+@module("fs")
+external createWriteStreamWith: (string, createWriteStreamOptions<'fs>) => WriteStream.t =
   "createWriteStream"

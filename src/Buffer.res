@@ -1,4 +1,4 @@
-type t
+type t = {length: int}
 open Js.TypedArray2
 
 module Constants = {

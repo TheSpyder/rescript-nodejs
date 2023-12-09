@@ -1,12 +1,10 @@
 type contextifiedObject<'a>
 
-type createContextOptions
-@obj
-external createContextOptions: (
-  ~name: string=?,
-  ~origin: string=?,
-  ~codeGeneration: {"strings": bool, "wasm": bool}=?,
-) => createContextOptions = ""
+type createContextOptions = {
+  name?: string,
+  origin?: string,
+  codeGeneration?: {"strings": bool, "wasm": bool},
+}
 @val @module("node:vm")
 external createContext: ({..} as 'a) => contextifiedObject<'a> = "createContext"
 @val @module("node:vm")
@@ -15,18 +13,16 @@ external createContextWithOptions: ({..} as 'a, createContextOptions) => context
 
 module Script = {
   type t
-  type makeOptions
-  @obj
-  external makeOptions: (
-    ~filename: string=?,
-    ~lineOffset: int=?,
-    ~columnOffset: int=?,
-    ~cachedData: Buffer.t=?,
-    ~produceCachedData: bool=?,
-  ) => makeOptions = ""
+  type options = {
+    filename?: string,
+    lineOffset?: int,
+    columnOffset?: int,
+    cachedData?: Buffer.t,
+    produceCachedData?: bool,
+  }
   @new @module("node:vm") external make: string => t = "Script"
   @new @module("node:vm")
-  external makeWithOptions: (string, makeOptions) => t = "Script"
+  external makeWithOptions: (string, options) => t = "Script"
   @send external createCachedData: t => Buffer.t = "createCachedData"
   @send
   external runInContext: (t, string, contextifiedObject<'a>) => 'b = "runInContext"

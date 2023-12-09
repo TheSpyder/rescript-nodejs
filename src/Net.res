@@ -21,49 +21,49 @@ module Socket = {
     external onClose: (
       subtype<'w, 'r, 'ty>,
       @as("close") _,
-      @uncurry (bool => unit),
+      @uncurry bool => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onConnect: (
       subtype<'w, 'r, 'ty>,
       @as("connect") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onData: (
       subtype<'w, 'r, 'ty>,
       @as("data") _,
-      @uncurry ('r => unit),
+      @uncurry 'r => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onDrain: (
       subtype<'w, 'r, 'ty>,
       @as("drain") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onEnd: (
       subtype<'w, 'r, 'ty>,
       @as("end") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onError: (
       subtype<'w, 'r, 'ty>,
       @as("error") _,
-      @uncurry (Js.Exn.t => unit),
+      @uncurry Js.Exn.t => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onLookup: (
       subtype<'w, 'r, 'ty>,
       @as("lookup") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onReady: (
       subtype<'w, 'r, 'ty>,
       @as("ready") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "on"
     @send
     external onTimeout: (
@@ -76,110 +76,110 @@ module Socket = {
     external offClose: (
       subtype<'w, 'r, 'ty>,
       @as("close") _,
-      @uncurry (bool => unit),
+      @uncurry bool => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offConnect: (
       subtype<'w, 'r, 'ty>,
       @as("connect") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offData: (
       subtype<'w, 'r, 'ty>,
       @as("data") _,
-      @uncurry ('r => unit),
+      @uncurry 'r => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offDrain: (
       subtype<'w, 'r, 'ty>,
       @as("drain") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offEnd: (
       subtype<'w, 'r, 'ty>,
       @as("end") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offError: (
       subtype<'w, 'r, 'ty>,
       @as("error") _,
-      @uncurry (Js.Exn.t => unit),
+      @uncurry Js.Exn.t => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offLookup: (
       subtype<'w, 'r, 'ty>,
       @as("lookup") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offReady: (
       subtype<'w, 'r, 'ty>,
       @as("ready") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
     @send
     external offTimeout: (
       subtype<'w, 'r, 'ty>,
       @as("timeout") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "off"
 
     @send
     external onCloseOnce: (
       subtype<'w, 'r, 'ty>,
       @as("close") _,
-      @uncurry (bool => unit),
+      @uncurry bool => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onConnectOnce: (
       subtype<'w, 'r, 'ty>,
       @as("connect") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onDataOnce: (
       subtype<'w, 'r, 'ty>,
       @as("data") _,
-      @uncurry ('r => unit),
+      @uncurry 'r => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onDrainOnce: (
       subtype<'w, 'r, 'ty>,
       @as("drain") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onEndOnce: (
       subtype<'w, 'r, 'ty>,
       @as("end") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onErrorOnce: (
       subtype<'w, 'r, 'ty>,
       @as("error") _,
-      @uncurry (Js.Exn.t => unit),
+      @uncurry Js.Exn.t => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onLookupOnce: (
       subtype<'w, 'r, 'ty>,
       @as("lookup") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onReadyOnce: (
       subtype<'w, 'r, 'ty>,
       @as("ready") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
     @send
     external onTimeoutOnce: (
       subtype<'w, 'r, 'ty>,
       @as("timeout") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "once"
   }
 
@@ -225,7 +225,7 @@ module Socket = {
     external setTimeout: (
       subtype<'w, 'r, 'ty>,
       int,
-      ~callback: @this (subtype<'w, 'r, 'ty> => unit),
+      ~callback: @this subtype<'w, 'r, 'ty> => unit,
     ) => subtype<'w, 'r, 'ty> = "setTimeout"
     @send
     external unref: subtype<'w, 'r, 'ty> => subtype<'w, 'r, 'ty> = "unref"
@@ -233,14 +233,14 @@ module Socket = {
     external connectIcp: (
       subtype<'w, 'r, [> kind<'w, 'r> | icp]> as 'icpSocket,
       ~path: string,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => 'icpSocket = "connect"
     @send
     external connectTcp: (
       subtype<'w, 'r, [> kind<'w, 'r> | tcp]> as 'tcpSocket,
       ~port: int,
       ~host: string,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => 'tcpSocket = "connect"
   }
   include Impl
@@ -248,13 +248,10 @@ module Socket = {
     type t = t
   })
 
-  type makeOptions
-
-  @obj
-  external makeOptions: (~fd: int=?, ~readable: bool=?, ~writable: bool=?, unit) => makeOptions = ""
+  type options = {fd?: int, readable?: bool, writable?: bool}
 
   @module("node:net") @new
-  external make: (~options: makeOptions=?, unit) => t = "Socket"
+  external make: (~options: options=?, unit) => t = "Socket"
 }
 
 module TcpSocket = {
@@ -273,7 +270,7 @@ module TcpSocket = {
       subtype<'w, 'r, 'ty>,
       ~port: int,
       ~host: string,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "connect"
   }
   include Impl
@@ -294,7 +291,7 @@ module IcpSocket = {
     external connect: (
       subtype<'w, 'r, 'ty>,
       ~path: string,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'ty> = "connect"
   }
   include Impl
@@ -308,56 +305,54 @@ module Server = {
   type t<'ty> = subtype<'ty>
   module Events = {
     @send
-    external onClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (Socket.t => unit),
+      @uncurry Socket.t => unit,
     ) => subtype<'ty> = "on"
     @send
     external onListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "on"
     @send
-    external offClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (Socket.t => unit),
+      @uncurry Socket.t => unit,
     ) => subtype<'ty> = "off"
     @send
     external offListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "off"
     @send
-    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (Socket.t => unit),
+      @uncurry Socket.t => unit,
     ) => subtype<'ty> = "once"
     @send
     external onListeningOnce: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "once"
   }
   module Impl = {
@@ -389,56 +384,54 @@ module TcpServer = {
   type supertype<'ty> = Server.subtype<[< kind] as 'ty>
   module Events = {
     @send
-    external onClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (TcpSocket.t => unit),
+      @uncurry TcpSocket.t => unit,
     ) => subtype<'ty> = "on"
     @send
     external onListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "on"
     @send
-    external offClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (TcpSocket.t => unit),
+      @uncurry TcpSocket.t => unit,
     ) => subtype<'ty> = "off"
     @send
     external offListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "off"
     @send
-    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (TcpSocket.t => unit),
+      @uncurry TcpSocket.t => unit,
     ) => subtype<'ty> = "once"
     @send
     external onListeningOnce: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "once"
   }
   module Impl = {
@@ -457,16 +450,13 @@ module TcpServer = {
     @get external listening: subtype<'ty> => bool = "listening"
   }
   include Impl
-  type listenOptions
-  @obj
-  external listenOptions: (
-    ~port: int=?,
-    ~host: string=?,
-    ~backlog: int=?,
-    ~exclusive: bool=?,
-    ~ipv6Only: bool=?,
-    unit,
-  ) => listenOptions = ""
+  type listenOptions = {
+    port?: int,
+    host?: string,
+    backlog?: int,
+    exclusive?: bool,
+    ipv6Only?: bool,
+  }
   @module("node:net") @new external make: unit => t = "Server"
   @send
   external listen: (t, ~port: int, ~host: string, ~callback: unit => unit) => t = "listen"
@@ -481,56 +471,54 @@ module IcpServer = {
   type supertype<'ty> = Server.subtype<[< kind] as 'ty>
   module Events = {
     @send
-    external onClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (IcpSocket.t => unit),
+      @uncurry IcpSocket.t => unit,
     ) => subtype<'ty> = "on"
     @send
     external onListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "on"
     @send
-    external offClose: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
-      "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (IcpSocket.t => unit),
+      @uncurry IcpSocket.t => unit,
     ) => subtype<'ty> = "off"
     @send
     external offListening: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "off"
     @send
-    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (unit => unit)) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
       subtype<'ty>,
       @as("connection") _,
-      @uncurry (IcpSocket.t => unit),
+      @uncurry IcpSocket.t => unit,
     ) => subtype<'ty> = "once"
     @send
     external onListeningOnce: (
       subtype<'ty>,
       @as("listening") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'ty> = "once"
   }
   module Impl = {
@@ -549,17 +537,14 @@ module IcpServer = {
     @get external listening: subtype<'ty> => bool = "listening"
   }
   include Impl
-  type listenOptions
-  @obj
-  external listenOptions: (
-    ~path: string=?,
-    ~host: string=?,
-    ~backlog: int=?,
-    ~exclusive: bool=?,
-    ~readableAll: bool=?,
-    ~writableAll: bool=?,
-    unit,
-  ) => listenOptions = ""
+  type listenOptions = {
+    path?: string,
+    host?: string,
+    backlog?: int,
+    exclusive?: bool,
+    readableAll?: bool,
+    writableAll?: bool,
+  }
   @send
   external listen: (t, ~path: string, ~callback: unit => unit) => t = "listen"
   @send

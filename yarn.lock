@@ -71,6 +71,11 @@ braces@^3.0.1, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
+changie@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/changie/-/changie-1.16.1.tgz#9a846f4303f569ed695dcbc9afa60a47465f0c97"
+  integrity sha512-oQp1ic8S8adpDHuqEQYdd9aHRayf/bXlDAlvfZ7U9IxeKmBXOB2QMhrpeY52n64Tzn7vXtlxCcYUwJMfpnwqDQ==
+
 chokidar@^3.3.1:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
