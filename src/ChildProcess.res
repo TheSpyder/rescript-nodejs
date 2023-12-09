@@ -1,4 +1,9 @@
-type t
+type t = {
+  connected: bool,
+  killed: bool,
+  pid: int,
+  exitCode: int,
+}
 
 module Events = {
   @send
@@ -50,16 +55,16 @@ include Events
 @get external connected: t => bool = "connected"
 @send external disconnect: t => bool = "disconnect"
 @send external kill: (t, string) => unit = "kill"
+@send external ref: t => unit = "ref"
+@send external unref: t => unit = "unref"
 @get external killed: t => bool = "killed"
 @get external pid: t => int = "pid"
-@get external ref: t => unit = "ref"
 @get @return(nullable)
 external stderr: t => option<Stream.Readable.t<Buffer.t>> = "stderr"
 @get @return(nullable)
 external stdin: t => option<Stream.Writable.t<Buffer.t>> = "stdin"
 @get @return(nullable)
 external stdout: t => option<Stream.Readable.t<Buffer.t>> = "stdout"
-@get external unref: t => unit = "unref"
 
 type execOptions = {
   cwd?: string,

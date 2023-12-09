@@ -51,12 +51,12 @@ module Message = {
 }
 
 module Worker = {
-  type t
+  type t = {id: int, process: ChildProcess.t}
   module Events = {
     @send
     external onDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "on"
     @send
-    external onError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "on"
+    external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
     @send
     external onExit: (
       t,
@@ -64,7 +64,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "on"
     @send
-    external onListening: (t, @as("listening") _, @uncurry Address.t => unit) => t = "on"
+    external onListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "on"
     @send
     external onMessage: (
       t,
@@ -77,7 +77,7 @@ module Worker = {
     @send
     external offDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "off"
     @send
-    external offError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "off"
+    external offError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "off"
     @send
     external offExit: (
       t,
@@ -85,7 +85,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "off"
     @send
-    external offListening: (t, @as("listening") _, @uncurry Address.t => unit) => t = "off"
+    external offListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "off"
     @send
     external offMessage: (
       t,
@@ -98,7 +98,7 @@ module Worker = {
     @send
     external onDisconnectOnce: (t, @as("disconnect") _, @uncurry unit => unit) => t = "once"
     @send
-    external onErrorOnce: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "once"
+    external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
     @send
     external onExitOnce: (
       t,
@@ -106,7 +106,7 @@ module Worker = {
       @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
     ) => t = "once"
     @send
-    external onListeningOnce: (t, @as("listening") _, @uncurry Address.t => unit) => t = "once"
+    external onListeningOnce: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "once"
     @send
     external onMessageOnce: (
       t,
@@ -121,12 +121,12 @@ module Worker = {
   @send external disconnect: t => unit = "disconnect"
   @send
   external exitedAfterDisconnect: t => bool = "exitedAfterDisconnect"
-  @send external id: t => int = "id"
+  @get external id: t => int = "id"
   @send external isConnected: t => bool = "isConnected"
   @send external isDead: t => bool = "isConnected"
   @send external kill: t => unit = "kill"
   @send external killWith: (t, ~signal: string) => unit = "kill"
-  @send external process: t => ChildProcess.t = "process"
+  @get external process: t => ChildProcess.t = "process"
   @send external send: string => unit = "send"
 
   @send
