@@ -240,13 +240,13 @@ module Writable = {
     ~writev: @this (
       objStream<'w>,
       ~data: array<chunk<'w>>,
-      ~encoding: StringEncoding.t,
+      ~encoding: Js.null<StringEncoding.t>,
       ~callback: (~error: option<Js.Exn.t>) => unit,
     ) => unit=?,
     ~write: @this (
       objStream<'w>,
       ~data: 'w,
-      ~encoding: StringEncoding.t,
+      ~encoding: Js.null<StringEncoding.t>,
       ~callback: (~error: option<Js.Exn.t>) => unit,
     ) => unit,
     unit,

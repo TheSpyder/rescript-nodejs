@@ -86,7 +86,7 @@ zoraBlock("Stream.Writable", t => {
                   Js.typeof(cb),
                 ))
               }
-              t->equal(actual, Some(("Writable", "number", StringEncoding.utf8, "function")), "")
+              t->equal(actual, Some(("Writable", "number", Js.null, "function")), "")
 
               resolve(. ())
             },
