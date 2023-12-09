@@ -84,7 +84,8 @@ module Constants = {
 
   @module("node:fs") @scope("constants") external copyfile_excl: t = "COPYFILE_EXCL"
   @module("node:fs") @scope("constants") external copyfile_ficlone: t = "COPYFILE_FICLONE"
-  @module("node:fs") @scope("constants") external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
+  @module("node:fs") @scope("constants")
+  external copyfile_ficlone_force: t = "COPYFILE_FICLONE_FORCE"
 
   @@text("{1 File Open Constants}")
 
