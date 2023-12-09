@@ -1,17 +1,15 @@
-type lookupOptions
-@obj
-external lookupOptions: (
-  ~family: int=?,
-  ~hints: int=?,
-  ~all: bool=?,
-  ~verbatim: bool=?,
-) => lookupOptions = ""
+type options = {
+  family?: int,
+  hints?: int,
+  all?: bool,
+  verbatim?: bool,
+}
 @module("dns") @scope("promise")
 external lookup: string => Js.Promise.t<array<{"address": string, "family": int}>> = "lookup"
 @module("node:dns") @scope("promise")
 external lookupWithOptions: (
   string,
-  lookupOptions,
+  options,
 ) => Js.Promise.t<array<{"address": string, "family": int}>> = "lookup"
 @module("node:dns") @scope("promise")
 external lookupService: (string, int) => Js.Promise.t<{"hostname": string, "service": string}> =
@@ -81,7 +79,7 @@ module CallbackAPI = {
   @module("node:dns")
   external lookup: (string, (Js.Exn.t, string, int) => unit) => string = "lookup"
   @module("node:dns")
-  external lookupWithOptions: (string, lookupOptions, (Js.Exn.t, string, int) => unit) => string =
+  external lookupWithOptions: (string, options, (Js.Exn.t, string, int) => unit) => string =
     "lookup"
   @module("node:dns")
   external getServers: unit => array<string> = "getServers"

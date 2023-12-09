@@ -687,7 +687,7 @@ type requestOptions = {
   host?: string,
   hostName?: string,
   localAddress?: string,
-  lookup?: (string, Dns.lookupOptions, (Js.Exn.t, string, int) => unit) => string,
+  lookup?: (string, Dns.options, (Js.Exn.t, string, int) => unit) => string,
   maxHeaderSize?: int,
   method?: string,
   path?: string,
