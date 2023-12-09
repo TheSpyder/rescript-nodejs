@@ -3,7 +3,6 @@
 .bsb.lock
 npm-debug.log
 /lib/bs
-/lib/js/src
 /node_modules/
 bsb
 package-lock.json
