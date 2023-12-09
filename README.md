@@ -9,11 +9,15 @@ Node.js bindings for ReScript
 ```shell
 npm install rescript-nodejs
 ```
+
 or
+
 ```shell
 yarn add rescript-nodejs
 ```
+
 Then add rescript-nodejs to `bsconfig.json`:
+
 ```
   "bs-dependencies": [
     "rescript-nodejs"
@@ -59,6 +63,7 @@ We welcome and encourage anyone to contribute! In order to minimize confusion an
 - If you want to request a feature/improvement, it's best to create an issue first and start a discussion. Don't spend a lot of valuable time and energy creating a pull request when it might not fit in with the project goals. Your PR may still be merged if it isn't based on an issue but expect to have a discussion first.
 - If you notice gaps in the documentation and want to help fill them in, feel free to go straight to PR. Or create an issue and provide a draft of the docs you want to add.
 - If you have concerns about implementation style or design decisions (e.g. type soundness, complexity, ergonomics, edge cases, etc.), please submit an issue voicing your concerns. Critique from the community is welcome. This library is only useful so long as it works for everyone!
+- A changelog has finally been added, managed by [changie](https://changie.dev). Please use this tool (available via `yarn changie new`) to add changelog entries.
 
 ## License and Credits
 
