@@ -248,10 +248,10 @@ module Socket = {
     type t = t
   })
 
-  type makeOptions = {fd?: int, readable?: bool, writable?: bool}
+  type options = {fd?: int, readable?: bool, writable?: bool}
 
   @module("node:net") @new
-  external make: (~options: makeOptions=?, unit) => t = "Socket"
+  external make: (~options: options=?, unit) => t = "Socket"
 }
 
 module TcpSocket = {
