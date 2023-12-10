@@ -5,7 +5,7 @@ changelogPath: CHANGELOG.md
 versionExt: md
 versionFormat: '## {{.Version}} - {{.Time.Format "2006-01-02"}}'
 kindFormat: "### {{.Kind}}"
-changeFormat: "* [#{{.Custom.Issue}}](https://github.com/miniscruff/changie/issues/{{.Custom.Issue}}) {{.Body}}"
+changeFormat: "* [#{{.Custom.GithubIssue}}](https://github.com/miniscruff/changie/issues/{{.Custom.GithubIssue}}) {{.Body}}"
 kinds:
   - label: Added
     auto: minor
@@ -23,7 +23,7 @@ newlines:
   endOfVersion: 1
 envPrefix: CHANGIE_
 custom:
-  - key: Github Issue
+  - key: GithubIssue
     type: int
     minInt: 1
 replacements:
