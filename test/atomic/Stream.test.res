@@ -26,7 +26,7 @@ zoraBlock("Stream.Readable", t => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
-            resolve()
+            resolve(. ())
           },
         )
 
@@ -92,7 +92,7 @@ zoraBlock("Stream.Writable", t => {
                 "",
               )
 
-              resolve()
+              resolve(. ())
             },
             (),
           )->ignore
