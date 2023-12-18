@@ -1,5 +1,0 @@
-kind: Changed
-body: "BREAKING: Record types are now used where possible. Requires ReScript 10."
-time: 2023-12-10T06:31:31.479826+11:00
-custom:
-  GithubIssue: "12"

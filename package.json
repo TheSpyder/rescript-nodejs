@@ -1,6 +1,6 @@
 {
   "name": "rescript-nodejs",
-  "version": "15.0.0",
+  "version": "16.0.0",
   "scripts": {
     "build": "rescript",
     "clean": "rescript clean",
@@ -12,6 +12,25 @@
     "test-start": "onchange --await-write-finish 1000 --initial 'lib/js/{test,src}/**/*.bs.js' -- yarn test",
     "test-watchexec": "watchexec -r -d 0 -w src -w test -e res -- yarn test"
   },
+  "description": "Node bindings for ReScript",
+  "license": "MIT",
+  "devDependencies": {
+    "@dusty-phillips/rescript-zora": "^4.0.0",
+    "changie": "^1.17.0",
+    "onchange": "^7.1.0",
+    "pta": "^1.2.0",
+    "rescript": "^10.1.4",
+    "zora": "^5.2.0"
+  },
+  "files": [
+    "docs",
+    "examples",
+    "lib/js",
+    "src",
+    "test",
+    "bsconfig.json",
+    "CHANGELOG.md"
+  ],
   "keywords": [
     "rescript",
     "nodejs"
@@ -22,16 +41,6 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/TheSpyder/rescript-nodejs.git"
-  },
-  "description": "Node bindings for ReScript",
-  "license": "MIT",
-  "devDependencies": {
-    "@dusty-phillips/rescript-zora": "^4.0.0",
-    "changie": "^1.17.0",
-    "onchange": "^7.1.0",
-    "pta": "^1.2.0",
-    "rescript": "^10.1.4",
-    "zora": "^5.2.0"
   },
   "packageManager": "yarn@4.0.2"
 }
