@@ -1,0 +1,6 @@
+kind: Added
+body: The `Event` module now includes 2 and 3 argument variants of `fromString` and `fromSymbol`
+  for use ReScript 11 uncurried mode
+time: 2023-12-19T09:58:15.397871+11:00
+custom:
+  GithubIssue: "22"
