@@ -971,20 +971,19 @@ __metadata:
     changie: "npm:^1.17.0"
     onchange: "npm:^7.1.0"
     pta: "npm:^1.2.0"
-    rescript: "npm:^10.1.4"
+    rescript: "npm:^11.0.0-rc.8"
     zora: "npm:^5.2.0"
   languageName: unknown
   linkType: soft
 
-"rescript@npm:^10.1.4":
-  version: 10.1.4
-  resolution: "rescript@npm:10.1.4"
+"rescript@npm:^11.0.0-rc.8":
+  version: 11.0.0-rc.8
+  resolution: "rescript@npm:11.0.0-rc.8"
   bin:
     bsc: bsc
-    bsrefmt: bsrefmt
     bstracing: lib/bstracing
     rescript: rescript
-  checksum: 2549750314c865beed52f3fe828ca653386c784e053e640e011ef8165594757702abfe080f4ead5b0c95c3f577b1dd98a3df937e8e5256d69bc6bb13c8e31124
+  checksum: d7860879a3ca8345c1d4f121b7d960c0d8c7628cd0787b267a817f182df11ff090fca50e014036ba903bf70cd646e50b6f53d15f9cf6fbf6c7bcef669d819f60
   languageName: node
   linkType: hard
 

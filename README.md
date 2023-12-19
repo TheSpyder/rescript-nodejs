@@ -4,6 +4,10 @@ Node.js bindings for ReScript
 
 [![npm](https://img.shields.io/npm/v/rescript-nodejs.svg)](https://npmjs.org/rescript-nodejs)
 
+## Requirements
+
+Works on ReScript 10 or above. Supports uncurried mode in ReScript 11.
+
 ## Installation
 
 ```shell
@@ -31,11 +35,12 @@ Help all ReScript Node.js apps and libraries to be built faster by reducing the 
 ## Non-Goals
 
 - Have 100% coverage of Node.js api surface - Due to lack of testing and time for maintenance, it should only have enough surface to cover all common use cases. But it should have enough coverage that developers only rarely have to write a custom binding.
+- PRs welcome if there's something you use a lot and think others will too.
 - This library should be as low-level as possible (i.e. zero-cost) to allow for minimal context switching between offical Node.js documentation and the ReScript equilvalent. Due to the dynamic nature of the JS API, bending it to be idiomatic ReScript will lead to a ton of bikeshedding in design as well as sacrificing maintainability.
 
 ## Principles
 
-- When available, prefer binding to the promise version of the library instead of the callback version to reduce binding surface. `Js.Promise` can be a bit of a pain, try [the new Promise API](https://github.com/ryyppy/rescript-promise).
+- When available, prefer binding to the promise version of the library instead of the callback version to reduce binding surface. `Js.Promise2` is the new improved API.
 - Use subtyping only where the benefit is substantial. Subtyping is used for various APIs that implement Node Streams, such as HTTP Request and Response, FileSystem streams, Crypto streams, and etc. This provides a single set of functions to manipulate and combine streams across different modules. For example:
 
 ### Stream a file into stdout:
