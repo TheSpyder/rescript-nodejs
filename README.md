@@ -49,7 +49,7 @@ Help all ReScript Node.js apps and libraries to be built faster by reducing the 
 open NodeJs
 
 Fs.createReadStream("/path")
-  ->Stream.pipe(Process.(stdout(process)))
+  ->Stream.pipe(Process.stdout(Process.process))
   ->Stream.onError(_ => Js.log("handleError"))
 ```
 
