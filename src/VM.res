@@ -25,8 +25,8 @@ module Script = {
   external makeWithOptions: (string, options) => t = "Script"
   @send external createCachedData: t => Buffer.t = "createCachedData"
   @send
-  external runInContext: (t, string, contextifiedObject<'a>) => 'b = "runInContext"
+  external runInContext: (t, contextifiedObject<'a>) => 'b = "runInContext"
   @send
-  external runInNewContext: (t, string, contextifiedObject<'a>) => 'b = "runInNewContext"
-  @send external runInThisContext: (t, string) => 'a = "runInThisContext"
+  external runInNewContext: (t,  contextifiedObject<'a>) => 'b = "runInNewContext"
+  @send external runInThisContext: t => 'a = "runInThisContext"
 }
