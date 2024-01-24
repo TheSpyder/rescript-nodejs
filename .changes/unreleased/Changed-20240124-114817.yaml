@@ -1,0 +1,5 @@
+kind: Changed
+body: Removed multi-argument event handling added in v16, which didn't actually work
+time: 2024-01-24T11:48:17.241035+11:00
+custom:
+  GithubIssue: "25"
