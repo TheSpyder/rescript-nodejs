@@ -46,14 +46,18 @@ Help all ReScript Node.js apps and libraries to be built faster by reducing the 
 ### Stream a file into stdout:
 
 ```rescript
+open NodeJs
+
 Fs.createReadStream("/path")
-  ->Stream.pipe(Process.(stdout(process)))
+  ->Stream.pipe(Process.stdout(Process.process))
   ->Stream.onError(_ => Js.log("handleError"))
 ```
 
 ### Echo server:
 
 ```rescript
+open NodeJs
+
 Http.createServer((request, response) => {
   request->Stream.onData(data => Js.log(data))
   request->Stream.pipe(response)->ignore
