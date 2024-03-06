@@ -208,6 +208,11 @@ type openFileOptions = {
   mode?: int,
 }
 
+type lstatSyncOptions = {
+  bigint?: bool,
+  throwIfNoEntry?: bool,
+}
+
 /**
  * `readdirSync(path)`
  * Reads the contents of a directory, returning an array of strings representing
@@ -256,6 +261,16 @@ external readFileSyncWith: (string, readFileOptions) => Buffer.t = "readFileSync
 external writeFileSync: (string, Buffer.t) => unit = "writeFileSync"
 @val @module("node:fs")
 external writeFileSyncWith: (string, Buffer.t, writeFileOptions) => unit = "writeFileSync"
+
+@val @module("node:fs")
+external lstatSync: @unwrap [#String(string) | #Buffer(Buffer.t) | #Url(Url.t)] => Stats.t =
+  "lstatSync"
+
+@val @module("node:fs")
+external lstatSyncWith: (
+  @unwrap [#String(string) | #Buffer(Buffer.t) | #Url(Url.t)],
+  lstatSyncOptions,
+) => Stats.t = "lstatSync"
 
 module FileHandle = {
   type t = {fd: fd}
