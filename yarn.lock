@@ -231,12 +231,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"changie@npm:^1.17.0":
-  version: 1.17.0
-  resolution: "changie@npm:1.17.0"
+"changie@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "changie@npm:1.18.0"
   bin:
     changie: npm/changie.js
-  checksum: 0ba6b8e4d21dcd167418dacaf5ac92ca89bae23dbdbd3832b6aa9a6f8460c5001fb2f193fb5cf7617e8532759dac4af2e993be046e827442ce4a9505eede876f
+  checksum: f6b4041dac8cb4183d74e836a37c333439d51dd298fc6ad7c6dc6326ebe07500708cd17e6de002e5e714d137d5fe0b3c41f5883128d6abf8a039e612cdf97f4a
   languageName: node
   linkType: hard
 
@@ -968,22 +968,22 @@ __metadata:
   resolution: "rescript-nodejs@workspace:."
   dependencies:
     "@dusty-phillips/rescript-zora": "npm:^4.0.0"
-    changie: "npm:^1.17.0"
+    changie: "npm:^1.18.0"
     onchange: "npm:^7.1.0"
     pta: "npm:^1.2.0"
-    rescript: "npm:^11.0.0-rc.8"
+    rescript: "npm:^11.0.1"
     zora: "npm:^5.2.0"
   languageName: unknown
   linkType: soft
 
-"rescript@npm:^11.0.0-rc.8":
-  version: 11.0.0-rc.8
-  resolution: "rescript@npm:11.0.0-rc.8"
+"rescript@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "rescript@npm:11.0.1"
   bin:
     bsc: bsc
     bstracing: lib/bstracing
     rescript: rescript
-  checksum: d7860879a3ca8345c1d4f121b7d960c0d8c7628cd0787b267a817f182df11ff090fca50e014036ba903bf70cd646e50b6f53d15f9cf6fbf6c7bcef669d819f60
+  checksum: a37dc757a14c57a15fe75a12df52f3d564cc6ef5cacc8356fe70a7d4ab9692736c0fbb56456dff090d8b5b18935a09aed066c623e6764f4c76bed61187e611b7
   languageName: node
   linkType: hard
 
