@@ -26,7 +26,7 @@ zoraBlock("Stream.Readable", t => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
-            resolve(. ())
+            resolve()
           },
         )
 
@@ -86,13 +86,9 @@ zoraBlock("Stream.Writable", t => {
                   Js.typeof(cb),
                 ))
               }
-              t->equal(
-                actual,
-                Some(("Writable", "number", Js.Null.return(StringEncoding.utf8), "function")),
-                "",
-              )
+              t->equal(actual, Some(("Writable", "number", Js.null, "function")), "")
 
-              resolve(. ())
+              resolve()
             },
             (),
           )->ignore
