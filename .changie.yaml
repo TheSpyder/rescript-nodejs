@@ -5,7 +5,7 @@ changelogPath: CHANGELOG.md
 versionExt: md
 versionFormat: '## {{.Version}} - {{.Time.Format "2006-01-02"}}'
 kindFormat: "### {{.Kind}}"
-changeFormat: "* [#{{.Custom.GithubIssue}}](https://github.com/TheSpyder/rescript-nodejs/{{.Custom.GithubIssue}}) {{.Body}}"
+changeFormat: "* [#{{.Custom.GithubIssue}}](https://github.com/TheSpyder/rescript-nodejs/issues/{{.Custom.GithubIssue}}) {{.Body}}"
 kinds:
   - label: Added
     auto: minor
