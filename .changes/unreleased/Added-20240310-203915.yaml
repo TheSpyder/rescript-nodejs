@@ -1,5 +1,0 @@
-kind: Added
-body: Fs.lstatSync and lstatSyncWith
-time: 2024-03-10T20:39:15.999932+11:00
-custom:
-  GithubIssue: "26"
