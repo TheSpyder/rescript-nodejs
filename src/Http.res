@@ -87,6 +87,10 @@ type headersObject = {
   warning: option<string>,
   @as("www-authenticate")
   wwwAuthenticate: option<string>,
+  @as("sec-websocket-key")
+  secWebSocketKey: option<string>,
+  @as("sec-websocket-version")
+  secWebSocketVersion: option<string>,
 }
 
 module IncomingMessage = {
