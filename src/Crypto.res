@@ -31,13 +31,11 @@ KeyObject = {
   include Impl
 }
 
-module BinaryToTextEncoding = {
-  type t = string
-  let base64: t = "base64"
-  let base64url: t = "base64url"
-  let hex: t = "hex"
-  let binary: t = "binary"
-}
+type binaryToTextEncoding =
+  | @as("base64") Base64
+  | @as("base64url") Base64url
+  | @as("hex") Hex
+  | @as("binary") Binary
 
 module PivateKey = {
   include KeyObject.Impl
@@ -70,7 +68,7 @@ module Hash = {
     @send external update: (t, Buffer.t) => unit = "update"
     @send external updateString: (t, string) => t = "update"
     @send external updateStringWithEncoding: (t, string, NodeJs.StringEncoding.t) => t = "update"
-    @send external digestWithEncoding: (t, BinaryToTextEncoding.t) => string = "digest"
+    @send external digestWithEncoding: (t, binaryToTextEncoding) => string = "digest"
   }
   include Impl
 }
