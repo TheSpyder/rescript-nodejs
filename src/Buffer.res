@@ -272,8 +272,23 @@ external readUintBE: (t, ~offset: int, ~length: int) => float = "readUintBE"
 @send
 external readUintLE: (t, ~offset: int, ~length: int) => float = "readUintLE"
 
+@send
+external readBigInt64BE: (t, ~offset: int) => bigint = "readBigInt64BE"
+
+@send
+external readBigInt64LE: (t, ~offset: int) => bigint = "readBigInt64LE"
+
+@send
+external readBigUint64BE: (t, ~offset: int) => bigint = "readBigUInt64BE"
+
+@send
+external readBigUint64LE: (t, ~offset: int) => bigint = "readBigUInt64LE"
+
 @send external slice: (t, ~start: int, ~end_: int) => t = "slice"
 @send external sliceToEnd: (t, ~start: int) => t = "slice"
+
+@send external subarray: (t, ~start: int, ~end_: int) => t = "subarray"
+@send external subarrayToEnd: (t, ~start: int) => t = "subarray"
 
 @send external swap16: t => t = "swap16"
 @send external swap32: t => t = "swap32"
