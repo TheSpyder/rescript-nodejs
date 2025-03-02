@@ -284,8 +284,10 @@ external readBigUint64BE: (t, ~offset: int) => bigint = "readBigUInt64BE"
 @send
 external readBigUint64LE: (t, ~offset: int) => bigint = "readBigUInt64LE"
 
-@send external slice: (t, ~start: int, ~end_: int) => t = "slice"
-@send external sliceToEnd: (t, ~start: int) => t = "slice"
+@deprecated("Use `subarray` instead") @send
+external slice: (t, ~start: int, ~end_: int) => t = "slice"
+@deprecated("Use `subarrayToEnd` instead") @send
+external sliceToEnd: (t, ~start: int) => t = "slice"
 
 @send external subarray: (t, ~start: int, ~end_: int) => t = "subarray"
 @send external subarrayToEnd: (t, ~start: int) => t = "subarray"
