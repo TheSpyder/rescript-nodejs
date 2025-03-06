@@ -11,7 +11,7 @@ type cpu = private {
   times: cpuTimes,
 }
 @module("node:os") @val external eol: string = "EOL"
-@module("node:os") @val external arch: string = "arch"
+@module("node:os") @val external arch: unit => string = "arch"
 @module("node:os") @val external cpus: unit => array<cpu> = "cpus"
 @module("node:os") @val external endianness: unit => string = "endianness"
 @module("node:os") @val external freemem: unit => int = "freemem"
