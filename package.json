@@ -18,7 +18,7 @@
     "@dusty-phillips/rescript-zora": "^4.0.0",
     "changie": "^1.18.0",
     "onchange": "^7.1.0",
-    "pta": "^1.2.0",
+    "pta": "1.2.0",
     "rescript": "^11.1.0",
     "zora": "^5.2.0"
   },
