@@ -5,11 +5,11 @@
     "build": "rescript",
     "clean": "rescript clean",
     "start": "rescript build -w",
-    "test": "rescript && pta lib/js/test/atomic/*.test.bs.js",
+    "test": "rescript && pta test/atomic/*.test.res.js",
     "clean-build": "yarn clean && yarn build",
     "clean-start": "yarn clean && yarn start",
     "clean-test": "yarn clean && yarn build test",
-    "test-start": "onchange --await-write-finish 1000 --initial 'lib/js/{test,src}/**/*.bs.js' -- yarn test",
+    "test-start": "onchange --await-write-finish 1000 --initial '{src,test}/**/*.res.js' -- yarn test",
     "test-watchexec": "watchexec -r -d 0 -w src -w test -e res -- yarn test"
   },
   "description": "Node bindings for ReScript",
@@ -19,16 +19,13 @@
     "changie": "^1.18.0",
     "onchange": "^7.1.0",
     "pta": "1.2.0",
-    "rescript": "^11.1.0",
+    "rescript": "^12.2.0",
     "zora": "^5.2.0"
   },
   "files": [
-    "docs",
-    "examples",
-    "lib/js",
-    "src",
-    "test",
-    "bsconfig.json",
+    "src/**/*.res",
+    "src/**/*.resi",
+    "rescript.json",
     "CHANGELOG.md"
   ],
   "keywords": [

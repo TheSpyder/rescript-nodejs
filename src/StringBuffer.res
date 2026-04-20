@@ -8,7 +8,7 @@ type case =
   | Buffer(Buffer.t)
 
 let classifyOpt = value =>
-  if Js.typeof(value) === "string" {
+  if typeof(value) === #string {
     Some(String(Obj.magic(value)))
   } else if Buffer.isBuffer(value) {
     Some(Buffer(Obj.magic(value)))
@@ -17,7 +17,7 @@ let classifyOpt = value =>
   }
 
 let classifyExn = value =>
-  if Js.typeof(value) === "string" {
+  if typeof(value) === #string {
     String(Obj.magic(value))
   } else if Buffer.isBuffer(value) {
     Buffer(Obj.magic(value))
@@ -26,7 +26,7 @@ let classifyExn = value =>
   }
 
 let classify = value =>
-  if Js.typeof(value) === "string" {
+  if typeof(value) === #string {
     Ok(String(Obj.magic(value)))
   } else if Buffer.isBuffer(value) {
     Ok(Buffer(Obj.magic(value)))

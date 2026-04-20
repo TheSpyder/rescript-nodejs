@@ -1,6 +1,4 @@
 module Impl: {
-  open Js.TypedArray2
-
   type t
 
   type case =
@@ -32,8 +30,6 @@ module Impl: {
   let dataView: DataView.t => t
   let classify: t => case
 } = {
-  open Js.TypedArray2
-
   @unboxed
   type rec t = BinaryLike('a): t
 
@@ -68,7 +64,7 @@ module Impl: {
   let classify: t => case = x =>
     switch x {
     | BinaryLike(binaryLike) =>
-      if Js.typeof(binaryLike) === "string" {
+      if typeof(binaryLike) === #string {
         String(Obj.magic(binaryLike))
       } else if Buffer.isBuffer(binaryLike) {
         Buffer(Obj.magic(binaryLike))

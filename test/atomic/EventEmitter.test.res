@@ -3,8 +3,8 @@ open EventEmitterTestLib
 
 zoraBlock("EventEmitter", t => {
   t->notEqual(
-    Emitter1.make()->Js.Undefined.return,
-    Js.Undefined.empty,
+    Emitter1.make()->Nullable.make,
+    Nullable.undefined,
     "'Emitter.make' should create a new emitter instance that is defined",
   )
 
@@ -39,10 +39,9 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let listeners = {
       open Emitter1
-      make()
-      |> on(_, Events.text, eventListener)
-      |> removeListener(_, Events.text, eventListener)
-      |> listeners(_, Events.text)
+      listeners(_, Events.text)(
+        removeListener(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
+      )
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -51,10 +50,9 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let listeners = {
       open Emitter1
-      make()
-      |> on(_, Events.text, eventListener)
-      |> off(_, Events.text, eventListener)
-      |> listeners(_, Events.text)
+      listeners(_, Events.text)(
+        off(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
+      )
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -69,7 +67,7 @@ zoraBlock("EventEmitter", t => {
 
     {
       open Emitter1
-      let emitter = make() |> on(_, Events.integer, listener1) |> on(_, Events.integer, listener2)
+      let emitter = on(_, Events.integer, listener2)(on(_, Events.integer, listener1)(make()))
       emit(emitter, Events.integer, data1)->ignore
       emit(emitter, Events.integer, data2)->ignore
     }
@@ -82,10 +80,9 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let emitter = {
       open Emitter1
-      make()
-      |> on(_, Events.text, eventListener)
-      |> on(_, Events.text, eventListener)
-      |> on(_, Events.text, eventListener)
+      on(_, Events.text, eventListener)(
+        on(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
+      )
     }
     // Make sure 3 listeners were indeed added:
     Assert.strictEqual(

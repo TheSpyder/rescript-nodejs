@@ -20,12 +20,12 @@
   "package-specs": [
     {
       "module": "commonjs",
-      "in-source": false
+      "in-source": true
     }
   ],
-  "suffix": ".bs.js",
-  "bs-dependencies": [],
-  "bs-dev-dependencies": ["@dusty-phillips/rescript-zora"],
+  "suffix": ".res.js",
+  "dependencies": [],
+  "dev-dependencies": ["@dusty-phillips/rescript-zora"],
   "warnings": {
     "number": "A-4-40-41-42-43-44+101-102-103",
     "error": "false"

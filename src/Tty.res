@@ -30,37 +30,34 @@ module WriteStream = {
   module Events = {
     include Stream.Writable.Events
     @send
-    external onResize: (subtype<'w, 'ty>, @as("resize") _, @uncurry (unit => unit)) => unit = "on"
+    external onResize: (subtype<'w, 'ty>, @as("resize") _, unit => unit) => unit = "on"
     @send
-    external offResize: (subtype<'w, 'ty>, @as("resize") _, @uncurry (unit => unit)) => unit = "off"
+    external offResize: (subtype<'w, 'ty>, @as("resize") _, unit => unit) => unit = "off"
     @send
-    external onResizeOnce: (subtype<'w, 'ty>, @as("resize") _, @uncurry (unit => unit)) => unit =
-      "once"
+    external onResizeOnce: (subtype<'w, 'ty>, @as("resize") _, unit => unit) => unit = "once"
   }
 
   module Impl = {
     include Stream.Writable.Impl
     @send
-    external clearLineLeft: (t, @as(json`-1`) _, @uncurry (unit => unit), unit) => bool =
-      "clearLine"
+    external clearLineLeft: (t, @as(json`-1`) _, unit => unit, unit) => bool = "clearLine"
     @send
-    external clearLineRight: (t, @as(json`1`) _, @uncurry (unit => unit), unit) => bool =
-      "clearLine"
+    external clearLineRight: (t, @as(json`1`) _, unit => unit, unit) => bool = "clearLine"
     @send
-    external clearLine: (t, @as(json`0`) _, @uncurry (unit => unit), unit) => bool = "clearLine"
+    external clearLine: (t, @as(json`0`) _, unit => unit, unit) => bool = "clearLine"
     @send
-    external clearScreenDown: (t, @uncurry (unit => unit), unit) => bool = "clearScreenDown"
+    external clearScreenDown: (t, unit => unit, unit) => bool = "clearScreenDown"
     @get external columns: t => int = "columns"
     @send external getColorDepth: t => int = "getColorDepth"
     @send
-    external getColorDepthFromEnv: (t, Js.Dict.t<'ty>) => int = "getColorDepth"
+    external getColorDepthFromEnv: (t, dict<'ty>) => int = "getColorDepth"
     @send external getWindowSize: t => (int, int) = "getWindowSize"
     @send external hasColors: (t, int) => bool = "hasColors"
     @send
-    external hasColorsFromEnv: (t, int, Js.Dict.t<'ty>) => bool = "hasColors"
+    external hasColorsFromEnv: (t, int, dict<'ty>) => bool = "hasColors"
     @send external hasAtLeast16Colors: t => bool = "hasColors"
     @send
-    external moveCursor: (t, int, int, @uncurry (unit => unit)) => bool = "moveCursor"
+    external moveCursor: (t, int, int, unit => unit) => bool = "moveCursor"
     @get external rows: t => int = "rows"
     @get external isTTY: t => bool = "isTTY"
     external unsafeCoerceToSocket: t => Net.Socket.t = "%identity"

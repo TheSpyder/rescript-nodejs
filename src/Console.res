@@ -1,5 +1,5 @@
 // We'll only bind to the instance version of console.Console for now: https://nodejs.org/api/console.html
-// For global console.log and others, use the existing Js.Console.* provided by BuckleScript out of the box
+// For global console.log and others, use the existing Console.* provided by BuckleScript out of the box
 
 type t
 @val external console: t = "console"

@@ -1,5 +1,4 @@
 type t = {length: int}
-open Js.TypedArray2
 
 module Constants = {
   @module("node:buffer") @scope("constants") @val
@@ -296,7 +295,7 @@ external sliceToEnd: (t, ~start: int) => t = "slice"
 @send external swap32: t => t = "swap32"
 @send external swap64: t => t = "swap64"
 
-@send external toJSON: t => Js.Json.t = "toJSON"
+@send external toJSON: t => JSON.t = "toJSON"
 
 @send external toString: t => string = "toString"
 @send

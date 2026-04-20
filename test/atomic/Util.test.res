@@ -2,7 +2,7 @@ open Zora
 
 zoraBlock("Util.Types", t => {
   t->block("Util.Types.isAnyArrayBuffer(arrayBuffer) should return true", t => {
-    let arrayBuffer = Js.TypedArray2.ArrayBuffer.make(16)
+    let arrayBuffer = ArrayBuffer.make(16)
     t->equal(arrayBuffer->Util.Types.isAnyArrayBuffer, true, "")
   })
 

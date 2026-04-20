@@ -17,6 +17,6 @@ zora("Fs", async t => {
     let _ = await FileHandle.close(fh)
     let needle = "Random string: uCF6c5f3Arrq"
 
-    t->ok(Js.String.indexOf(needle, buffer) > 0, "buffer string indexOf was not greater than zero")
+    t->ok(buffer->String.indexOf(needle) > 0, "buffer string indexOf was not greater than zero")
   })
 })

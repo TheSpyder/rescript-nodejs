@@ -26,16 +26,16 @@ module Address = {
     | address =>
       let internalReturn: internalView<'a> = Obj.magic(address)
       let addressType = internalReturn.addressType
-      let intOrString = Js.typeof(addressType)
+      let intOrString = typeof(addressType)
       switch intOrString {
-      | "number" =>
+      | #number =>
         switch (Obj.magic(addressType): int) {
         | 4 => TcpV4(address)
         | 6 => TcpV6(address)
         | -1 => UnixDomainSocket(address)
         | _ => Unknown(address)
         }
-      | "string" =>
+      | #string =>
         switch (Obj.magic(addressType): string) {
         | "udp4" => Udp4(address)
         | "udp6" => Udp6(address)
@@ -54,67 +54,45 @@ module Worker = {
   type t = {id: int, process: ChildProcess.t}
   module Events = {
     @send
-    external onDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "on"
+    external onDisconnect: (t, @as("disconnect") _, unit => unit) => t = "on"
     @send
-    external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
+    external onError: (t, @as("error") _, JsExn.t => unit) => t = "on"
     @send
-    external onExit: (
-      t,
-      @as("exit") _,
-      @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
-    ) => t = "on"
+    external onExit: (t, @as("exit") _, (nullable<int>, nullable<string>) => unit) => t = "on"
     @send
-    external onListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "on"
+    external onListening: (t, @as("listening") _, Address.t => unit) => t = "on"
     @send
-    external onMessage: (
-      t,
-      @as("message") _,
-      @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
-    ) => t = "on"
+    external onMessage: (t, @as("message") _, (Message.t<'a>, nullable<'a>) => unit) => t = "on"
     @send
-    external onOnline: (t, @as("online") _, @uncurry unit => unit) => t = "on"
+    external onOnline: (t, @as("online") _, unit => unit) => t = "on"
 
     @send
-    external offDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "off"
+    external offDisconnect: (t, @as("disconnect") _, unit => unit) => t = "off"
     @send
-    external offError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "off"
+    external offError: (t, @as("error") _, JsExn.t => unit) => t = "off"
     @send
-    external offExit: (
-      t,
-      @as("exit") _,
-      @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
-    ) => t = "off"
+    external offExit: (t, @as("exit") _, (nullable<int>, nullable<string>) => unit) => t = "off"
     @send
-    external offListening: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "off"
+    external offListening: (t, @as("listening") _, Address.t => unit) => t = "off"
     @send
-    external offMessage: (
-      t,
-      @as("message") _,
-      @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
-    ) => t = "off"
+    external offMessage: (t, @as("message") _, (Message.t<'a>, nullable<'a>) => unit) => t = "off"
     @send
-    external offOnline: (t, @as("online") _, @uncurry unit => unit) => t = "off"
+    external offOnline: (t, @as("online") _, unit => unit) => t = "off"
 
     @send
-    external onDisconnectOnce: (t, @as("disconnect") _, @uncurry unit => unit) => t = "once"
+    external onDisconnectOnce: (t, @as("disconnect") _, unit => unit) => t = "once"
     @send
-    external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
+    external onErrorOnce: (t, @as("error") _, JsExn.t => unit) => t = "once"
     @send
-    external onExitOnce: (
-      t,
-      @as("exit") _,
-      @uncurry (Js.nullable<int>, Js.nullable<string>) => unit,
-    ) => t = "once"
+    external onExitOnce: (t, @as("exit") _, (nullable<int>, nullable<string>) => unit) => t =
+      "once"
     @send
-    external onListeningOnce: (t, @as("listening") _, @uncurry (Address.t => unit)) => t = "once"
+    external onListeningOnce: (t, @as("listening") _, Address.t => unit) => t = "once"
     @send
-    external onMessageOnce: (
-      t,
-      @as("message") _,
-      @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
-    ) => t = "once"
+    external onMessageOnce: (t, @as("message") _, (Message.t<'a>, nullable<'a>) => unit) => t =
+      "once"
     @send
-    external onOnlineOnce: (t, @as("online") _, @uncurry unit => unit) => t = "once"
+    external onOnlineOnce: (t, @as("online") _, unit => unit) => t = "once"
 
     @send external removeAllListeners: t => unit = "removeAllListeners"
   }
@@ -130,36 +108,36 @@ module Worker = {
   @send external send: string => unit = "send"
 
   @send
-  external sendHttpServerHandle: (string, Http.Server.t, Js.nullable<{..}>) => unit = "send"
+  external sendHttpServerHandle: (string, Http.Server.t, nullable<{..}>) => unit = "send"
   let sendHttpServerHandle = (~options=?, msg, handle) =>
-    sendHttpServerHandle(msg, handle, Js.Nullable.fromOption(options))
+    sendHttpServerHandle(msg, handle, Nullable.fromOption(options))
   @send
-  external sendSocketHandle: (string, Net.Socket.subtype<'w, 'r, 'a>, Js.nullable<{..}>) => unit =
+  external sendSocketHandle: (string, Net.Socket.subtype<'w, 'r, 'a>, nullable<{..}>) => unit =
     "send"
   let sendSocketHandle = (~options=?, msg, handle) =>
-    sendSocketHandle(msg, handle, Js.Nullable.fromOption(options))
+    sendSocketHandle(msg, handle, Nullable.fromOption(options))
 }
 
 type clusterSettings = private {
-  execArgv: Js.nullable<array<string>>,
-  exec: Js.nullable<string>,
-  args: Js.nullable<array<string>>,
-  cwd: Js.nullable<string>,
-  serialization: Js.nullable<string>,
-  silent: Js.nullable<bool>,
-  stdio: Js.nullable<array<string>>,
-  uid: Js.nullable<int>,
-  gid: Js.nullable<int>,
-  inspectPort: Js.nullable<int>,
-  windowsHide: Js.nullable<bool>,
+  execArgv: nullable<array<string>>,
+  exec: nullable<string>,
+  args: nullable<array<string>>,
+  cwd: nullable<string>,
+  serialization: nullable<string>,
+  silent: nullable<bool>,
+  stdio: nullable<array<string>>,
+  uid: nullable<int>,
+  gid: nullable<int>,
+  inspectPort: nullable<int>,
+  windowsHide: nullable<bool>,
 }
 
 @module
-external disconnect: Js.Nullable.t<unit => unit> => unit = "disconnect"
-let disconnect = (~callback=?, ()) => disconnect(Js.Nullable.fromOption(callback))
+external disconnect: nullable<unit => unit> => unit = "disconnect"
+let disconnect = (~callback=?) => disconnect(Nullable.fromOption(callback))
 @module("node:cluster")
-external fork: option<Js.Dict.t<string>> => Worker.t = "fork"
-let fork = (~env=?, ()) => fork(env)
+external fork: option<dict<string>> => Worker.t = "fork"
+let fork = (~env=?) => fork(env)
 @module("node:cluster") external isMaster: bool = "isMaster"
 @module("node:cluster") external isWorker: bool = "isWorker"
 @module("node:cluster") external settings: clusterSettings = "settings"
@@ -177,6 +155,6 @@ let decodeSchedulingPolicy = if schedulingPolicy === _SCHED_RR {
   SCHED_NONE
 }
 @module("node:cluster") external worker: Worker.t = "worker"
-@module("node:cluster") external workers: Js.Dict.t<Worker.t> = "workers"
-let getWorker: (Js.Dict.t<Worker.t>, int) => option<Worker.t> = (_workers, id) =>
-  Js.Dict.get(_workers, Js.Int.toString(id))
+@module("node:cluster") external workers: dict<Worker.t> = "workers"
+let getWorker: (dict<Worker.t>, int) => option<Worker.t> = (_workers, id) =>
+  Dict.get(_workers, Int.toString(id))

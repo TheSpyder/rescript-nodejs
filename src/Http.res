@@ -101,35 +101,20 @@ module IncomingMessage = {
   module Events = {
     include Stream.Readable.Events
     @send
-    external onAborted: (
-      subtype<'r, 'a>,
-      @as("aborted") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'a> = "on"
+    external onAborted: (subtype<'r, 'a>, @as("aborted") _, unit => unit) => subtype<'r, 'a> = "on"
     @send
-    external onClose: (subtype<'r, 'a>, @as("close") _, @uncurry unit => unit) => subtype<'r, 'a> =
-      "on"
+    external onClose: (subtype<'r, 'a>, @as("close") _, unit => unit) => subtype<'r, 'a> = "on"
     @send
-    external offAborted: (
-      subtype<'r, 'a>,
-      @as("aborted") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'a> = "off"
-    @send
-    external offClose: (subtype<'r, 'a>, @as("close") _, @uncurry unit => unit) => subtype<'r, 'a> =
+    external offAborted: (subtype<'r, 'a>, @as("aborted") _, unit => unit) => subtype<'r, 'a> =
       "off"
     @send
-    external onAbortedOnce: (
-      subtype<'r, 'a>,
-      @as("aborted") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'a> = "once"
+    external offClose: (subtype<'r, 'a>, @as("close") _, unit => unit) => subtype<'r, 'a> = "off"
     @send
-    external onCloseOnce: (
-      subtype<'r, 'a>,
-      @as("close") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'a> = "once"
+    external onAbortedOnce: (subtype<'r, 'a>, @as("aborted") _, unit => unit) => subtype<'r, 'a> =
+      "once"
+    @send
+    external onCloseOnce: (subtype<'r, 'a>, @as("close") _, unit => unit) => subtype<'r, 'a> =
+      "once"
   }
 
   module Impl = {
@@ -149,7 +134,7 @@ module IncomingMessage = {
     @get external complete: subtype<'r, 'a> => bool = "complete"
     @send external destroy: subtype<'r, 'a> => unit = "destroy"
     @send
-    external destroyWithError: (subtype<'r, 'a>, Js.Exn.t) => bool = "destroy"
+    external destroyWithError: (subtype<'r, 'a>, JsExn.t) => bool = "destroy"
     @send
     external setTimeout: (subtype<'r, 'a>, int) => subtype<'r, 'a> = "setTimeout"
     @send
@@ -163,7 +148,7 @@ module IncomingMessage = {
     @get
     external statusMessage: subtype<'r, 'a> => string = "statusMessage"
     @get
-    external trailers: subtype<'r, 'a> => Js.Dict.t<string> = "trailers"
+    external trailers: subtype<'r, 'a> => dict<string> = "trailers"
   }
   include Impl
 }
@@ -185,11 +170,8 @@ module ClientRequest = {
   module Events = {
     include Stream.Duplex.Events
     @send
-    external onAbort: (
-      subtype<'w, 'r, 'a>,
-      @as("abort") _,
-      @uncurry unit => unit,
-    ) => subtype<'w, 'r, 'a> = "on"
+    external onAbort: (subtype<'w, 'r, 'a>, @as("abort") _, unit => unit) => subtype<'w, 'r, 'a> =
+      "on"
     @send
     external onConnect: (
       subtype<'w, 'r, 'a>,
@@ -200,45 +182,42 @@ module ClientRequest = {
     external onContinue: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onInformation: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry information => unit,
+      information => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onResponse: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry IncomingMessage.t => unit,
+      IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onSocket: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry Net.TcpSocket.t => unit,
+      Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onTimeout: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onUpgrade: (
       subtype<'w, 'r, 'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
     ) => subtype<'w, 'r, 'a> = "on"
 
     @send
-    external offAbort: (
-      subtype<'w, 'r, 'a>,
-      @as("abort") _,
-      @uncurry unit => unit,
-    ) => subtype<'w, 'r, 'a> = "off"
+    external offAbort: (subtype<'w, 'r, 'a>, @as("abort") _, unit => unit) => subtype<'w, 'r, 'a> =
+      "off"
     @send
     external offConnect: (
       subtype<'w, 'r, 'a>,
@@ -249,44 +228,44 @@ module ClientRequest = {
     external offContinue: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offInformation: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry information => unit,
+      information => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offResponse: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry IncomingMessage.t => unit,
+      IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offSocket: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry Net.TcpSocket.t => unit,
+      Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offTimeout: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offUpgrade: (
       subtype<'w, 'r, 'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
     ) => subtype<'w, 'r, 'a> = "off"
 
     @send
     external onAbortOnce: (
       subtype<'w, 'r, 'a>,
       @as("abort") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onConnectOnce: (
@@ -298,37 +277,37 @@ module ClientRequest = {
     external onContinueOnce: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onInformationOnce: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry information => unit,
+      information => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onResponseOnce: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry IncomingMessage.t => unit,
+      IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onSocketOnce: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry Net.TcpSocket.t => unit,
+      Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onTimeoutOnce: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onUpgradeOnce: (
       subtype<'w, 'r, 'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, Buffer.t) => unit,
     ) => subtype<'w, 'r, 'a> = "once"
   }
   module Impl = {
@@ -388,40 +367,31 @@ module ServerResponse = {
   module Events = {
     include Stream.Duplex.Events
     @send
-    external onClose: (
-      subtype<'w, 'r, 'a>,
-      @as("close") _,
-      @uncurry unit => unit,
-    ) => subtype<'w, 'r, 'a> = "on"
+    external onClose: (subtype<'w, 'r, 'a>, @as("close") _, unit => unit) => subtype<'w, 'r, 'a> =
+      "on"
     @send
-    external onFinish: (
-      subtype<'w, 'r, 'a>,
-      @as("finish") _,
-      @uncurry unit => unit,
-    ) => subtype<'w, 'r, 'a> = "on"
+    external onFinish: (subtype<'w, 'r, 'a>, @as("finish") _, unit => unit) => subtype<'w, 'r, 'a> =
+      "on"
     @send
-    external offClose: (
-      subtype<'w, 'r, 'a>,
-      @as("close") _,
-      @uncurry unit => unit,
-    ) => subtype<'w, 'r, 'a> = "off"
+    external offClose: (subtype<'w, 'r, 'a>, @as("close") _, unit => unit) => subtype<'w, 'r, 'a> =
+      "off"
     @send
     external offFinish: (
       subtype<'w, 'r, 'a>,
       @as("finish") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external onCloseOnce: (
       subtype<'w, 'r, 'a>,
       @as("close") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onFinishOnce: (
       subtype<'w, 'r, 'a>,
       @as("finish") _,
-      @uncurry unit => unit,
+      unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
   }
   module Impl = {
@@ -522,133 +492,127 @@ module Server = {
     external onCheckContinue: (
       subtype<'a>,
       @as("checkContinue") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "on"
     @send
     external onCheckExpectation: (
       subtype<'a>,
       @as("checkExpectation") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "on"
     @send
     external onClientError: (
       subtype<'a>,
       @as("clientError") _,
-      @uncurry (Js.Exn.t, Net.TcpSocket.t) => unit,
+      (JsExn.t, Net.TcpSocket.t) => unit,
     ) => subtype<'a> = "on"
     @send
     external onConnect: (
       subtype<'a>,
       @as("connect") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "on"
     @send
     external onRequest: (
       subtype<'a>,
       @as("request") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "on"
     @send
     external onUpgrade: (
       subtype<'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "on"
     @send
-    external onTimeout: (
-      subtype<'a>,
-      @as("timeout") _,
-      @uncurry Net.TcpSocket.t => unit,
-    ) => subtype<'a> = "on"
+    external onTimeout: (subtype<'a>, @as("timeout") _, Net.TcpSocket.t => unit) => subtype<'a> =
+      "on"
     @send
     external offCheckContinue: (
       subtype<'a>,
       @as("checkContinue") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "off"
     @send
     external offCheckExpectation: (
       subtype<'a>,
       @as("checkExpectation") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "off"
     @send
     external offClientError: (
       subtype<'a>,
       @as("clientError") _,
-      @uncurry (Js.Exn.t, Net.TcpSocket.t) => unit,
+      (JsExn.t, Net.TcpSocket.t) => unit,
     ) => subtype<'a> = "off"
     @send
     external offConnect: (
       subtype<'a>,
       @as("connect") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "off"
     @send
     external offRequest: (
       subtype<'a>,
       @as("request") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "off"
     @send
     external offUpgrade: (
       subtype<'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "off"
     @send
-    external offTimeout: (
-      subtype<'a>,
-      @as("timeout") _,
-      @uncurry Net.TcpSocket.t => unit,
-    ) => subtype<'a> = "off"
+    external offTimeout: (subtype<'a>, @as("timeout") _, Net.TcpSocket.t => unit) => subtype<'a> =
+      "off"
     @send
     external onCheckContinueOnce: (
       subtype<'a>,
       @as("checkContinue") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "once"
     @send
     external onCheckExpectationOnce: (
       subtype<'a>,
       @as("checkExpectation") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "once"
     @send
     external onClientErrorOnce: (
       subtype<'a>,
       @as("clientError") _,
-      @uncurry (Js.Exn.t, Net.TcpSocket.t) => unit,
+      (JsExn.t, Net.TcpSocket.t) => unit,
     ) => subtype<'a> = "once"
     @send
     external onConnectOnce: (
       subtype<'a>,
       @as("connect") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "once"
     @send
     external onRequestOnce: (
       subtype<'a>,
       @as("request") _,
-      @uncurry (IncomingMessage.t, ServerResponse.t) => unit,
+      (IncomingMessage.t, ServerResponse.t) => unit,
     ) => subtype<'a> = "once"
     @send
     external onUpgradeOnce: (
       subtype<'a>,
       @as("upgrade") _,
-      @uncurry (IncomingMessage.t, Net.TcpSocket.t, Js.nullable<Buffer.t>) => unit,
+      (IncomingMessage.t, Net.TcpSocket.t, nullable<Buffer.t>) => unit,
     ) => subtype<'a> = "once"
     @send
     external onTimeoutOnce: (
       subtype<'a>,
       @as("timeout") _,
-      @uncurry Net.TcpSocket.t => unit,
+      Net.TcpSocket.t => unit,
     ) => subtype<'a> = "once"
   }
   module Impl = {
     include Events
     @send
-    external setTimeout: (subtype<'a>, int, @uncurry Net.Socket.t => unit) => unit = "setTimeout"
+    external setTimeout: (subtype<'a>, int, Net.Socket.t => unit) => unit = "setTimeout"
     @get external timeout: subtype<'a> => int = "timeout"
     @send
     external keepAliveTimeout: (subtype<'a>, int) => unit = "keepAliveTimeout"
@@ -656,7 +620,7 @@ module Server = {
   }
 
   @send
-  external listen: (t, ~port: int, ~host: string, ~callback: unit => unit=?, unit) => t = "listen"
+  external listen: (t, ~port: int, ~host: string, ~callback: unit => unit=?) => t = "listen"
 
   include Impl
 }
@@ -668,8 +632,7 @@ type createServerOptions = {
 }
 
 @module("node:http")
-external createServer: (@uncurry (IncomingMessage.t, ServerResponse.t) => unit) => Server.t =
-  "createServer"
+external createServer: ((IncomingMessage.t, ServerResponse.t) => unit) => Server.t = "createServer"
 
 @module("node:http")
 external createServerWithOptions: (
@@ -679,7 +642,7 @@ external createServerWithOptions: (
 
 @module("node:http") external _METHODS: array<string> = "METHODS"
 @module("node:http")
-external _STATUS_CODES: Js.Dict.t<string> = "STATUS_CODES"
+external _STATUS_CODES: dict<string> = "STATUS_CODES"
 
 type requestOptions = {
   agent?: Agent.t,
@@ -691,7 +654,7 @@ type requestOptions = {
   host?: string,
   hostName?: string,
   localAddress?: string,
-  lookup?: (string, Dns.options, (Js.Exn.t, string, int) => unit) => string,
+  lookup?: (string, Dns.options, (JsExn.t, string, int) => unit) => string,
   maxHeaderSize?: int,
   method?: string,
   path?: string,
@@ -752,7 +715,7 @@ external getUrlWithOptionsCallback: (
 @module("node:http") external globalAgent: Agent.t = "globalAgent"
 @module("node:http") external maxHeaderSize: int = "maxHeaderSize"
 
-type statusCodes = Js.Dict.t<string>
+type statusCodes = dict<string>
 @module("node:http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
 
 type methods = array<string>

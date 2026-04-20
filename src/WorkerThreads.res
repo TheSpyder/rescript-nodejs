@@ -11,9 +11,9 @@
 module MessagePort = {
   type t<'a>
   @send
-  external onClose: (t<'a>, @as("close") _, @uncurry (unit => unit)) => t<'a> = "on"
+  external onClose: (t<'a>, @as("close") _, unit => unit) => t<'a> = "on"
   @send
-  external onMessage: (t<'a>, @as("message") _, @uncurry ('a => unit)) => t<'a> = "on"
+  external onMessage: (t<'a>, @as("message") _, 'a => unit) => t<'a> = "on"
   @send external close: t<'a> => unit = "close"
   @send external postMessage: (t<'a>, 'a) => unit = "postMessage"
   @send external ref: t<'a> => unit = "ref"
@@ -27,9 +27,9 @@ module MessagePort = {
   ) => {
     type t = t<T.message>
     @send
-    external onClose: (t, @as("close") _, @uncurry (unit => unit)) => t = "on"
+    external onClose: (t, @as("close") _, unit => unit) => t = "on"
     @send
-    external onMessage: (t, @as("message") _, @uncurry (T.message => unit)) => t = "on"
+    external onMessage: (t, @as("message") _, T.message => unit) => t = "on"
     @send external close: t => unit = "close"
     @send external postMessage: (t, T.message) => unit = "postMessage"
     @send external ref: t => unit = "ref"
@@ -86,24 +86,24 @@ module Worker = {
   }
 
   @module("node:worker_threads") @new
-  external make: (~file: string, ~options: options<'a, 'env>=?, unit) => t<'a> = "Worker"
+  external make: (~file: string, ~options: options<'a, 'env>=?) => t<'a> = "Worker"
   @send
-  external onError: (t<'a>, @as("error") _, @uncurry (Js.Exn.t => unit)) => t<'a> = "on"
+  external onError: (t<'a>, @as("error") _, JsExn.t => unit) => t<'a> = "on"
   @send
-  external onMessage: (t<'a>, @as("message") _, @uncurry ('a => unit)) => t<'a> = "on"
+  external onMessage: (t<'a>, @as("message") _, 'a => unit) => t<'a> = "on"
   @send
-  external onExit: (t<'a>, @as("exit") _, @uncurry (int => unit)) => t<'a> = "on"
+  external onExit: (t<'a>, @as("exit") _, int => unit) => t<'a> = "on"
   @send
-  external onOnline: (t<'a>, @as("online") _, @uncurry (unit => unit)) => t<'a> = "on"
+  external onOnline: (t<'a>, @as("online") _, unit => unit) => t<'a> = "on"
   @send external postMessage: (t<'a>, 'a) => unit = "postMessage"
   @send external ref: t<'a> => unit = "ref"
   @send
   external resourceLimits: t<'a> => workerResourceLimits = "workerResourceLimits"
   @get external stderr: t<'a> => Stream.Readable.t<'a> = "stderr"
   @get
-  external stdin: t<'a> => Js.nullable<Stream.Writable.t<'a>> = "stdin"
+  external stdin: t<'a> => nullable<Stream.Writable.t<'a>> = "stdin"
   @get external stdout: t<'a> => Stream.Readable.t<'a> = "stdout"
-  @send external terminate: t<'a> => Js.Promise.t<int> = "terminate"
+  @send external terminate: t<'a> => promise<int> = "terminate"
   @get external threadId: t<'a> => int = "threadId"
   @send external unref: t<'a> => unit = "unref"
 
@@ -127,24 +127,24 @@ module Worker = {
     }
 
     @module("node:worker_threads") @new
-    external make: (~file: string, ~options: options<'env>=?, unit) => t = "Worker"
+    external make: (~file: string, ~options: options<'env>=?) => t = "Worker"
     @send
-    external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
+    external onError: (t, @as("error") _, JsExn.t => unit) => t = "on"
     @send
-    external onMessage: (t, @as("message") _, @uncurry (T.message => unit)) => t = "on"
+    external onMessage: (t, @as("message") _, T.message => unit) => t = "on"
     @send
-    external onExit: (t, @as("exit") _, @uncurry (int => unit)) => t = "on"
+    external onExit: (t, @as("exit") _, int => unit) => t = "on"
     @send
-    external onOnline: (t, @as("online") _, @uncurry (unit => unit)) => t = "on"
+    external onOnline: (t, @as("online") _, unit => unit) => t = "on"
     @send external postMessage: (t, T.message) => unit = "postMessage"
     @send external ref: t => unit = "ref"
     @send
     external resourceLimits: t => workerResourceLimits = "workerResourceLimits"
     @get external stderr: t => Stream.Readable.t<'a> = "stderr"
     @get
-    external stdin: t => Js.nullable<Stream.Writable.t<'a>> = "stdin"
+    external stdin: t => nullable<Stream.Writable.t<'a>> = "stdin"
     @get external stdout: t => Stream.Readable.t<'a> = "stdout"
-    @send external terminate: t => Js.Promise.t<int> = "terminate"
+    @send external terminate: t => promise<int> = "terminate"
     @get external threadId: t => int = "threadId"
     @send external unref: t => unit = "unref"
   }
@@ -164,7 +164,7 @@ external receiveMessageOnPort: MessagePort.t<'a> => option<{..}> = "receiveMessa
 @val @module("node:worker_threads")
 external resourceLimits: workerResourceLimits = "resourceLimits"
 @val @module("node:worker_threads")
-external _SHARE_ENV: Js.Types.symbol = "SHARE_ENV"
+external _SHARE_ENV: Symbol.t = "SHARE_ENV"
 @val @module("node:worker_threads") external threadId: int = "threadId"
 @val @module("node:worker_threads") external workerData: 'a = "workerData"
 
@@ -190,7 +190,7 @@ module WithMessageType = (
   @val @module("node:worker_threads")
   external resourceLimits: workerResourceLimits = "resourceLimits"
   @val @module("node:worker_threads")
-  external _SHARE_ENV: Js.Types.symbol = "SHARE_ENV"
+  external _SHARE_ENV: Symbol.t = "SHARE_ENV"
   @val @module("node:worker_threads") external threadId: int = "threadId"
   @val @module("node:worker_threads")
   external workerData: T.message = "workerData"

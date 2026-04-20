@@ -125,13 +125,13 @@ module Cipher = {
   external make: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
-    ~iv: Js.Null.t<Buffer.t>,
+    ~iv: Null.t<Buffer.t>,
   ) => t = "createCipheriv"
   @module("node:crypto")
   external makeWith: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
-    ~iv: Js.Null.t<Buffer.t>,
+    ~iv: Null.t<Buffer.t>,
     ~options: Stream.Transform.makeOptions<Buffer.t, Buffer.t>=?,
   ) => t = "createCipheriv"
 }
@@ -164,13 +164,13 @@ module Decipher = {
   external make: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
-    ~iv: Js.Null.t<Buffer.t>,
+    ~iv: Null.t<Buffer.t>,
   ) => t = "createDecipheriv"
   @module("node:crypto")
   external makeWith: (
     ~algorithm: string,
     ~key: KeyObject.t<'a, [> KeyObject.secretKey]>,
-    ~iv: Js.Null.t<Buffer.t>,
+    ~iv: Null.t<Buffer.t>,
     ~options: Stream.Transform.makeOptions<Buffer.t, Buffer.t>=?,
   ) => t = "createDecipheriv"
 } /* } */ /* } */ /* module Verify = */

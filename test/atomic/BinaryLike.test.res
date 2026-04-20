@@ -1,26 +1,24 @@
 open Zora
 zoraBlock("BinaryLike", t => {
-  open Js.TypedArray2
-
   let string_ = "test1234"
   let binaryLikeString = string_->BinaryLike.string
 
   let buffer_ = Buffer.fromArray([1, 2, 3, 4])
   let binaryLikeBuffer = BinaryLike.buffer(buffer_)
 
-  let uInt8Array = Uint8Array.make([1, 2, 3, 4])
+  let uInt8Array = Uint8Array.fromArray([1, 2, 3, 4])
   let binaryLikeUint8Array = BinaryLike.uInt8Array(uInt8Array)
 
-  let int8Array = Int8Array.make([1, 2, 3, 4])
+  let int8Array = Int8Array.fromArray([1, 2, 3, 4])
   let binaryLikeInt8Array = BinaryLike.int8Array(int8Array)
 
-  let uInt8ClampedArray = Uint8ClampedArray.make([1, 2, 3, 4])
+  let uInt8ClampedArray = Uint8ClampedArray.fromArray([1, 2, 3, 4])
   let binaryLikeUint8ClampedArray = BinaryLike.uInt8ClampedArray(uInt8ClampedArray)
 
-  let uInt16Array = Uint16Array.make([1, 2, 3, 4])
+  let uInt16Array = Uint16Array.fromArray([1, 2, 3, 4])
   let binaryLikeUint16Array = BinaryLike.uInt16Array(uInt16Array)
 
-  let int16Array = Int16Array.make([1, 2, 3, 4])
+  let int16Array = Int16Array.fromArray([1, 2, 3, 4])
   let binaryLikeInt16Array = BinaryLike.int16Array(int16Array)
 
   t->block("BinaryLike.classify(string) should return a 'String' variant", t => {

@@ -27,6 +27,6 @@ module Script = {
   @send
   external runInContext: (t, contextifiedObject<'a>) => 'b = "runInContext"
   @send
-  external runInNewContext: (t,  contextifiedObject<'a>) => 'b = "runInNewContext"
+  external runInNewContext: (t, contextifiedObject<'a>) => 'b = "runInNewContext"
   @send external runInThisContext: t => 'a = "runInThisContext"
 }

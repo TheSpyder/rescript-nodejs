@@ -20,10 +20,10 @@ or
 yarn add rescript-nodejs
 ```
 
-Then add rescript-nodejs to `bsconfig.json`:
+Then add rescript-nodejs to `rescript.json`:
 
 ```
-  "bs-dependencies": [
+  "dependencies": [
     "rescript-nodejs"
   ],
 ```
@@ -40,7 +40,7 @@ Help all ReScript Node.js apps and libraries to be built faster by reducing the 
 
 ## Principles
 
-- When available, prefer binding to the promise version of the library instead of the callback version to reduce binding surface. `Js.Promise2` is the new improved API.
+- When available, prefer binding to the promise version of the library instead of the callback version to reduce binding surface.
 - Use subtyping only where the benefit is substantial. Subtyping is used for various APIs that implement Node Streams, such as HTTP Request and Response, FileSystem streams, Crypto streams, and etc. This provides a single set of functions to manipulate and combine streams across different modules. For example:
 
 ### Stream a file into stdout:
@@ -50,7 +50,7 @@ open NodeJs
 
 Fs.createReadStream("/path")
   ->Stream.pipe(Process.stdout(Process.process))
-  ->Stream.onError(_ => Js.log("handleError"))
+  ->Stream.onError(_ => Console.log("handleError"))
 ```
 
 ### Echo server:
@@ -59,7 +59,7 @@ Fs.createReadStream("/path")
 open NodeJs
 
 Http.createServer((request, response) => {
-  request->Stream.onData(data => Js.log(data))
+  request->Stream.onData(data => Console.log(data))
   request->Stream.pipe(response)->ignore
 });
 ```
