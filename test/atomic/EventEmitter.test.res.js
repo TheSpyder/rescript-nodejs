@@ -13,18 +13,12 @@ Zora.test("EventEmitter", t => {
   t.equal(new Nodeevents.EventEmitter().on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, param => {}).listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text).length, 1, "'Emitter.on' should add a new event listener");
   t.test("'Emitter.removeListener' should remove the event listener", t => {
     let eventListener = param => {};
-    let __x = new Nodeevents.EventEmitter();
-    let __x$1 = __x.on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let __x$2 = __x$1.removeListener(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let listeners = __x$2.listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text);
+    let listeners = new Nodeevents.EventEmitter().on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).removeListener(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text);
     t.equal(listeners.length, 0, "");
   });
   t.test("'Emitter.off' should remove the event listener", t => {
     let eventListener = param => {};
-    let __x = new Nodeevents.EventEmitter();
-    let __x$1 = __x.on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let __x$2 = __x$1.off(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let listeners = __x$2.listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text);
+    let listeners = new Nodeevents.EventEmitter().on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).off(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text);
     t.equal(listeners.length, 0, "");
   });
   t.test("'Emitter.emit' should execute each listener for the correct event", t => {
@@ -40,9 +34,7 @@ Zora.test("EventEmitter", t => {
     let listener2 = param => {
       ref2.contents = 2;
     };
-    let __x = new Nodeevents.EventEmitter();
-    let __x$1 = __x.on(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, listener1);
-    let emitter = __x$1.on(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, listener2);
+    let emitter = new Nodeevents.EventEmitter().on(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, listener1).on(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, listener2);
     emitter.emit(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, 1);
     emitter.emit(EventEmitterTestLib$NodeJs.Emitter1.Events.integer, 2);
     t.equal(ref1.contents, 1, "");
@@ -50,10 +42,7 @@ Zora.test("EventEmitter", t => {
   });
   t.test("'Emitter.removeAllListeners' should remove all event listeners", t => {
     let eventListener = param => {};
-    let __x = new Nodeevents.EventEmitter();
-    let __x$1 = __x.on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let __x$2 = __x$1.on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
-    let emitter = __x$2.on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
+    let emitter = new Nodeevents.EventEmitter().on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener).on(EventEmitterTestLib$NodeJs.Emitter1.Events.text, eventListener);
     Nodeassert.strictEqual(emitter.listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text).length, 3);
     emitter.removeAllListeners();
     t.equal(emitter.listeners(EventEmitterTestLib$NodeJs.Emitter1.Events.text).length, 0, "");

@@ -39,9 +39,10 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let listeners = {
       open Emitter1
-      listeners(_, Events.text)(
-        removeListener(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
-      )
+      make()
+      ->on(Events.text, eventListener)
+      ->removeListener(Events.text, eventListener)
+      ->listeners(Events.text)
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -50,9 +51,10 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let listeners = {
       open Emitter1
-      listeners(_, Events.text)(
-        off(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
-      )
+      make()
+      ->on(Events.text, eventListener)
+      ->off(Events.text, eventListener)
+      ->listeners(Events.text)
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -67,7 +69,7 @@ zoraBlock("EventEmitter", t => {
 
     {
       open Emitter1
-      let emitter = on(_, Events.integer, listener2)(on(_, Events.integer, listener1)(make()))
+      let emitter = make()->on(Events.integer, listener1)->on(Events.integer, listener2)
       emit(emitter, Events.integer, data1)->ignore
       emit(emitter, Events.integer, data2)->ignore
     }
@@ -80,9 +82,10 @@ zoraBlock("EventEmitter", t => {
     let eventListener = _ => ()
     let emitter = {
       open Emitter1
-      on(_, Events.text, eventListener)(
-        on(_, Events.text, eventListener)(on(_, Events.text, eventListener)(make())),
-      )
+      make()
+      ->on(Events.text, eventListener)
+      ->on(Events.text, eventListener)
+      ->on(Events.text, eventListener)
     }
     // Make sure 3 listeners were indeed added:
     Assert.strictEqual(
