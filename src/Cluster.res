@@ -84,8 +84,7 @@ module Worker = {
     @send
     external onErrorOnce: (t, @as("error") _, JsExn.t => unit) => t = "once"
     @send
-    external onExitOnce: (t, @as("exit") _, (nullable<int>, nullable<string>) => unit) => t =
-      "once"
+    external onExitOnce: (t, @as("exit") _, (nullable<int>, nullable<string>) => unit) => t = "once"
     @send
     external onListeningOnce: (t, @as("listening") _, Address.t => unit) => t = "once"
     @send

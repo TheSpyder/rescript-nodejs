@@ -6,16 +6,10 @@ Readline.clearScreenDown(Process.stdout(Process.process), ~callback=() =>
   Stdlib.Console.log("screen cleared")
 )->ignore
 
-Readline.cursorTo(
-  Process.stdout(Process.process),
-  ~x=1,
-  ~y=2,
-  ~callback=() => Stdlib.Console.log("cursor to"),
+Readline.cursorTo(Process.stdout(Process.process), ~x=1, ~y=2, ~callback=() =>
+  Stdlib.Console.log("cursor to")
 )->ignore
 
-Readline.moveCursor(
-  Process.stdout(Process.process),
-  ~dx=1,
-  ~dy=2,
-  ~callback=() => Stdlib.Console.log("cursor moved"),
+Readline.moveCursor(Process.stdout(Process.process), ~dx=1, ~dy=2, ~callback=() =>
+  Stdlib.Console.log("cursor moved")
 )->ignore

@@ -108,8 +108,7 @@ module Http2Session = {
   external encrypted: t => option<bool> = "encrypted"
   @send external goaway: t => unit = "goaway"
   @send
-  external goawayWith: (t, ~code: int=?, ~lastStreamId: int=?, ~data: Buffer.t=?) => unit =
-    "goaway"
+  external goawayWith: (t, ~code: int=?, ~lastStreamId: int=?, ~data: Buffer.t=?) => unit = "goaway"
   @get
   external localSettings: t => {
     "headerTableSize": int,

@@ -307,8 +307,7 @@ module Server = {
   module Impl = {
     include Events
     @send
-    external close: (subtype<'ty>, ~callback: nullable<JsExn.t> => unit=?) => subtype<'ty> =
-      "close"
+    external close: (subtype<'ty>, ~callback: nullable<JsExn.t> => unit=?) => subtype<'ty> = "close"
     @send
     external getConnections: (subtype<'ty>, (nullable<JsExn.t>, int) => unit) => subtype<'ty> =
       "getConnections"
