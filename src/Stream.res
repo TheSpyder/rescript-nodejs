@@ -25,46 +25,24 @@ module Common = {
 
   module Events = {
     @send
-    external onError: (
-      subtype<'ty> as 'stream,
-      @as("error") _,
-      @uncurry (Js.Exn.t => unit),
-    ) => 'stream = "on"
+    external onError: (subtype<'ty> as 'stream, @as("error") _, JsExn.t => unit) => 'stream = "on"
 
     @send
-    external onClose: (
-      subtype<'ty> as 'stream,
-      @as("close") _,
-      @uncurry (unit => unit),
-    ) => 'stream = "on"
+    external onClose: (subtype<'ty> as 'stream, @as("close") _, unit => unit) => 'stream = "on"
 
     @send
-    external offError: (
-      subtype<'ty> as 'stream,
-      @as("error") _,
-      @uncurry (Js.Exn.t => unit),
-    ) => 'stream = "off"
+    external offError: (subtype<'ty> as 'stream, @as("error") _, JsExn.t => unit) => 'stream = "off"
 
     @send
-    external offClose: (
-      subtype<'ty> as 'stream,
-      @as("close") _,
-      @uncurry (unit => unit),
-    ) => 'stream = "off"
+    external offClose: (subtype<'ty> as 'stream, @as("close") _, unit => unit) => 'stream = "off"
 
     @send
-    external onCloseOnce: (
-      subtype<'ty> as 'stream,
-      @as("close") _,
-      @uncurry (unit => unit),
-    ) => 'stream = "once"
+    external onCloseOnce: (subtype<'ty> as 'stream, @as("close") _, unit => unit) => 'stream =
+      "once"
 
     @send
-    external onErrorOnce: (
-      subtype<'ty> as 'stream,
-      @as("error") _,
-      @uncurry (Js.Exn.t => unit),
-    ) => 'stream = "once"
+    external onErrorOnce: (subtype<'ty> as 'stream, @as("error") _, JsExn.t => unit) => 'stream =
+      "once"
 
     @send
     external removeAllListeners: (subtype<'ty> as 'stream) => 'stream = "removeAllListeners"
@@ -75,7 +53,7 @@ module Common = {
     @send
     external destroy: (subtype<[> kind]> as 'stream) => 'stream = "destroy"
     @send
-    external destroyWithError: (subtype<[> kind]> as 'stream, Js.Exn.t) => 'stream = "destroy"
+    external destroyWithError: (subtype<[> kind]> as 'stream, JsExn.t) => 'stream = "destroy"
     @get external destroyed: subtype<[> kind]> => bool = "destroyed"
   }
   include Impl
@@ -85,76 +63,60 @@ module Writable = {
   type kind<'w> = writable<'w>
   module Events = {
     @send
-    external onDrain: (
-      subtype<[> writable<'w>]> as 'ws,
-      @as("drain") _,
-      @uncurry (unit => unit),
-    ) => 'ws = "on"
+    external onDrain: (subtype<[> writable<'w>]> as 'ws, @as("drain") _, unit => unit) => 'ws = "on"
     @send
-    external onFinish: (
-      subtype<[> writable<'w>]> as 'ws,
-      @as("finish") _,
-      @uncurry (unit => unit),
-    ) => 'ws = "on"
+    external onFinish: (subtype<[> writable<'w>]> as 'ws, @as("finish") _, unit => unit) => 'ws =
+      "on"
     @send
     external onPipe: (
       subtype<[> writable<'w>]> as 'ws,
       @as("pipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "on"
     @send
     external onUnpipe: (
       subtype<[> writable<'w>]> as 'ws,
       @as("unpipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "on"
     @send
-    external offDrain: (
-      subtype<[> writable<'w>]> as 'ws,
-      @as("drain") _,
-      @uncurry (unit => unit),
-    ) => 'ws = "off"
+    external offDrain: (subtype<[> writable<'w>]> as 'ws, @as("drain") _, unit => unit) => 'ws =
+      "off"
     @send
-    external offFinish: (
-      subtype<[> writable<'w>]> as 'ws,
-      @as("finish") _,
-      @uncurry (unit => unit),
-    ) => 'ws = "off"
+    external offFinish: (subtype<[> writable<'w>]> as 'ws, @as("finish") _, unit => unit) => 'ws =
+      "off"
     @send
     external offPipe: (
       subtype<[> writable<'w>]> as 'ws,
       @as("pipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "off"
     @send
     external offUnpipe: (
       subtype<[> writable<'w>]> as 'ws,
       @as("unpipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "off"
     @send
-    external onDrainOnce: (
-      subtype<[> writable<'w>]> as 'ws,
-      @as("drain") _,
-      @uncurry (unit => unit),
-    ) => 'ws = "once"
+    external onDrainOnce: (subtype<[> writable<'w>]> as 'ws, @as("drain") _, unit => unit) => 'ws =
+      "once"
     @send
     external onFinishOnce: (
       subtype<[> writable<'w>]> as 'ws,
       @as("finish") _,
-      @uncurry (unit => unit),
+      unit => unit,
     ) => 'ws = "once"
     @send
     external onPipeOnce: (
       subtype<[> writable<'w>]> as 'ws,
       @as("pipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "once"
     @send
     external onUnpipeOnce: (
       subtype<[> writable<'w>]> as 'ws,
       @as("unpipe") _,
-      @uncurry (subtype<[> readable<'r>]> => unit),
+      subtype<[> readable<'r>]> => unit,
     ) => 'ws = "once"
   }
   module Impl = {
@@ -169,8 +131,7 @@ module Writable = {
     external writeWith: (
       subtype<[> writable<'w>]>,
       'w,
-      ~callback: Js.Nullable.t<Js.Exn.t> => unit=?,
-      unit,
+      ~callback: nullable<JsExn.t> => unit=?,
     ) => bool = "write"
     @get
     external writable: subtype<[> writable<'w>]> => bool = "writable"
@@ -203,23 +164,22 @@ module Writable = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       t<'w>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~final: @this (t<'w>, ~callback: (~error: option<Js.Exn.t>) => unit) => unit=?,
+    ~final: @this (t<'w>, ~callback: (~error: option<JsExn.t>) => unit) => unit=?,
     ~writev: @this (
       t<'w>,
       ~data: array<chunk<'w>>,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
     ~write: @this (
       t<'w>,
       ~data: 'w,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    unit,
   ) => makeOptions<'w> = ""
   @module("node:stream") @new
   external make: makeOptions<Buffer.t> => t<Buffer.t> = "Writable"
@@ -233,23 +193,22 @@ module Writable = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       objStream<'w>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~final: @this (objStream<'w>, ~callback: (~error: option<Js.Exn.t>) => unit) => unit=?,
+    ~final: @this (objStream<'w>, ~callback: (~error: option<JsExn.t>) => unit) => unit=?,
     ~writev: @this (
       objStream<'w>,
       ~data: array<chunk<'w>>,
-      ~encoding: Js.null<StringEncoding.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~encoding: Null.t<StringEncoding.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
     ~write: @this (
       objStream<'w>,
       ~data: 'w,
-      ~encoding: Js.null<StringEncoding.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~encoding: Null.t<StringEncoding.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    unit,
   ) => makeOptionsObjMode<'w> = ""
   @module("node:stream") @new
   external makeObjMode: makeOptionsObjMode<'w> => objStream<'w> = "Writable"
@@ -263,94 +222,56 @@ module Readable = {
   module Events = {
     include Common.Events
     @send
-    external onData: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("data") _,
-      @uncurry ('r => unit),
-    ) => 'rs = "on"
+    external onData: (subtype<[> readable<'r>]> as 'rs, @as("data") _, 'r => unit) => 'rs = "on"
     @send
-    external onEnd: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("end") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "on"
+    external onEnd: (subtype<[> readable<'r>]> as 'rs, @as("end") _, unit => unit) => 'rs = "on"
     @send
-    external onPause: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("pause") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "on"
+    external onPause: (subtype<[> readable<'r>]> as 'rs, @as("pause") _, unit => unit) => 'rs = "on"
     @send
     external onReadable: (
       subtype<[> readable<'r>]> as 'rs,
       @as("readable") _,
-      @uncurry (unit => unit),
+      unit => unit,
     ) => 'rs = "on"
     @send
-    external onResume: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("resume") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "on"
+    external onResume: (subtype<[> readable<'r>]> as 'rs, @as("resume") _, unit => unit) => 'rs =
+      "on"
     @send
-    external offData: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("data") _,
-      @uncurry ('r => unit),
-    ) => 'rs = "off"
+    external offData: (subtype<[> readable<'r>]> as 'rs, @as("data") _, 'r => unit) => 'rs = "off"
     @send
-    external offEnd: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("end") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "off"
+    external offEnd: (subtype<[> readable<'r>]> as 'rs, @as("end") _, unit => unit) => 'rs = "off"
     @send
-    external offPause: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("pause") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "off"
+    external offPause: (subtype<[> readable<'r>]> as 'rs, @as("pause") _, unit => unit) => 'rs =
+      "off"
     @send
     external offReadable: (
       subtype<[> readable<'r>]> as 'rs,
       @as("readable") _,
-      @uncurry (unit => unit),
+      unit => unit,
     ) => 'rs = "off"
     @send
-    external offResume: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("resume") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "off"
+    external offResume: (subtype<[> readable<'r>]> as 'rs, @as("resume") _, unit => unit) => 'rs =
+      "off"
     @send
-    external onDataOnce: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("data") _,
-      @uncurry ('r => unit),
-    ) => 'rs = "once"
+    external onDataOnce: (subtype<[> readable<'r>]> as 'rs, @as("data") _, 'r => unit) => 'rs =
+      "once"
     @send
-    external onEndOnce: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("end") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "once"
+    external onEndOnce: (subtype<[> readable<'r>]> as 'rs, @as("end") _, unit => unit) => 'rs =
+      "once"
     @send
-    external onPauseOnce: (
-      subtype<[> readable<'r>]> as 'rs,
-      @as("pause") _,
-      @uncurry (unit => unit),
-    ) => 'rs = "once"
+    external onPauseOnce: (subtype<[> readable<'r>]> as 'rs, @as("pause") _, unit => unit) => 'rs =
+      "once"
     @send
     external onReadableOnce: (
       subtype<[> readable<'r>]> as 'rs,
       @as("readable") _,
-      @uncurry (unit => unit),
+      unit => unit,
     ) => 'rs = "once"
     @send
     external onResumeOnce: (
       subtype<[> readable<'r>]> as 'rs,
       @as("resume") _,
-      @uncurry (unit => unit),
+      unit => unit,
     ) => 'rs = "once"
   }
   module Impl = {
@@ -370,7 +291,7 @@ module Readable = {
     @get
     external readable: subtype<[> readable<'r>]> => bool = "readable"
     @get
-    external readableEncoding: subtype<[> readable<'r>]> => Js.nullable<string> = "readableEncoding"
+    external readableEncoding: subtype<[> readable<'r>]> => nullable<string> = "readableEncoding"
     @get
     external readableEnded: subtype<[> readable<'r>]> => bool = "readableEnded"
     @get
@@ -404,11 +325,10 @@ module Readable = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       t<'r>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    ~read: @this (t<'r>, ~size: Js.nullable<int>) => unit,
-    unit,
+    ~read: @this (t<'r>, ~size: nullable<int>) => unit,
   ) => makeOptions<'r> = ""
   @module("node:stream") @new
   external make: makeOptions<Buffer.t> => t<Buffer.t> = "Readable"
@@ -422,11 +342,10 @@ module Readable = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       objStream<'r>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    ~read: @this (objStream<'r>, ~size: Js.nullable<int>) => unit,
-    unit,
+    ~read: @this (objStream<'r>, ~size: nullable<int>) => unit,
   ) => makeOptionsObjMode<'r> = ""
 
   @module("node:stream") @new
@@ -461,24 +380,23 @@ module Duplex = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       t<'w, 'r>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~final: @this (t<'w, 'r>, ~data: 'w, ~callback: (~error: option<Js.Exn.t>) => unit) => unit=?,
+    ~final: @this (t<'w, 'r>, ~data: 'w, ~callback: (~error: option<JsExn.t>) => unit) => unit=?,
     ~writev: @this (
       t<'w, 'r>,
       ~data: array<chunk<'w>>,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~read: @this (t<'w, 'r>, ~size: Js.nullable<int>) => unit,
+    ~read: @this (t<'w, 'r>, ~size: nullable<int>) => unit,
     ~write: @this (
       t<'w, 'r>,
       ~data: 'w,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    unit,
   ) => makeOptions<'w, 'r> = ""
 
   @module("node:stream") @new
@@ -494,24 +412,23 @@ module Duplex = {
     ~autoDestroy: bool=?,
     ~destroy: @this (
       objStream<'w, 'r>,
-      ~error: Js.nullable<Js.Exn.t>,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~error: nullable<JsExn.t>,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~final: @this (objStream<'w, 'r>, ~callback: (~error: option<Js.Exn.t>) => unit) => unit=?,
+    ~final: @this (objStream<'w, 'r>, ~callback: (~error: option<JsExn.t>) => unit) => unit=?,
     ~writev: @this (
       objStream<'w, 'r>,
       ~data: array<chunk<'w>>,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit=?,
-    ~read: @this (objStream<'w, 'r>, ~size: Js.nullable<int>) => unit,
+    ~read: @this (objStream<'w, 'r>, ~size: nullable<int>) => unit,
     ~write: @this (
       objStream<'w, 'r>,
       ~data: 'w,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>) => unit,
+      ~callback: (~error: option<JsExn.t>) => unit,
     ) => unit,
-    unit,
   ) => makeOptionsObjMode<'w, 'r> = ""
 
   @module("node:stream") @new
@@ -545,13 +462,12 @@ module Transform = {
       t<'w, 'r>,
       ~data: 'w,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>, ~data: option<'r>) => unit,
+      ~callback: (~error: option<JsExn.t>, ~data: option<'r>) => unit,
     ) => unit,
     ~flush: @this (
       t<'w, 'r>,
-      ~callback: (~error: option<Js.Exn.t>, ~data: option<'r>) => unit,
+      ~callback: (~error: option<JsExn.t>, ~data: option<'r>) => unit,
     ) => unit,
-    unit,
   ) => makeOptions<'w, 'r> = ""
 
   @module("node:stream") @new
@@ -568,13 +484,12 @@ module Transform = {
       objStream<'w, 'r>,
       ~data: 'w,
       ~encoding: StringEncoding.t,
-      ~callback: (~error: option<Js.Exn.t>, ~data: option<'r>) => unit,
+      ~callback: (~error: option<JsExn.t>, ~data: option<'r>) => unit,
     ) => unit,
     ~flush: @this (
       objStream<'w, 'r>,
-      ~callback: (~error: option<Js.Exn.t>, ~data: option<'r>) => unit,
+      ~callback: (~error: option<JsExn.t>, ~data: option<'r>) => unit,
     ) => unit,
-    unit,
   ) => makeOptionsObjMode<'w, 'r> = ""
 
   @module("node:stream") @new
@@ -611,13 +526,13 @@ include Events
 type cleanupFn = unit => unit
 
 @module("node:stream")
-external finished: (subtype<'ty>, Js.nullable<Js.Exn.t> => unit) => cleanupFn = "finished"
+external finished: (subtype<'ty>, nullable<JsExn.t> => unit) => cleanupFn = "finished"
 
 @module("node:stream")
 external pipeline2: (
   subtype<[> readable<'t1>] as 'src>,
   subtype<[> writable<'t1>] as 'dest>,
-  Js.nullable<Js.Exn.t> => unit,
+  nullable<JsExn.t> => unit,
 ) => subtype<[> writable<'t1>] as 'dest> = "pipeline"
 
 @module("node:stream")
@@ -625,7 +540,7 @@ external pipeline3: (
   subtype<[> readable<'t1>] as 'src>,
   subtype<[> writable<'t1> | readable<'t2>] as 'kindA>,
   subtype<[> writable<'t2>] as 'dest>,
-  Js.nullable<Js.Exn.t> => unit,
+  nullable<JsExn.t> => unit,
 ) => subtype<[> writable<'t2>] as 'dest> = "pipeline"
 @module("node:stream")
 external pipeline4: (
@@ -633,5 +548,5 @@ external pipeline4: (
   subtype<[> writable<'t1> | readable<'t2>] as 'kindA>,
   subtype<[> writable<'t2> | readable<'t3>] as 'kindA>,
   subtype<[> writable<'t3>] as 'dest>,
-  Js.nullable<Js.Exn.t> => unit,
+  nullable<JsExn.t> => unit,
 ) => subtype<[> writable<'t3>] as 'dest> = "pipeline"

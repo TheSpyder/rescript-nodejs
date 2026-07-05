@@ -73,7 +73,7 @@ module Performance = {
   @send external now: t => float = "now"
   @send external timerify: (unit => unit, unit) => unit = "timerify"
   @send
-  external timerifyU: (@uncurry (unit => unit), unit) => unit = "timerify"
+  external timerifyU: (unit => unit, unit) => unit = "timerify"
 }
 
 module Histogram = {
@@ -101,10 +101,10 @@ module PerformanceObserverEntryList = {
   @send
   external getEntries: t => array<PerformanceEntry.t> = "getEntries"
   @send
-  external getEntriesByName: (t, string, Js.Nullable.t<string>) => array<PerformanceEntry.t> =
+  external getEntriesByName: (t, string, nullable<string>) => array<PerformanceEntry.t> =
     "getEntriesByName"
   let getEntriesByName = (entryList, ~type_=?, name) =>
-    getEntriesByName(entryList, name, Js.Nullable.fromOption(type_))
+    getEntriesByName(entryList, name, Nullable.fromOption(type_))
   @send
   external getEntriesByType: (t, string) => array<PerformanceEntry.t> = "getEntriesByType"
 }
@@ -116,7 +116,6 @@ module PerformanceObserver = {
 }
 
 @module("node:perf_hooks")
-external monitorEventLoopDelay: Js.Nullable.t<{"resolution": float}> => Histogram.t =
-  "eventLoopDelay"
-let monitorEventLoopDelay = (~resolution=?, ()) =>
-  monitorEventLoopDelay(Js.Nullable.fromOption(resolution))
+external monitorEventLoopDelay: nullable<{"resolution": float}> => Histogram.t = "eventLoopDelay"
+let monitorEventLoopDelay = (~resolution=?) =>
+  monitorEventLoopDelay(Nullable.fromOption(resolution))

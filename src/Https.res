@@ -19,14 +19,11 @@ module Agent = {
   type t
   module Events = {
     @send
-    external onKeylog: (t, @as("keylog") _, @uncurry (Buffer.t, Tls.TlsSocket.t) => unit) => t =
-      "on"
+    external onKeylog: (t, @as("keylog") _, (Buffer.t, Tls.TlsSocket.t) => unit) => t = "on"
     @send
-    external onKeylogOnce: (t, @as("keylog") _, @uncurry (Buffer.t, Tls.TlsSocket.t) => unit) => t =
-      "once"
+    external onKeylogOnce: (t, @as("keylog") _, (Buffer.t, Tls.TlsSocket.t) => unit) => t = "once"
     @send
-    external offKeylog: (t, @as("keylog") _, @uncurry (Buffer.t, Tls.TlsSocket.t) => unit) => t =
-      "off"
+    external offKeylog: (t, @as("keylog") _, (Buffer.t, Tls.TlsSocket.t) => unit) => t = "off"
   }
   include Events
 }
@@ -83,7 +80,7 @@ external getUrlWithOptionsCallback: (
 @module("node:https") external globalAgent: Agent.t = "globalAgent"
 @module("node:https") external maxHeaderSize: int = "maxHeaderSize"
 
-type statusCodes = Js.Dict.t<string>
+type statusCodes = dict<string>
 @module("node:https") external _STATUS_CODES: statusCodes = "STATUS_CODES"
 
 type methods = array<string>

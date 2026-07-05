@@ -11,21 +11,21 @@ external deepStrictEqual: ('a, 'a) => unit = "deepStrictEqual"
 @module("node:assert")
 external notDeepStrictEqual: ('a, 'a) => unit = "notDeepStrictEqual"
 @module("node:assert")
-external throws: (@uncurry (unit => 'a)) => unit = "throws"
+external throws: (unit => 'a) => unit = "throws"
 @module("node:assert")
-external throwsError: (@uncurry (unit => 'a), 'e) => unit = "throws"
+external throwsError: (unit => 'a, 'e) => unit = "throws"
 @module("node:assert")
-external doesNotThrow: (@uncurry (unit => 'a)) => unit = "doesNotThrow"
+external doesNotThrow: (unit => 'a) => unit = "doesNotThrow"
 @module("node:assert")
-external doesNotThrowError: (@uncurry (unit => 'a), 'e) => unit = "doesNotThrow"
+external doesNotThrowError: (unit => 'a, 'e) => unit = "doesNotThrow"
 @module("node:assert") external ifError: 'a => unit = "ifError"
 @module("node:assert")
-external rejects: (@uncurry (unit => Js.Promise.t<'a>)) => unit = "rejects"
+external rejects: (unit => promise<'a>) => unit = "rejects"
 @module("node:assert")
-external rejectsError: (@uncurry (unit => Js.Promise.t<'a>), 'e) => unit = "rejects"
+external rejectsError: (unit => promise<'a>, 'e) => unit = "rejects"
 @module("node:assert")
-external doesNotReject: (@uncurry (unit => Js.Promise.t<'a>)) => unit = "doesNotReject"
+external doesNotReject: (unit => promise<'a>) => unit = "doesNotReject"
 @module("node:assert")
-external doesNotRejectError: (@uncurry (unit => Js.Promise.t<'a>), 'e) => unit = "doesNotReject"
+external doesNotRejectError: (unit => promise<'a>, 'e) => unit = "doesNotReject"
 
 module AssertionError = Errors.AssertionError

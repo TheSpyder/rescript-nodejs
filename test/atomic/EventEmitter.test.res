@@ -3,8 +3,8 @@ open EventEmitterTestLib
 
 zoraBlock("EventEmitter", t => {
   t->notEqual(
-    Emitter1.make()->Js.Undefined.return,
-    Js.Undefined.empty,
+    Emitter1.make()->Nullable.make,
+    Nullable.undefined,
     "'Emitter.make' should create a new emitter instance that is defined",
   )
 
@@ -40,9 +40,9 @@ zoraBlock("EventEmitter", t => {
     let listeners = {
       open Emitter1
       make()
-      |> on(_, Events.text, eventListener)
-      |> removeListener(_, Events.text, eventListener)
-      |> listeners(_, Events.text)
+      ->on(Events.text, eventListener)
+      ->removeListener(Events.text, eventListener)
+      ->listeners(Events.text)
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -52,9 +52,9 @@ zoraBlock("EventEmitter", t => {
     let listeners = {
       open Emitter1
       make()
-      |> on(_, Events.text, eventListener)
-      |> off(_, Events.text, eventListener)
-      |> listeners(_, Events.text)
+      ->on(Events.text, eventListener)
+      ->off(Events.text, eventListener)
+      ->listeners(Events.text)
     }
     t->equal(Array.length(listeners), 0, "")
   })
@@ -69,7 +69,7 @@ zoraBlock("EventEmitter", t => {
 
     {
       open Emitter1
-      let emitter = make() |> on(_, Events.integer, listener1) |> on(_, Events.integer, listener2)
+      let emitter = make()->on(Events.integer, listener1)->on(Events.integer, listener2)
       emit(emitter, Events.integer, data1)->ignore
       emit(emitter, Events.integer, data2)->ignore
     }
@@ -83,9 +83,9 @@ zoraBlock("EventEmitter", t => {
     let emitter = {
       open Emitter1
       make()
-      |> on(_, Events.text, eventListener)
-      |> on(_, Events.text, eventListener)
-      |> on(_, Events.text, eventListener)
+      ->on(Events.text, eventListener)
+      ->on(Events.text, eventListener)
+      ->on(Events.text, eventListener)
     }
     // Make sure 3 listeners were indeed added:
     Assert.strictEqual(

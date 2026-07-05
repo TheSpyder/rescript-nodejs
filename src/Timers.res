@@ -24,10 +24,10 @@ external setInterval: (unit => unit, int) => Timeout.t = "setInterval"
 
 module Promises = {
   @module("node:timers/promises")
-  external setTimeout: int => Js.Promise.t<unit> = "setTimeout"
+  external setTimeout: int => promise<unit> = "setTimeout"
   @module("node:timers/promises")
-  external setImmediate: 'a => Js.Promise.t<'a> = "setImmediate"
+  external setImmediate: 'a => promise<'a> = "setImmediate"
   // setInterval is not a promise, it's an async iterator
   // @module("node:timers/promises")
-  // external setInterval: (int, 'a) => Js.Promise.t<'a> = "setTimeout"
+  // external setInterval: (int, 'a) => promise<'a> = "setTimeout"
 }

@@ -16,11 +16,11 @@ type inspectOptions = {
 
 type defaultInspectOptions = {
   mutable showHidden: bool,
-  mutable depth: Js.Null.t<int>,
+  mutable depth: Null.t<int>,
   mutable colors: bool,
   mutable customInspect: bool,
   mutable showProxy: bool,
-  mutable maxArrayLength: Js.Null.t<int>,
+  mutable maxArrayLength: Null.t<int>,
   mutable breakLength: int,
   mutable compact: bool,
   mutable sorted: bool,

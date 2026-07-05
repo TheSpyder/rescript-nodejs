@@ -19,7 +19,7 @@ module Impl = (
   @send
   external emit: (T.t, Event.t<'a => 'b, T.t>, 'a) => bool = "emit"
 
-  @get external errorMonitor: T.t => Js.Types.symbol = "errorMonitor"
+  @get external errorMonitor: T.t => Symbol.t = "errorMonitor"
 
   @send
   external eventNames: (T.t, Event.t<'a => 'b, T.t>) => array<Event.t<'a => 'b, T.t>> = "eventNames"
@@ -137,8 +137,6 @@ module Impl = (
 ")
 module Make = () => {
   type t
-  include Impl({
-    type t = t
-  })
+  include Impl({type t = t})
   @module("node:events") @new external make: unit => t = "EventEmitter"
 }

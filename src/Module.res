@@ -2,7 +2,7 @@ type rec t = {
   id: string,
   exports: Exports.t,
   // in REPL V4 it is `undefined` in CLI it can be `null`
-  parrent: Js.Nullable.t<t>,
+  parrent: nullable<t>,
   filename: string,
   loaded: bool,
   children: array<t>,
@@ -10,4 +10,4 @@ type rec t = {
 }
 
 @val
-external module_: {"__cache": Js.Dict.t<t>} = "module"
+external module_: {"__cache": dict<t>} = "module"

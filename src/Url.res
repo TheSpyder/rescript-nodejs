@@ -7,7 +7,7 @@ module SearchParams = {
     @as("forEach")
     forEach: ((~value: string, ~name: string=?, ~searchParams: t=?) => unit) => unit,
     @as("get")
-    get: string => Js.Null.t<string>,
+    get: string => Null.t<string>,
     @as("getAll")
     getAll: string => array<string>,
     @as("has")
@@ -25,7 +25,7 @@ module SearchParams = {
   }
   @new external empty: unit => t = "URLSearchParams"
   @new external fromString: string => t = "URLSearchParams"
-  @new external fromDict: Js.Dict.t<string> => t = "URLSearchParams"
+  @new external fromDict: dict<string> => t = "URLSearchParams"
   // [@bs.new] external fromIterable: iterable => t = "URLSearchParams"; // no type definition for 'iterator'
 }
 
@@ -43,7 +43,7 @@ type t = {
   searchParams: SearchParams.t,
   username: string,
   toString: unit => string,
-  toJson: unit => Js.Json.t,
+  toJson: unit => JSON.t,
 }
 
 @module("node:url") @new external make: string => t = "URL"
@@ -65,20 +65,20 @@ type urlFormatOptions = {"auth": bool, "fragment": bool, "search": bool, "unicod
 external format: (
   t,
   {
-    "auth": Js.Nullable.t<bool>,
-    "fragment": Js.Nullable.t<bool>,
-    "search": Js.Nullable.t<bool>,
-    "unicode": Js.Nullable.t<bool>,
+    "auth": nullable<bool>,
+    "fragment": nullable<bool>,
+    "search": nullable<bool>,
+    "unicode": nullable<bool>,
   },
 ) => string = "format"
 let format = (~auth=?, ~fragment=?, ~search=?, ~unicode=?, url) =>
   format(
     url,
     {
-      "auth": Js.Nullable.fromOption(auth),
-      "fragment": Js.Nullable.fromOption(fragment),
-      "search": Js.Nullable.fromOption(search),
-      "unicode": Js.Nullable.fromOption(unicode),
+      "auth": Nullable.fromOption(auth),
+      "fragment": Nullable.fromOption(fragment),
+      "search": Nullable.fromOption(search),
+      "unicode": Nullable.fromOption(unicode),
     },
   )
 

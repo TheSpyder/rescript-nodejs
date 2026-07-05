@@ -65,52 +65,50 @@ module ServerHttp2Stream = {
 module Http2Session = {
   type t
   @send
-  external onClose: (t, @as("close") _, @uncurry unit => unit) => t = "on"
+  external onClose: (t, @as("close") _, unit => unit) => t = "on"
   @send
-  external onConnect: (t, @as("connect") _, @uncurry (t, Net.Socket.t) => unit) => t = "on"
+  external onConnect: (t, @as("connect") _, (t, Net.Socket.t) => unit) => t = "on"
   @send
-  external onError: (t, @as("error") _, @uncurry Js.Exn.t => unit) => t = "on"
+  external onError: (t, @as("error") _, JsExn.t => unit) => t = "on"
   @send
   external onFrameError: (
     t,
     @as("frameError") _,
-    (@uncurry ~type_: int, ~errorCode: int, ~streamId: int) => unit,
+    (~type_: int, ~errorCode: int, ~streamId: int) => unit,
   ) => t = "on"
   @send
   external onGoAway: (
     t,
     @as("goAway") _,
-    (@uncurry ~errorCode: int, ~lastStreamId: int, Buffer.t) => unit,
+    (~errorCode: int, ~lastStreamId: int, Buffer.t) => unit,
   ) => t = "on"
   @send
-  external onLocalSettings: (t, @as("localSettings") _, @uncurry settingsObject => unit) => t = "on"
+  external onLocalSettings: (t, @as("localSettings") _, settingsObject => unit) => t = "on"
   @send
-  external onPing: (t, @as("ping") _, @uncurry Buffer.t => unit) => t = "on"
+  external onPing: (t, @as("ping") _, Buffer.t => unit) => t = "on"
   @send
-  external onRemoteSettings: (t, @as("remoteSettings") _, @uncurry settingsObject => unit) => t =
-    "on"
+  external onRemoteSettings: (t, @as("remoteSettings") _, settingsObject => unit) => t = "on"
   @send
   external onStream: (
     t,
     @as("stream") _,
-    @uncurry (t, {.."status": string, "content-type": string}, int, array<{..}>) => unit,
+    (t, {.."status": string, "content-type": string}, int, array<{..}>) => unit,
   ) => t = "on"
   @send
-  external onTimeout: (t, @as("timeout") _, @uncurry unit => unit) => t = "on"
+  external onTimeout: (t, @as("timeout") _, unit => unit) => t = "on"
   @get @return(nullable)
   external alpnProtocol: t => option<string> = "alpnProtocol"
   @send external close: t => unit = "close"
   @get external closed: t => bool = "closed"
   @send external destroy: t => unit = "destroy"
-  @send external destroyWithError: (t, Js.Exn.t) => unit = "destroy"
+  @send external destroyWithError: (t, JsExn.t) => unit = "destroy"
   @send external destroyWithCode: (t, int) => unit = "destroy"
   @get external destroyed: t => bool = "destroyed"
   @get @return(nullable)
   external encrypted: t => option<bool> = "encrypted"
   @send external goaway: t => unit = "goaway"
   @send
-  external goawayWith: (t, ~code: int=?, ~lastStreamId: int=?, ~data: Buffer.t=?, unit) => unit =
-    "goaway"
+  external goawayWith: (t, ~code: int=?, ~lastStreamId: int=?, ~data: Buffer.t=?) => unit = "goaway"
   @get
   external localSettings: t => {
     "headerTableSize": int,
@@ -125,13 +123,10 @@ module Http2Session = {
   external originSet: t => option<array<string>> = "originSet"
   @get external pendingSettingsAck: t => bool = "pendingSettingsAck"
   @send
-  external ping: (t, (Js.Nullable.t<Js.Exn.t>, int, Buffer.t) => unit) => bool = "ping"
+  external ping: (t, (nullable<JsExn.t>, int, Buffer.t) => unit) => bool = "ping"
   @send
-  external pingWith: (
-    t,
-    ~payload: Buffer.t,
-    (Js.Nullable.t<Js.Exn.t>, int, Buffer.t) => unit,
-  ) => bool = "ping"
+  external pingWith: (t, ~payload: Buffer.t, (nullable<JsExn.t>, int, Buffer.t) => unit) => bool =
+    "ping"
   @send external ref: t => unit = "ref"
   @get
   external remoteSettings: t => {
@@ -161,7 +156,7 @@ module Http2Session = {
   external settings: (
     t,
     settingsObject,
-    ~callback: (Js.Null.t<Js.Exn.t>, settingsObject, int) => unit=?,
+    ~callback: (Null.t<JsExn.t>, settingsObject, int) => unit=?,
   ) => unit = "settings"
   @get external type_: t => int = "type"
 }
@@ -201,23 +196,16 @@ module Http2ServerRequest = {
   module Impl = {
     include Stream.Readable.Impl
     @send
-    external onAborted: (
-      subtype<'r, 'ty>,
-      @as("aborted") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'ty> = "on"
+    external onAborted: (subtype<'r, 'ty>, @as("aborted") _, unit => unit) => subtype<'r, 'ty> =
+      "on"
     @send
-    external onClose: (
-      subtype<'r, 'ty>,
-      @as("close") _,
-      @uncurry unit => unit,
-    ) => subtype<'r, 'ty> = "on"
+    external onClose: (subtype<'r, 'ty>, @as("close") _, unit => unit) => subtype<'r, 'ty> = "on"
     @get external aborted: subtype<'r, 'ty> => bool = "aborted"
     @get external authority: subtype<'r, 'ty> => string = "authority"
     @get external complete: subtype<'r, 'ty> => bool = "complete"
     @send external destroy: subtype<'r, 'ty> => unit = "destroy"
     @send
-    external destroyWithError: (subtype<'r, 'ty>, Js.Exn.t) => unit = "destroy"
+    external destroyWithError: (subtype<'r, 'ty>, JsExn.t) => unit = "destroy"
     @get external headers: subtype<'r, 'ty> => {..} = "headers"
     @get
     external httpVersion: subtype<'r, 'ty> => string = "httpVersion"
@@ -247,9 +235,9 @@ module Http2ServerResponse = {
   module Impl = {
     include Stream.Duplex.Impl
     @send
-    external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
+    external onClose: (subtype<'ty>, @as("close") _, unit => unit) => subtype<'ty> = "on"
     @send
-    external onFinish: (subtype<'ty>, @as("finish") _, @uncurry unit => unit) => subtype<'ty> = "on"
+    external onFinish: (subtype<'ty>, @as("finish") _, unit => unit) => subtype<'ty> = "on"
     @send
     external setTrailers: (subtype<'ty>, {..}) => unit = "setTrailers"
     @send external end_: subtype<'ty> => unit = "end"
@@ -297,7 +285,7 @@ module Http2ServerResponse = {
     external createPushResponse: (
       subtype<'ty>,
       {..},
-      @uncurry (Js.Exn.t, ServerHttp2Stream.t) => unit,
+      (JsExn.t, ServerHttp2Stream.t) => unit,
     ) => unit = "writeHead"
   }
   include Impl

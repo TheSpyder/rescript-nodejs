@@ -5,6 +5,6 @@ let rl = Readline.make({input: Fs.createReadStream("sample.txt"), crlfDelay: inf
 
 rl
 ->Readline.Interface.on(Event.fromString("line"), line => {
-  Js.log(`Received: ${line}`)
+  Stdlib.Console.log(`Received: ${line}`)
 })
 ->ignore

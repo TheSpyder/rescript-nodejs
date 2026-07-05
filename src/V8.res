@@ -59,7 +59,7 @@ type heapCodeStats = {
 external getHeapCodeStatistics: unit => heapStats = "getHeapCodeStatistics"
 
 @module("node:v8")
-external writeHeapSnapshot: string => Js.Json.t = "writeHeapSnapshot"
+external writeHeapSnapshot: string => JSON.t = "writeHeapSnapshot"
 
 @module("node:v8") external serialize: 'a => Buffer.t = "serialize"
 @module("node:v8") external deserialize: Buffer.t => 'a = "deserialize"
